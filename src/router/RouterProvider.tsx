@@ -1,6 +1,8 @@
 import Main from "@/pages/Main";
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import Auth from "@/pages/Auth";
+import PrivateRoute from "@/router/PrivateRoute";
+import Layout from "@/pages/Main/Layout";
 
 const CustomRouterProvider = () => {
 
@@ -13,6 +15,14 @@ const CustomRouterProvider = () => {
                     path: 'auth',
                     element: <Auth/>,
                     children: [
+                        {
+                            path: '/',
+                            element: <PrivateRoute element={<Layout />} />,
+                            children: [
+
+                            ]
+                        },
+
                         {
                             index: true,
                             element: <Navigate to={'login'}/>,
