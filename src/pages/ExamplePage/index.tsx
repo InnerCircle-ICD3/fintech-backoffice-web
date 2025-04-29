@@ -1,4 +1,5 @@
 import { ExampleButton } from './ExampleButton';
+import { ExampleDatePicker } from './ExampleDatePicker';
 import { ExampleForm } from './ExampleForm';
 import { ExampleInput } from './ExampleInput';
 import { ExamplePopover } from './ExamplePopover';
@@ -20,6 +21,7 @@ const ExamplePage = () => {
       <ExampleInput />
       <ExampleSwitch />
       <ExamplePopover />
+      <ExampleDatePicker />
     </div>
   );
 };
