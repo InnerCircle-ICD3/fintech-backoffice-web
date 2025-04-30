@@ -23,3 +23,37 @@ export const labelContainer = style({
   flexDirection: 'column',
   gap: '2px',
 });
+
+export const popoverContentStyle = style({
+  width: 'auto',
+});
+
+export const datePickerButton = style({
+  width: '300px',
+  justifyContent: 'flex-start',
+  textAlign: 'left',
+  fontSize: vars.fontSize.sm,
+  fontWeight: vars.fontWeight.regular,
+});
+
+export const datePickerButtonSingle = style({
+  width: '240px',
+  justifyContent: 'flex-start',
+  textAlign: 'left',
+  fontWeight: vars.fontWeight.regular,
+});
+
+export const calendarIcon = style({
+  marginRight: '8px',
+  height: '16px',
+  width: '16px',
+});
+
+export const datePickerContainer = style({
+  display: 'grid',
+  gap: '2px',
+});
+
+export const mutedText = style({
+  color: vars.color.text.sub,
+});
