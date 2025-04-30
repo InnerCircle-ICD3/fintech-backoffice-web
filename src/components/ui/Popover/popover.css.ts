@@ -44,13 +44,13 @@ const slideInFromLeft = keyframes({
 // PopoverContent 스타일
 export const popoverContent = style({
   zIndex: 50,
-  width: '288px', // w-72 (72 * 4px = 288px)
-  borderRadius: '6px', // rounded-md
+  width: '288px',
+  borderRadius: '6px',
   border: `1px solid ${vars.color.border}`,
-  backgroundColor: vars.color.white, // bg-popover (가정)
-  padding: '16px', // p-4
-  color: vars.color.text.main, // text-popover-foreground (가정)
-  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // shadow-md
+  backgroundColor: vars.color.white,
+  padding: '16px',
+  color: vars.color.text.main,
+  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   outline: 'none',
   transformOrigin: 'var(--radix-popover-content-transform-origin)',
 

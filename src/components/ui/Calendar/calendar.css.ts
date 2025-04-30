@@ -1,6 +1,6 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
-import { recipe } from '@vanilla-extract/recipes';
+import { globalStyle } from '@vanilla-extract/css';
 
 export const layout = {
   months: style({
@@ -53,51 +53,50 @@ export const layout = {
 export const navigation = {
   nav: style({
     display: 'flex',
-    alignItems: 'flex-start', // items-start
+    alignItems: 'flex-start',
   }),
 
   buttonNav: style({
     position: 'absolute',
-    height: '1.75rem', // h-7
-    width: '1.75rem', // w-7
-    backgroundColor: 'transparent', // bg-transparent
-    padding: 0, // p-0
-    opacity: 0.8, // opacity-80
+    height: '1.75rem',
+    width: '1.75rem',
+    backgroundColor: 'transparent',
+    padding: 0,
+    opacity: 0.8,
     ':hover': {
-      opacity: 1, // hover:opacity-100
+      opacity: 1,
     },
   }),
 
   buttonLeft: style({
-    left: 0, // left-0
+    left: 0,
   }),
 
   buttonRight: style({
-    right: 0, // right-0
+    right: 0,
   }),
 
   chevronIcon: style({
-    height: '1rem', // h-4
-    width: '1rem', // w-4
+    height: '1rem',
+    width: '1rem',
   }),
 };
 
 export const grid = {
   monthGrid: style({
-    marginLeft: 'auto', // mx-auto
+    marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '1rem', // mt-4
+    marginTop: '1rem',
   }),
 
   week: style({
-    marginTop: '0.5rem', // mt-2
+    marginTop: '0.5rem',
     display: 'flex',
-    width: 'max-content', // w-max
-    alignItems: 'flex-start', // items-start
+    width: 'max-content',
+    alignItems: 'flex-start',
   }),
 
   day: style({
-    padding: '5px',
     textAlign: 'center',
     cursor: 'pointer',
     ':hover': {
@@ -111,141 +110,146 @@ export const interactive = {
     width: '2rem',
     height: '2rem',
     borderRadius: '0.375rem',
-    padding: 0, // p-0
-    fontWeight: vars.fontWeight.regular, // font-normal
-    transition: 'none', // transition-none
+    padding: 0,
+    fontSize: vars.fontSize.sm,
+    fontWeight: vars.fontWeight.regular,
+    transition: 'none',
     selectors: {
       '&[aria-selected="true"]': {
-        opacity: 1, // aria-selected:opacity-100
+        opacity: 1,
       },
     },
   }),
 
   yearButton: style({
-    height: '1.75rem', // h-7
-    width: '100%', // w-full
-    fontSize: vars.fontSize.sm, // text-sm
-    fontWeight: vars.fontWeight.regular, // font-normal
-    color: 'inherit', // text-foreground
+    height: '1.75rem',
+    width: '100%',
+    fontSize: vars.fontSize.sm,
+    fontWeight: vars.fontWeight.regular,
+    color: 'inherit',
   }),
 
   captionButton: style({
-    height: '1.75rem', // h-7
-    width: '100%', // w-full
+    height: '1.75rem',
+    width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap', // truncate
-    fontSize: vars.fontSize.sm, // text-sm
-    fontWeight: vars.fontWeight.medium, // font-medium
+    whiteSpace: 'nowrap',
+    fontSize: vars.fontSize.sm,
+    fontWeight: vars.fontWeight.medium,
   }),
 };
 
-// 상태 스타일
 export const states = {
-  selected: style({
-    selectors: {
-      '& > button': {
-        backgroundColor: vars.color.primary, // bg-primary
-        color: vars.color.white, // text-primary-foreground
-      },
-      '& > button:hover': {
-        backgroundColor: vars.color.primary, // hover:bg-primary
-        color: vars.color.white, // hover:text-primary-foreground
-      },
-    },
-  }),
+  selected: style({}),
 
-  today: style({
-    selectors: {
-      '& > button': {
-        backgroundColor: vars.color.background, // bg-accent
-        color: vars.color.text.title, // text-accent-foreground
-      },
-    },
-  }),
+  today: style({}),
 
   rangeStart: style({
-    backgroundColor: vars.color.primaryB, // bg-accent
+    backgroundColor: vars.color.primaryB,
     selectors: {
       '&.day-range-start': {
-        borderTopLeftRadius: '0.375rem', // rounded-s-md
+        borderTopLeftRadius: '0.375rem',
         borderBottomLeftRadius: '0.375rem',
-      },
-      '& > button': {
-        backgroundColor: vars.color.primary, // bg-primary
-        color: vars.color.white, // text-primary-foreground
-      },
-      '& > button:hover': {
-        backgroundColor: vars.color.primary, // hover:bg-primary
-        color: vars.color.white, // hover:text-primary-foreground
       },
     },
   }),
 
   rangeMiddle: style({
-    backgroundColor: vars.color.primaryB, // bg-accent
-    selectors: {
-      '& > button': {
-        backgroundColor: 'transparent', // bg-transparent
-        color: 'inherit', // !text-foreground
-      },
-      '& > button:hover': {
-        backgroundColor: 'transparent', // hover:bg-transparent
-        color: 'inherit', // hover:!text-foreground
-      },
-    },
+    backgroundColor: vars.color.primaryB,
   }),
 
   rangeEnd: style({
-    backgroundColor: vars.color.primaryB, // bg-accent
+    backgroundColor: vars.color.primaryB,
     selectors: {
       '&.day-range-end': {
-        borderTopRightRadius: '0.375rem', // rounded-e-md
+        borderTopRightRadius: '0.375rem',
         borderBottomRightRadius: '0.375rem',
-      },
-      '& > button': {
-        backgroundColor: vars.color.primary, // bg-primary
-        color: vars.color.white, // text-primary-foreground
-      },
-      '& > button:hover': {
-        backgroundColor: vars.color.primary, // hover:bg-primary
-        color: vars.color.white, // hover:text-primary-foreground
       },
     },
   }),
 
   outside: style({
-    color: vars.color.text.sub, // text-muted-foreground
-    opacity: 0.5, // opacity-50
+    color: vars.color.text.sub,
+    opacity: 0.5,
     selectors: {
       '&[aria-selected="true"]': {
-        backgroundColor: `${vars.color.primaryB}80`, // bg-accent/50
-        color: vars.color.text.sub, // text-muted-foreground
-        opacity: 0.3, // opacity-30
+        backgroundColor: `${vars.color.primaryB}80`,
+        color: vars.color.text.sub,
+        opacity: 0.3,
       },
     },
   }),
 
   disabled: style({
-    color: vars.color.text.sub, // text-muted-foreground
-    opacity: 0.5, // opacity-50
+    color: vars.color.text.sub,
+    opacity: 0.5,
   }),
 
   hidden: style({
-    visibility: 'hidden', // invisible
-    flex: 1, // flex-1
+    visibility: 'hidden',
+    flex: 1,
   }),
 };
 
-// 연도 그리드 스타일
 export const yearGrid = style({
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)', // grid-cols-4
-  rowGap: '0.5rem', // gap-y-2
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  rowGap: '0.5rem',
 });
 
 export const currentYearButton = style({
-  backgroundColor: vars.color.background, // bg-accent
-  fontWeight: vars.fontWeight.medium, // font-medium
-  color: vars.color.text.title, // text-accent-foreground
+  backgroundColor: vars.color.background,
+  fontWeight: vars.fontWeight.medium,
+  color: vars.color.text.title,
+});
+
+const selectedClass = states.selected;
+globalStyle(`${selectedClass} button`, {
+  backgroundColor: vars.color.primary,
+  color: vars.color.white,
+});
+
+globalStyle(`${selectedClass} button:hover`, {
+  backgroundColor: vars.color.primary,
+  color: vars.color.white,
+});
+
+const todayClass = states.today;
+globalStyle(`${todayClass} button`, {
+  backgroundColor: vars.color.background,
+  color: vars.color.text.title,
+});
+
+const rangeStartClass = states.rangeStart;
+globalStyle(`${rangeStartClass} button`, {
+  backgroundColor: vars.color.primary,
+  color: vars.color.white,
+});
+
+globalStyle(`${rangeStartClass} button:hover`, {
+  backgroundColor: vars.color.primary,
+  color: vars.color.white,
+});
+
+const rangeMiddleClass = states.rangeMiddle;
+globalStyle(`${rangeMiddleClass} button`, {
+  backgroundColor: 'transparent',
+  color: 'inherit',
+});
+
+globalStyle(`${rangeMiddleClass} button:hover`, {
+  backgroundColor: 'transparent',
+  color: 'inherit',
+});
+
+const rangeEndClass = states.rangeEnd;
+globalStyle(`${rangeEndClass} button`, {
+  backgroundColor: vars.color.primary,
+  color: vars.color.white,
+});
+
+globalStyle(`${rangeEndClass} button:hover`, {
+  backgroundColor: vars.color.primary,
+  color: vars.color.white,
 });
