@@ -25,7 +25,9 @@ export const ExampleSwitch = () => {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {}
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log('Form submitted:', data);
+  }
 
   return (
     <Form {...form}>
