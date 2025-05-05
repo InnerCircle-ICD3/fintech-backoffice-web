@@ -1,7 +1,3 @@
-
 import { createRoot } from 'react-dom/client';
 
-
-createRoot(document.getElementById('root')!).render(
-<>PassionPay-backoffice</>
-)
+createRoot(document.getElementById('root')!).render(<>PassionPay-backoffice</>);
