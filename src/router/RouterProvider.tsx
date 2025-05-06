@@ -1,6 +1,7 @@
 import Main from '@/pages/Main';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Auth from '@/pages/Auth';
+import ExamplePage from '@/pages/ExamplePage';
 
 const CustomRouterProvider = () => {
   const browserRouter = createBrowserRouter([
@@ -19,6 +20,10 @@ const CustomRouterProvider = () => {
           ],
         },
       ],
+    },
+    {
+      path: '/example',
+      element: <ExamplePage />,
     },
   ]);
 
