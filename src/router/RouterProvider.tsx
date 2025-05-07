@@ -64,6 +64,6 @@ const CustomRouterProvider = () => {
 
 
     return <RouterProvider router={browserRouter} future={{ v7_startTransition: true }} />;
-}
+};
 
-export default CustomRouterProvider
+export default CustomRouterProvider;

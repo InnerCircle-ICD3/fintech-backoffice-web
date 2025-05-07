@@ -1,12 +1,5 @@
 const Login = () => {
+  return <>로그인 페이지 Index</>;
+};
 
-
-    return (
-        <>
-            로그인 페이지 Index
-        </>
-    )
-
-}
-
-export default Login
+export default Login;
