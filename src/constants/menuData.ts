@@ -1,5 +1,3 @@
-
-
 export const SUB_MENU = [
   {
     menuId: 'TRANSACTION',

@@ -1,8 +1,7 @@
 import { RecipeVariants } from '@vanilla-extract/recipes';
 import { NavLink, NavLinkProps } from 'react-router-dom';
-import Flex from "@/components/layout/flex/Flex";
-import {menu} from "@/styles/menu.css";
-
+import Flex from '@/components/layout/flex/Flex';
+import { menu } from '@/styles/menu.css';
 
 type MenuVariants = RecipeVariants<typeof menu>;
 

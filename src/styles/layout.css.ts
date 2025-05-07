@@ -1,9 +1,9 @@
 import { style } from '@vanilla-extract/css';
-import {flex} from "@/components/layout/flex/flex.css";
+import { flex } from '@/components/layout/flex/flex.css';
 
 export const layout = style({
-    height: '100%',
-    background: '#F4F5FA'
+  height: '100%',
+  background: '#F4F5FA',
 });
 
 export const mainContainer = style([

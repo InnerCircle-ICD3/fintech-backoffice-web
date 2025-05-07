@@ -1,7 +1,7 @@
-import {Outlet} from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
 const Transaction = () => {
-    return <Outlet/>
-}
+  return <Outlet />;
+};
 
-export default Transaction
+export default Transaction;

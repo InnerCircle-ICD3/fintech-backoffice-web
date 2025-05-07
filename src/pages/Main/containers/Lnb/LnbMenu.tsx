@@ -1,8 +1,7 @@
-import {useLocation} from "react-router-dom";
-import {LnbMenuContainer} from "@/styles/lnb.css";
-import {SUB_MENU} from "@/constants/menuData";
-import MenuItem from "@/pages/Main/components/Lnb/MenuItem";
-
+import { useLocation } from 'react-router-dom';
+import { LnbMenuContainer } from '@/styles/lnb.css';
+import { SUB_MENU } from '@/constants/menuData';
+import MenuItem from '@/pages/Main/components/Lnb/MenuItem';
 
 const LnbMenu = () => {
   const location = useLocation();
@@ -19,8 +18,6 @@ const LnbMenu = () => {
   // if (childrenRouters.length === 0) {
   //   return;
   // }
-
-
 
   return (
     <div className={LnbMenuContainer({ expand: false })}>

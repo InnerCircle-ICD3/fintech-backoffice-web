@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import {flex} from "@/components/layout/flex/flex.css";
-
+import { flex } from '@/components/layout/flex/flex.css';
 
 export const content = style([
   flex({ direction: 'column' }),

@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import {content} from "@/styles/content.css";
-import {SIDE} from "@/constants/common";
+import { content } from '@/styles/content.css';
+import { SIDE } from '@/constants/common';
 
 const Content = () => {
-
-  const lnbExpandAnimationStatus = 'EXPAND'
-
+  const lnbExpandAnimationStatus = 'EXPAND';
 
   return (
     <div className={content}>
@@ -17,7 +15,7 @@ const Content = () => {
           minWidth: `calc(1280px - ${SIDE.WIDTH[lnbExpandAnimationStatus ? 'EXPAND' : 'COLLAPSE']} - 60px)`,
         }}
       >
-            <Outlet />
+        <Outlet />
       </div>
     </div>
   );
