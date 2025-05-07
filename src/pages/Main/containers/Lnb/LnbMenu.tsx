@@ -1,5 +1,7 @@
 import {useLocation} from "react-router-dom";
 import {LnbMenuContainer} from "@/styles/lnb.css";
+import {SUB_MENU} from "@/constants/menuData";
+import MenuItem from "@/pages/Main/components/Lnb/MenuItem";
 
 
 const LnbMenu = () => {
@@ -19,14 +21,11 @@ const LnbMenu = () => {
   // }
 
 
-  const childrenRouters = [
-
-  ]
 
   return (
     <div className={LnbMenuContainer({ expand: false })}>
-      {childrenRouters.map((childrenRoute) => (
-        <MenuItem key={childrenRoute.id} data={childrenRoute} />
+      {SUB_MENU.map((childrenRoute) => (
+        <MenuItem key={childrenRoute.menuId} data={childrenRoute} />
       ))}
     </div>
   );

@@ -1,7 +1,8 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import Lnb from "@/pages/Main/containers/Lnb";
-import {isEmpty} from "koko-react-select/dist/utils/commonUtils";
+
 import Content from "@/pages/Main/containers/Content";
+import {isEmpty} from "@/utils/commonUtils";
 import {layout, mainContainer} from "@/styles/layout.css";
 
 
@@ -16,7 +17,7 @@ const Layout = () => {
   }
 
   return (
-    <div className={layout({ gradient: location.pathname.includes('dashboard') })}>
+    <div className={layout}>
 
       <div className={mainContainer}>
         <Lnb />

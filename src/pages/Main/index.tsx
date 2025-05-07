@@ -1,6 +1,12 @@
+import {Outlet} from "react-router-dom";
+
 const Main = () => {
 
-    return <>main</>
+    return (
+        <div style={{height: '100%'}}>
+            <Outlet/>
+        </div>
+    )
 
 }
 

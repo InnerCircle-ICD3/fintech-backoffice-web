@@ -1,32 +1,15 @@
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
+import {flex} from "@/components/layout/flex/flex.css";
 
-import { flex } from '@styles/components/flex.css.ts';
-import { vars } from '@styles/theme.css.ts';
-
-import { TOP } from '@data/commonData.ts';
-
-export const layout = recipe({
-  base: {
+export const layout = style({
     height: '100%',
-  },
-  variants: {
-    gradient: {
-      true: {
-        background: `linear-gradient(to bottom, ${vars.themeColor.common.gradient} 250px, ${vars.themeColor.color.background} 250px)`,
-      },
-      false: { background: '#F4F5FA' },
-    },
-  },
-  defaultVariants: {
-    gradient: true,
-  },
+    background: '#F4F5FA'
 });
 
 export const mainContainer = style([
   flex(),
   {
     width: '100%',
-    height: `calc(100% - ${TOP.HEIGHT})`,
+    height: `calc(100% - 50px)`,
   },
 ]);

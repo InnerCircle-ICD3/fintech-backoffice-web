@@ -1,6 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes';
+import {vars} from "@/styles/theme.css";
 
-import { vars } from '@styles/theme.css.ts';
+
 
 export const menu = recipe({
   base: {
@@ -8,7 +9,7 @@ export const menu = recipe({
     alignItems: 'center',
     gap: '8px',
 
-    color: vars.themeColor.color.text.main,
+    color: vars.color.text.main,
 
     textDecoration: 'none',
     wordBreak: 'break-word',
@@ -28,7 +29,7 @@ export const menu = recipe({
         lineHeight: '24px',
 
         ':hover': {
-          background: vars.themeColor.color.table,
+          background: vars.color.table,
         },
       },
       '2depth': {
@@ -46,12 +47,12 @@ export const menu = recipe({
           width: '4px',
           minWidth: '4px',
           height: '4px',
-          background: vars.themeColor.color.text.main,
+          background: vars.color.text.main,
           borderRadius: '2px',
         },
 
         ':hover': {
-          background: vars.themeColor.color.table,
+          background: vars.color.table,
         },
       },
       small: {
@@ -61,7 +62,7 @@ export const menu = recipe({
       },
     },
     active: {
-      true: { color: vars.themeColor.color.primary, fontWeight: vars.fontWeight.bold },
+      true: { color: vars.color.primary, fontWeight: vars.fontWeight.bold },
       false: {},
     },
   },
@@ -77,7 +78,7 @@ export const menu = recipe({
           width: '4px',
           minWidth: '4px',
           height: '4px',
-          background: vars.themeColor.color.primary,
+          background: vars.color.primary,
           borderRadius: '2px',
         },
       },
