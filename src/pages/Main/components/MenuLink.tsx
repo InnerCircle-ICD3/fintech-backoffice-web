@@ -8,15 +8,15 @@ type MenuVariants = RecipeVariants<typeof menu>;
 type MenuProps = Omit<NavLinkProps, 'children'> &
   MenuVariants & {
     label?: string | undefined;
-    menuId?: string;
+    menuId: string;
   };
 
 const MenuLink = (props: MenuProps) => {
-  const { label = '', menuId, division, ...attributes } = props;
+  const { label = '', division, ...attributes } = props;
 
   return (
     <NavLink className={({ isActive }) => menu({ division, active: isActive })} {...attributes}>
-      {({ isActive }) => (
+      {() => (
         <Flex align={'center'} gap={'8px'}>
           {label}
         </Flex>
