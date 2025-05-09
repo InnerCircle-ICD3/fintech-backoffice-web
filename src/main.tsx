@@ -1,6 +1,6 @@
 import React from 'react';
+import '@/styles/global.css.ts';
 import { createRoot } from 'react-dom/client';
-
 const renderApp = async () => {
   const { default: App } = await import('./App');
 
