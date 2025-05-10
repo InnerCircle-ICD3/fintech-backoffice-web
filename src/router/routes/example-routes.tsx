@@ -1,4 +1,4 @@
-import { appLoader } from '@/loader';
+import { exampleLoader } from '@/router/loader';
 import { RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazy-lmport';
 import { QueryClient } from '@tanstack/react-query';
@@ -14,6 +14,6 @@ export const exampleRoutes = (queryClient: QueryClient): RouteObject[] => [
   {
     path: '/example-loader',
     lazy: ExampleLoader,
-    loader: appLoader(queryClient),
+    loader: exampleLoader(queryClient),
   },
 ];
