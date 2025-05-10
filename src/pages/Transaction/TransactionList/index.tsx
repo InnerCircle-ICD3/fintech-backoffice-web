@@ -1,7 +1,7 @@
-import Text from '@/components/text/Text';
+import Content from '@/components/layout/content/Content';
 
 const TransactionList = () => {
-  return <Text size={'xl'}>TransactionList</Text>;
+  return <Content label={'Transaction List'}></Content>;
 };
 
 export default TransactionList;
