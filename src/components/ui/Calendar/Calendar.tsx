@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/Button';
-import { button } from '@/components/ui/Button/button.css';
+import { Button } from '@/components/ui/button/Button';
+import { button } from '@/components/ui/button/button.css';
 import { cx } from '@/utils/cx';
 import { differenceInCalendarDays } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import * as React from 'react';
-import * as style from '@/components/ui/Calendar/calendar.css';
+import * as style from '@/components/ui/calendar/calendar.css';
 
 import {
   DayPicker,

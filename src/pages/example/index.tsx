@@ -2,12 +2,13 @@ import {
   ExampleForm,
   ExampleInput,
   ExampleSwitch,
-  ExampleButton,
   ExamplePopover,
   ExampleDatePicker,
+  ExampleLoader,
 } from './components';
+import { ExampleButton } from './components/ExampleButton';
 
-export const Example = () => {
+const Example = () => {
   return (
     <div
       style={{
@@ -24,6 +25,9 @@ export const Example = () => {
       <ExampleSwitch />
       <ExamplePopover />
       <ExampleDatePicker />
+      <ExampleLoader />
     </div>
   );
 };
+
+export default Example;

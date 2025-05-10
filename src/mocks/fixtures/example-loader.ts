@@ -1,4 +1,4 @@
-const loader = {
+const exampleLoader = {
   lineItems: [
     {
       id: 'line-item-01',
@@ -15,4 +15,4 @@ const loader = {
   totalPrice: 10_000,
 };
 
-export default loader;
+export default exampleLoader;

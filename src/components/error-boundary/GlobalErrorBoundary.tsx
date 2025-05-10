@@ -1,4 +1,4 @@
-import { determineErrorMessage } from '@/services/error.service';
+import { determineErrorMessage } from '@/services';
 import { useRouteError } from 'react-router-dom';
 
 export const GlobalErrorBoundary = () => {

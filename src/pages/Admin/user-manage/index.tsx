@@ -1,4 +1,4 @@
-import Text from '@/components/text/Text';
+import Text from '@/components/ui/text/Text';
 import { lazy, Suspense } from 'react';
 
 const UserManage1 = lazy(() => import('./UserManage1'));

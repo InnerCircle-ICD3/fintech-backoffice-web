@@ -1,5 +1,5 @@
-import loader from './loader';
+import exampleLoader from './example-loader';
 
 export default {
-  loader,
+  exampleLoader,
 };

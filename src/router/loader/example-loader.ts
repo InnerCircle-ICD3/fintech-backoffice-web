@@ -3,7 +3,7 @@ import { QueryClient } from '@tanstack/react-query';
 
 export const loaderQueryOption = () => ({
   queryKey: ['error'],
-  queryFn: () => api.get('/loader'),
+  queryFn: () => api.get('/example-loader'),
 });
 
 export const exampleLoader = (queryClient: QueryClient) => async () => {

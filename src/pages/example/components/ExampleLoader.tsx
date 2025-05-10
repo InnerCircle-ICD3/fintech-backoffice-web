@@ -6,8 +6,8 @@ export const ExampleLoader = () => {
   const data = useLoaderData();
 
   return (
-    <Flex justify="center">
-      <div>
+    <Flex justify="center" style={{ width: '100%' }}>
+      <div style={{ flex: '1' }}>
         <h1>Example Loader</h1>
         <pre>Data from loader: {JSON.stringify(data, null, 2)}</pre>
       </div>

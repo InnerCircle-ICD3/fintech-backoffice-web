@@ -8,11 +8,12 @@ import {
   type FieldPath,
   type FieldValues,
 } from 'react-hook-form';
-import { Label } from '@/components/ui/Label';
+import { Label } from '@/components/ui/label/Label';
 import { formItem, formDescription, formMessage, errorLabel } from './form.css';
 import { cx } from '@/utils/cx';
 import { useFormField } from './hook';
-import { FormFieldContext, FormItemContext } from './context';
+import { FormFieldContext, FormItemContext } from './FormContext';
+
 /**
  * shadcn/form
  * @see https://ui.shadcn.com/docs/components/form
