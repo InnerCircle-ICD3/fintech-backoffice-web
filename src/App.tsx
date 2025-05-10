@@ -19,6 +19,8 @@ const queryClient = new QueryClient({
       refetchOnReconnect: false,
       retry: 0,
       throwOnError: true,
+      staleTime: 1000 * 60 * 2, // 2분
+      gcTime: 1000 * 60 * 15, // 15분
     },
   },
 
