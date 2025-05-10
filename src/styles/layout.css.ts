@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { flex } from '@/components/layout/flex/flex.css';
 
 export const layout = style({
-  height: '100%',
+  height: '100vh',
   background: '#F4F5FA',
 });
 
