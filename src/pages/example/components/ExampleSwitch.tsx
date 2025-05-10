@@ -8,9 +8,9 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from '@/components/ui/Form';
-import { Switch } from '@/components/ui/Switch';
-import { formFieldsContainer, formItemStyle, labelContainer } from './example.css';
+} from '@/components/ui/form/Form';
+import { Switch } from '@/components/ui/switch/Switch';
+import { formFieldsContainer, formItemStyle, labelContainer } from '@/styles/example.css';
 
 const FormSchema = z.object({
   marketing_emails: z.boolean().default(false).optional(),

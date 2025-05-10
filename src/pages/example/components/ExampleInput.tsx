@@ -1,5 +1,5 @@
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/input/Input';
+import { Button } from '@/components/ui/button/Button';
 import { MailIcon, LockIcon, EyeIcon } from 'lucide-react';
 
 export const ExampleInput = () => {

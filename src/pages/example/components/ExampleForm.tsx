@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/components/ui/input/Input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
@@ -10,8 +10,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/Form';
-import { Button } from '@/components/ui/Button';
+} from '@/components/ui/form/Form';
+import { Button } from '@/components/ui/button/Button';
 import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from 'lucide-react';
 import { useState } from 'react';
 

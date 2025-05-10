@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useLayoutEffect, useState } from 'react';
 import Flex from '@/components/layout/flex/Flex';
-import MenuLink from '@/pages/Main/components/MenuLink';
+import MenuLink from '@/pages/main/components/MenuLink';
 import { menu } from '@/styles/menu.css';
 import type { MenuItem } from '@/types/menuData';
 
