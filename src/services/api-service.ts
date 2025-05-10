@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { handleError } from './error.service';
+import { handleError } from '@/services';
 
 const TIME_OUT = 5000; // 5초
 

@@ -1,11 +1,8 @@
-import { useLocation } from 'react-router-dom';
 import { LnbMenuContainer } from '@/styles/lnb.css';
 import { SUB_MENU } from '@/constants/menu-data';
 import MenuItem from '@/pages/main/components/lnb/MenuItem';
 
 const LnbMenu = () => {
-  const location = useLocation();
-
   // const serviceMenuList = useRecoilValue(serviceMenuListState);
   // const childrenRouters: RouterProps[] =
   //   serviceMenuList
