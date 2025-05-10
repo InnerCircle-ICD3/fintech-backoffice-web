@@ -1,22 +1,24 @@
-import { createRoot } from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import CustomRouterProvider from '@/router/RouterProvider';
-
+import React from 'react';
 import '@/styles/global.css.ts';
+import { createRoot } from 'react-dom/client';
+const renderApp = async () => {
+  const { default: App } = await import('./App');
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      gcTime: 0,
-      retry: 0,
-      throwOnError: true,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+  return createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+};
 
-createRoot(document.getElementById('root')!).render(
-  <QueryClientProvider client={queryClient}>
-    <CustomRouterProvider />
-  </QueryClientProvider>
-);
+const init = async () => {
+  if (import.meta.env.DEV) {
+    const { worker } = await import('@/mocks/browser');
+    await worker.start();
+    console.log('MSW initialized successfully');
+  }
+
+  await renderApp();
+};
+
+init().catch(console.error);

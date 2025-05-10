@@ -1,9 +1,8 @@
-import { useLocation } from 'react-router-dom';
 import { useLayoutEffect, useState } from 'react';
 import Flex from '@/components/layout/flex/Flex';
-import MenuLink from '@/pages/Main/components/MenuLink';
+import MenuLink from '@/pages/main/components/MenuLink';
 import { menu } from '@/styles/menu.css';
-import type { MenuItem } from '@/types/menuData';
+import type { MenuItem } from '@/types/menu-data';
 
 interface MenuItemProps {
   data: MenuItem;
@@ -14,8 +13,6 @@ const MenuItem = (props: MenuItemProps) => {
   const { menuId, menuNm = '', menuUrl = '' } = data;
   const [activeLnb, setActiveLnb] = useState('');
 
-  const location = useLocation();
-
   const handleSubMenuOpen = () => {
     setActiveLnb(activeLnb === menuId ? '' : menuId);
   };
@@ -24,7 +21,7 @@ const MenuItem = (props: MenuItemProps) => {
     if (window.location.pathname.includes(menuUrl)) {
       setActiveLnb(menuId);
     }
-  }, [location]);
+  }, [menuId, menuUrl]);
 
   return (
     <div style={{ width: '100%', whiteSpace: 'nowrap' }}>

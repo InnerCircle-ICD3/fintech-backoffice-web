@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { lnb, lnbContainer, top } from '@/styles/lnb.css';
 import { SIDE } from '@/constants/common';
-import LnbMenu from '@/pages/Main/containers/Lnb/LnbMenu';
+import LnbMenu from '@/pages/main/containers/lnb/LnbMenu';
 
 const Lnb = () => {
   const [bottomHeight, setBottomHeight] = useState<number>(0);
