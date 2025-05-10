@@ -1,7 +1,12 @@
-import Text from '@/components/text/Text';
+import Content from '@/components/layout/container/Content';
+import Search from '@/pages/Transaction/TransactionList/containers/Search';
 
 const TransactionList = () => {
-  return <Text size={'xl'}>TransactionList</Text>;
+  return (
+    <Content label={'Transaction List'}>
+      <Search />
+    </Content>
+  );
 };
 
 export default TransactionList;
