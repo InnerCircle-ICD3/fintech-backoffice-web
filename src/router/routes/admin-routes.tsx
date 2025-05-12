@@ -9,10 +9,6 @@ const TransactionList = lazyImport(() => import('@/pages/transaction/transaction
 
 const adminSectionRoutes = [
   {
-    path: '/admin',
-    element: <Navigate to="/admin/user-manager" replace />,
-  },
-  {
     path: '/admin/user-manager',
     lazy: UserManage,
   },
