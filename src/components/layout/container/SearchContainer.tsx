@@ -40,8 +40,12 @@ const SearchContainer = (props: SearchFilterProps) => {
 
       <Flex grow={'wFull'} justify={'end'}>
         <Flex gap={'16px'}>
-          <Button onClick={onReset}>Reset</Button>
-          <Button onClick={onSearch}>Search</Button>
+          <Button onClick={onReset} variant={'secondary'} size={'sm'}>
+            Reset
+          </Button>
+          <Button onClick={onSearch} size={'sm'}>
+            Search
+          </Button>
         </Flex>
       </Flex>
     </div>

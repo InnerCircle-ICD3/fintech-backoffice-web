@@ -1,0 +1,55 @@
+import { ReactNode } from 'react';
+import Flex from '@/components/layout/flex/Flex';
+import Text from '@/components/text/Text';
+
+export interface TableSubHeaderProps {
+  totalCount: number;
+  searchTime: string | null;
+  countLabel?: string;
+  showCount?: boolean;
+  showDateTime?: boolean;
+  headerButton?: ReactNode;
+}
+
+const TableSubHeader = (props: TableSubHeaderProps) => {
+  const {
+    totalCount,
+    searchTime = '',
+    countLabel = '데이터 갯수',
+    showCount = true,
+    showDateTime,
+    headerButton,
+  } = props;
+
+  return (
+    <Flex grow={'wFull'} align={'center'}>
+      <Flex grow={'full'} align={'center'} gap={'16px'}>
+        {showCount && (
+          <Flex gap={'4px'}>
+            <Text size={'sm'}>{countLabel} :</Text>
+            <Text size={'sm'} weight={'bold'}>
+              {totalCount?.toLocaleString()}
+            </Text>
+          </Flex>
+        )}
+
+        {showCount && showDateTime}
+
+        {showDateTime && (
+          <Flex gap={'4px'}>
+            <Text size={'sm'}>마지막 조회 시간 :</Text>
+            <Text size={'sm'} weight={'bold'}>
+              {searchTime}
+            </Text>
+          </Flex>
+        )}
+      </Flex>
+
+      <Flex align={'center'} gap={'16px'}>
+        {headerButton}
+      </Flex>
+    </Flex>
+  );
+};
+
+export default TableSubHeader;
