@@ -1,8 +1,8 @@
 import api from '@/services/api-service';
-import { QueryClient } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
 
 export const loaderQueryOption = () => ({
-  queryKey: ['error'],
+  queryKey: ['error-loader'],
   queryFn: () => api.get('/example-loader'),
 });
 
