@@ -1,5 +1,6 @@
 import CustomTable, { CustomColumnDef } from '@/components/ui/Table/CustomTable';
 import { CardTransactionType } from '@/types/transactionType';
+import { Button } from '@/components/ui/Button';
 
 interface TableProps {
   data: any;
@@ -23,7 +24,7 @@ const Table = (props: TableProps) => {
       id: 'trTm',
       header: '거래시간',
       cell: ({ row }) => row.original.trTm,
-      size: 80,
+      size: 100,
     },
     {
       id: 'cardCompany',
@@ -68,6 +69,23 @@ const Table = (props: TableProps) => {
       header: '매입상태',
       cell: ({ row }) => row.original.status,
       size: 100,
+    },
+    {
+      id: 'detail',
+      header: '상세',
+      cell: ({ row }) => (
+        <Button
+          size={'sm'}
+          variant={'ghost'}
+          onClick={() => {
+            console.log(row.original);
+          }}
+        >
+          상세
+        </Button>
+      ),
+      size: 120,
+      meta: { textAlign: 'center' },
     },
   ];
 

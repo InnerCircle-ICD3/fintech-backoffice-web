@@ -31,7 +31,7 @@ export type CustomColumnDef<TData, TValue = unknown> = ColumnDef<TData, TValue> 
 
 type CustomTableProps<T> = CardVariants &
   NodataProps &
-  Pick<TableSubHeaderProps, 'countLabel' | 'showCount' | 'headerButton'> & {
+  Pick<TableSubHeaderProps, 'countLabel' | 'isShowCount' | 'headerButton'> & {
     data: T[];
     columns: CustomColumnDef<T>[];
     columnPinning?: ColumnPinningState;
@@ -64,7 +64,7 @@ const CustomTable = <T,>(props: CustomTableProps<T>) => {
     onRowClick = () => {},
     noDataMessage,
     countLabel,
-    showCount,
+    isShowCount,
     headerButton,
     type,
   } = props;
@@ -140,7 +140,7 @@ const CustomTable = <T,>(props: CustomTableProps<T>) => {
               totalCount={paging?.totalCount}
               searchTime={searchTime}
               countLabel={countLabel}
-              showCount={showCount}
+              isShowCount={isShowCount}
               headerButton={headerButton}
             />
           )}

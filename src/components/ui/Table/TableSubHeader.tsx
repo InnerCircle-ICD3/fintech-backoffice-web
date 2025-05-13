@@ -6,8 +6,8 @@ export interface TableSubHeaderProps {
   totalCount: number;
   searchTime: string | null;
   countLabel?: string;
-  showCount?: boolean;
-  showDateTime?: boolean;
+  isShowCount?: boolean;
+  isShowDateTime?: boolean;
   headerButton?: ReactNode;
 }
 
@@ -16,15 +16,15 @@ const TableSubHeader = (props: TableSubHeaderProps) => {
     totalCount,
     searchTime = '',
     countLabel = '데이터 갯수',
-    showCount = true,
-    showDateTime,
+    isShowCount = true,
+    isShowDateTime,
     headerButton,
   } = props;
 
   return (
     <Flex grow={'wFull'} align={'center'}>
       <Flex grow={'full'} align={'center'} gap={'16px'}>
-        {showCount && (
+        {isShowCount && (
           <Flex gap={'4px'}>
             <Text size={'sm'}>{countLabel} :</Text>
             <Text size={'sm'} weight={'bold'}>
@@ -33,9 +33,9 @@ const TableSubHeader = (props: TableSubHeaderProps) => {
           </Flex>
         )}
 
-        {showCount && showDateTime}
+        {isShowCount && isShowDateTime}
 
-        {showDateTime && (
+        {isShowDateTime && (
           <Flex gap={'4px'}>
             <Text size={'sm'}>마지막 조회 시간 :</Text>
             <Text size={'sm'} weight={'bold'}>
