@@ -41,7 +41,7 @@ export const tr = recipe({
 export const td = style({
   padding: '8px 16px',
 
-  backgroundColor: vars.color.background,
+  background: vars.color.white,
 
   color: vars.color.text.main,
   fontSize: vars.fontSize.sm,

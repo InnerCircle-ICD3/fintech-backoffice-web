@@ -7,7 +7,7 @@ export const card = recipe({
     flex({ direction: 'column' }),
     {
       width: '100%',
-      background: vars.color.background,
+      background: vars.color.white,
     },
   ],
   variants: {

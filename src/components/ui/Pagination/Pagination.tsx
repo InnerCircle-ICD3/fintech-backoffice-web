@@ -1,7 +1,7 @@
-import ArrowIcon from '@assets/images/icon/icon_arrow.svg?react';
+import ArrowIcon from '@/assets/images/icon/icon_arrow.svg?react';
 import ReactPaginate from 'react-paginate';
 
-import '@components/pagination/pagination.css';
+import '@/components/ui/Pagination/pagination.css';
 import { vars } from '@/styles/theme.css';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/constants/common';
 import Flex from '@/components/layout/flex/Flex';

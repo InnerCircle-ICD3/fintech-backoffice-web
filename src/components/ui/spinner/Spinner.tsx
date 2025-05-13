@@ -1,8 +1,6 @@
 import { SyncLoader } from 'react-spinners';
-
-import Flex from '@components/container/Flex.tsx';
-
-import { vars } from '@styles/theme.css.ts';
+import Flex from '@/components/layout/flex/Flex';
+import { vars } from '@/styles/theme.css';
 
 interface SpinnerProps {
   isRoot?: boolean;
@@ -18,7 +16,7 @@ const Spinner = (props: SpinnerProps) => {
       align={'center'}
       style={{ position: 'absolute', zIndex: isRoot ? 9999 : 998 }}
     >
-      <SyncLoader color={vars.themeColor.color.primary} size={8} />
+      <SyncLoader color={vars.color.primary} size={8} />
     </Flex>
   );
 };
