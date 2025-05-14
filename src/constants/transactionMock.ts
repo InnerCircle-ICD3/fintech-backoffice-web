@@ -1,5 +1,3 @@
-import { CardTransactionType } from '@/types/transactionType';
-
 export const cardTransactionList = {
   page: {
     totalCount: 8,
