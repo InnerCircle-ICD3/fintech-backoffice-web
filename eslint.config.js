@@ -13,6 +13,7 @@ export default [
       'build',
       'coverage',
       '*.config.js',
+      'playwright-report/',
       'vite.config.ts',
       '**/*.d.ts',
     ],

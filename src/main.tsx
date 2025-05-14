@@ -13,7 +13,7 @@ const renderApp = async () => {
 
 const init = async () => {
   if (import.meta.env.DEV) {
-    const { worker } = await import('@/mocks/browser');
+    const { worker } = await import('@/tests/mocks/browser');
     await worker.start();
     console.log('MSW initialized successfully');
   }
