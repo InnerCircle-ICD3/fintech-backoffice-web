@@ -6,7 +6,7 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),svgr(), vanillaExtractPlugin()],
+  plugins: [react(), svgr(), vanillaExtractPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'), // 핵심 설정: @ -> src
