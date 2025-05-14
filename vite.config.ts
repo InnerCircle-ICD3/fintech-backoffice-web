@@ -3,10 +3,11 @@ import * as path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), vanillaExtractPlugin()],
+  plugins: [react(), svgr(), vanillaExtractPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
