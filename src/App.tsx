@@ -11,6 +11,7 @@ const DEFAULT_ERROR = 'Something went wrong';
  * @see
  * https://beomy.github.io/tech/react/tanstack-query-v5-api-reference/#mutationcache
  */
+const DEFAULT_ERROR = 'Something went wrong';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -71,7 +72,7 @@ const App = () => {
         fallbackElement={<div>앱 초기화 중...</div>}
       />
       <Toaster />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
