@@ -1,6 +1,6 @@
 import CustomTable, { CustomColumnDef } from '@/components/ui/Table/CustomTable';
 import { CardTransactionType } from '@/types/transactionType';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button/Button';
 
 interface TableProps {
   data: any;
