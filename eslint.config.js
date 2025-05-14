@@ -62,6 +62,9 @@ export default [
       // ESLint 규칙 중 Prettier와 충돌하는 규칙들 비활성화
       'arrow-body-style': 'off',
       'prefer-arrow-callback': 'off',
+
+      // 타입스크립트 any 사용 처리
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];
