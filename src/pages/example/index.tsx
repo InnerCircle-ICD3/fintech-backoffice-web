@@ -7,6 +7,7 @@ import {
   ExampleLoader,
 } from './components';
 import { ExampleButton } from './components/ExampleButton';
+import { ExampleDialog } from './components/ExampleDialog';
 
 const Example = () => {
   return (
@@ -25,6 +26,7 @@ const Example = () => {
       <ExampleSwitch />
       <ExamplePopover />
       <ExampleDatePicker />
+      <ExampleDialog />
       <ExampleLoader />
     </div>
   );

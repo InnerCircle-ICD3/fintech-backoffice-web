@@ -8,7 +8,7 @@ export const button = recipe({
     justifyContent: 'center',
     fontWeight: vars.fontWeight.medium,
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '8px',
     cursor: 'pointer',
     transition: 'background-color 0.2s ease-out, color 0.2s ease-out',
 

@@ -4,6 +4,7 @@ import { toast, Toaster } from 'sonner';
 import { RouterProvider } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { OverlayProvider } from './contexts/overlay/OverlayProvider';
 
 /**
  * @see
@@ -37,13 +38,15 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider
-        router={createRouter(queryClient)}
-        future={{ v7_startTransition: true }}
-        fallbackElement={<div>앱 초기화 중...</div>}
-      />
-      <Toaster />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <OverlayProvider>
+        <RouterProvider
+          router={createRouter(queryClient)}
+          future={{ v7_startTransition: true }}
+          fallbackElement={<div>앱 초기화 중...</div>}
+        />
+        <Toaster />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </OverlayProvider>
     </QueryClientProvider>
   );
 };

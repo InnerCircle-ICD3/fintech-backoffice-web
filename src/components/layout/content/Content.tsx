@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Flex from '@/components/layout/flex/Flex';
-import Text, { TextProps } from '@/components/text/Text';
+import Text, { TextProps } from '@/components/ui/text/Text';
 
 interface ContentContainerProps extends TextProps {
   children?: ReactNode;
