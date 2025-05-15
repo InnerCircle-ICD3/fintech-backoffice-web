@@ -7,24 +7,25 @@ import {
   ReissueResponseSchema,
   ReissueResponseType,
 } from './auth-schema';
+import { endPoint } from './auth-endpoint';
 
 /**
  * 인증 API 엔드포인트
  */
 export const authApi = {
   login: createApiEndpoint<LoginRequestType, LoginResponseType>({
-    path: '/merchants/login',
+    path: endPoint.login,
     method: 'post',
     requestSchema: LoginRequestSchema,
     responseSchema: LoginResponseSchema,
   }),
   reissue: createApiEndpoint<undefined, ReissueResponseType>({
-    path: '/merchants/reissue',
+    path: endPoint.reissue,
     method: 'post',
     responseSchema: ReissueResponseSchema,
   }),
   logout: createApiEndpoint<undefined, ReissueResponseType>({
-    path: '/merchants/logout',
+    path: endPoint.logout,
     method: 'post',
     responseSchema: ReissueResponseSchema,
   }),
