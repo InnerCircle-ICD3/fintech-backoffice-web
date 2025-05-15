@@ -4,12 +4,12 @@ import { RouterProvider } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { handleErrorMessage } from './services';
+import { useAuthStore } from './stores/auth-store';
 
 /**
  * @see
  * https://beomy.github.io/tech/react/tanstack-query-v5-api-reference/#mutationcache
  */
-
 const DEFAULT_ERROR = 'Something went wrong';
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,14 +34,25 @@ const queryClient = new QueryClient({
   }),
 });
 
+const RootLayout = () => {
+  const isHydrated = useAuthStore((state) => state.isHydrated);
+
+  if (!isHydrated) {
+    return;
+  }
+  return (
+    <RouterProvider
+      router={createRouter(queryClient)}
+      future={{ v7_startTransition: true }}
+      fallbackElement={<div>로딩 중...</div>}
+    />
+  );
+};
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider
-        router={createRouter(queryClient)}
-        future={{ v7_startTransition: true }}
-        fallbackElement={<div>앱 초기화 중...</div>}
-      />
+      <RootLayout />
       <Toaster />
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
