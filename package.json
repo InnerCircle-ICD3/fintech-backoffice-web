@@ -26,6 +26,7 @@
     "date-fns": "^4.1.0",
     "eslint-define-config": "^2.1.0",
     "framer-motion": "^12.9.2",
+    "immer": "^10.1.1",
     "koko-react-select": "^1.0.8",
     "lodash": "^4.17.21",
     "lucide-react": "^0.503.0",
