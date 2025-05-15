@@ -1,12 +1,12 @@
 import { AlertTriangle } from 'lucide-react';
 import * as styles from './error-boundary.css';
-import { determineErrorMessage } from '@/services';
+import { handleErrorMessage } from '@/services';
 import { Link, useRouteError } from 'react-router-dom';
 import { Button } from '@/components/ui/button/Button';
 
 export const GlobalErrorBoundary = () => {
   const error = useRouteError();
-  const errorMessage = determineErrorMessage(error);
+  const errorMessage = handleErrorMessage(error);
 
   return (
     <div className={styles.errorPageContainerStyle}>

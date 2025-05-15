@@ -4,7 +4,7 @@ const errorHandlers = [
   http.get(`${import.meta.env.VITE_API_URL}/error/400`, async () => {
     await delay(200);
     return HttpResponse.json(
-      { message: '잘못된 요청입니다', code: 'BAD_REQUEST' },
+      { message: '잘못된 요청입니다', code: 'INVALID_REQUEST' },
       { status: 400 }
     );
   }),
