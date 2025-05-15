@@ -1,8 +1,8 @@
 import Main from '@/pages/main';
-import { QueryClient } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
 import { authRoutes, adminRoutes, exampleRoutes } from './routes';
 import { GlobalErrorBoundary } from '@/components/error-boundary';
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
 
 export const createRouter = (queryClient: QueryClient) => {
   const routes: RouteObject[] = [
@@ -13,7 +13,7 @@ export const createRouter = (queryClient: QueryClient) => {
       children: [
         {
           index: true,
-          element: <Navigate to="/admin" replace />,
+          element: <Navigate to="/admin/user-manager" replace />,
         },
         authRoutes,
         adminRoutes,

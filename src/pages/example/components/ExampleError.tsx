@@ -38,6 +38,7 @@ export const ExampleError = () => {
           <option value="404">404 - Not Found</option>
           <option value="500">500 - Server Error</option>
           <option value="network">Network Error</option>
+          <option value="timeout">Timeout</option>
         </select>
       </Flex>
 

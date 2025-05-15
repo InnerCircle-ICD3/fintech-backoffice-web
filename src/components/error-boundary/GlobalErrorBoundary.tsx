@@ -15,7 +15,7 @@ export const GlobalErrorBoundary = () => {
           <AlertTriangle size={48} className={styles.iconStyle} />
         </div>
         <h1 className={styles.errorTitleStyle}>앗!.. </h1>
-        <p className={styles.errorMessageStyle}>
+        <p className={styles.errorMessageStyle} data-testid="error-message">
           {errorMessage || '알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'}
         </p>
         <div className={styles.buttonContainerStyle}>

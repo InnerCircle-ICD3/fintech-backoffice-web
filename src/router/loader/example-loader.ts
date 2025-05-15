@@ -2,7 +2,7 @@ import { axiosInstance } from '@/services';
 import { QueryClient } from '@tanstack/react-query';
 
 export const loaderQueryOption = () => ({
-  queryKey: ['error'],
+  queryKey: ['error-loader'],
   queryFn: () => axiosInstance.get('/example-loader'),
 });
 
