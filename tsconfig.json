@@ -5,6 +5,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "jsx": "react-jsx",
+    "noImplicitAny": false,
     "strict": true,
     "moduleResolution": "bundler",
     "esModuleInterop": true,

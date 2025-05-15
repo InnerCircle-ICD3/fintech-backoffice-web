@@ -1,7 +1,7 @@
 import { exampleLoader } from '@/router/loader';
-import { RouteObject } from 'react-router-dom';
+import type { RouteObject } from 'react-router-dom';
 
-import { QueryClient } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
 import { lazyImport } from '@/utils/lazy-lmport';
 
 const Example = lazyImport(() => import('@/pages/example'));
