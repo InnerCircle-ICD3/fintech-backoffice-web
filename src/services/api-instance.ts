@@ -1,14 +1,13 @@
 import axios, { AxiosError } from 'axios';
-import { handleError } from '@/services';
 
 const TIME_OUT = 5000; // 5초
 
-const api = axios.create({
+export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: TIME_OUT,
 });
 
-api.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -16,14 +15,12 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(handleError(error))
+  (error) => Promise.reject(error)
 );
 
-api.interceptors.response.use(
-  (response) => response,
+axiosInstance.interceptors.response.use(
+  (response) => response.data,
   (error: AxiosError) => {
-    return Promise.reject(handleError(error));
+    return Promise.reject(error);
   }
 );
-
-export default api;

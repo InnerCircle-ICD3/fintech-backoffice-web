@@ -1,2 +1,3 @@
-export * from './api-service';
-export * from './error-service';
+export * from './api-instance';
+export * from './api-error';
+export * from './api-factory';
