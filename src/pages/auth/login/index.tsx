@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { startTransition } from 'react';
 import { Button } from '@/components/ui/button/Button';
-
 import {
   Form,
   FormControl,
@@ -18,11 +17,13 @@ import { useNavigate } from 'react-router-dom';
 import { LoginFormSchema } from './login-schema';
 import { authApi } from '@/api/auth/auth-api';
 import { LoginRequestType } from '@/api/auth/auth-schema';
+import { useSetTokens } from '@/stores/auth-store';
 
 type LoginFormType = z.infer<typeof LoginFormSchema>;
 
 const Login = () => {
   const navigate = useNavigate();
+  const setToken = useSetTokens();
 
   const form = useForm({
     resolver: zodResolver(LoginFormSchema),
@@ -36,8 +37,11 @@ const Login = () => {
   const { isPending, mutateAsync } = useMutation({
     mutationKey: ['login'],
     mutationFn: async (data: LoginRequestType) => await authApi.login(data),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setToken(data);
+
       form.reset();
+
       startTransition(() => {
         navigate('/');
       });
