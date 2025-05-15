@@ -1,9 +1,9 @@
-import { AxiosError } from 'axios';
 import { createRouter } from '@/router';
 import { toast, Toaster } from 'sonner';
 import { RouterProvider } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { handleErrorMessage } from './services';
 
 /**
  * @see
@@ -27,9 +27,9 @@ const queryClient = new QueryClient({
   mutationCache: new MutationCache({
     // TODO: invalidateQueries
 
-    onError: (cause) => {
-      const { response } = cause as AxiosError<{ message: string }>;
-      toast.error(response?.data.message ?? DEFAULT_ERROR);
+    onError: (error) => {
+      const errorMessage = handleErrorMessage(error);
+      toast.error(errorMessage ?? DEFAULT_ERROR);
     },
   }),
 });
