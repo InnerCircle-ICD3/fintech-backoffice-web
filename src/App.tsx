@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const DEFAULT_ERROR = 'Something went wrong';
+import { OverlayProvider } from './contexts/overlay/OverlayProvider';
 
 /**
  * @see
@@ -66,13 +67,15 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider
-        router={createRouter(queryClient)}
-        future={{ v7_startTransition: true }}
-        fallbackElement={<div>앱 초기화 중...</div>}
-      />
-      <Toaster />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <OverlayProvider>
+        <RouterProvider
+          router={createRouter(queryClient)}
+          future={{ v7_startTransition: true }}
+          fallbackElement={<div>앱 초기화 중...</div>}
+        />
+        <Toaster />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </OverlayProvider>
     </QueryClientProvider>
   );
 };
