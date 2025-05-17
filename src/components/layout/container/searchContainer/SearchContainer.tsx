@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import Flex from '@/components/layout/flex/Flex';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/Button';
-import { searchFilter } from '@/styles/searchFilter.css';
+import { Button } from '@/components/ui/button/Button';
+import { searchFilter } from '@/components/layout/container/searchContainer/searchFilter.css';
 
 interface SearchFilterProps {
   children?: ReactNode;

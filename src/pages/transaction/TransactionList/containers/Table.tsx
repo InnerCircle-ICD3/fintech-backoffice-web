@@ -1,4 +1,4 @@
-import CustomTable, { CustomColumnDef } from '@/components/ui/Table/CustomTable';
+import CustomTable, { CustomColumnDef } from '@/components/ui/table/CustomTable';
 import { CardTransactionType } from '@/types/transactionType';
 import { Button } from '@/components/ui/button/Button';
 

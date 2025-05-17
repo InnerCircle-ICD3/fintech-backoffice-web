@@ -1,7 +1,7 @@
 import ErrorIcon from '@/assets/images/icon/icon_error_yellow.svg';
 
 import Flex from '@/components/layout/flex/Flex';
-import Text from '@/components/text/Text';
+import Text from '@/components/ui/text/Text';
 
 export interface NodataProps {
   noDataMessage?: string;
