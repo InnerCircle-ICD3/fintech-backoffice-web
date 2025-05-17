@@ -1,4 +1,4 @@
-import SearchContainer from '@/components/layout/container/SearchContainer';
+import SearchContainer from '@/components/layout/container/searchContainer/SearchContainer';
 import { Label } from '@/components/ui/Label';
 import Flex from '@/components/layout/flex/Flex';
 

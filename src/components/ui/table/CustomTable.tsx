@@ -11,13 +11,13 @@ import {
 
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/constants/common';
 import Nodata, { NodataProps } from '@/components/ui/Nodata';
-import TableSubHeader, { TableSubHeaderProps } from '@/components/ui/Table/TableSubHeader';
+import TableSubHeader, { TableSubHeaderProps } from '@/components/ui/table/TableSubHeader';
 import { vars } from '@/styles/theme.css';
 import Spinner from '@/components/ui/spinner/Spinner';
 import Flex from '@/components/layout/flex/Flex';
-import { table, tableContainer, td, th, tr } from '@/styles/table.css';
-import Pagination from '@/components/ui/Pagination/Pagination';
-import Card, { CardVariants } from '@/components/ui/Card/Card';
+import { table, tableContainer, td, th, tr } from '@/components/ui/table/table.css';
+import Pagination from '@/components/ui/pagination/Pagination';
+import Card, { CardVariants } from '@/components/ui/card/Card';
 import { Paging } from '@/types/commonType';
 import { getCurrentDate } from '@/utils/commonUtils';
 

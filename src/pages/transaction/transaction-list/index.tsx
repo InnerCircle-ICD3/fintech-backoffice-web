@@ -1,4 +1,4 @@
-import Content from '@/components/layout/container/Content';
+import Content from '@/components/layout/container/content/Content';
 import Search from '@/pages/Transaction/TransactionList/containers/Search';
 import Table from '@/pages/Transaction/TransactionList/containers/Table';
 import { cardTransactionList } from '@/constants/transactionMock';

@@ -2,7 +2,7 @@ import { CSSProperties, ReactNode } from 'react';
 
 import { RecipeVariants } from '@vanilla-extract/recipes';
 import Flex from '@/components/layout/flex/Flex';
-import { card } from '@/styles/card.css';
+import { card } from '@/components/ui/card/card.css';
 import Text from '@/components/text/Text';
 
 export type CardVariants = RecipeVariants<typeof card>;
