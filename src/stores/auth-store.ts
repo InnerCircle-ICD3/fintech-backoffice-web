@@ -4,7 +4,7 @@ import { devtools, persist, subscribeWithSelector } from 'zustand/middleware';
 
 const STORAGE_KEY = 'auth-store';
 
-interface Token {
+interface TokenType {
   accessToken: string;
   refreshToken: string;
 }
@@ -13,7 +13,7 @@ interface AuthState {
   isHydrated: boolean /** 타이밍 이슈 해결을 위한 hydrated 상태 */;
   accessToken: string | null;
   refreshToken: string | null;
-  setTokens: ({ accessToken, refreshToken }: Token) => void;
+  setTokens: ({ accessToken, refreshToken }: TokenType) => void;
   setIsHydrated: () => void;
   clearTokens: () => void;
 }
@@ -26,7 +26,7 @@ export const useAuthStore = create<AuthState>()(
           isHydrated: false,
           accessToken: null,
           refreshToken: null,
-          setTokens: ({ accessToken, refreshToken }: Token) =>
+          setTokens: ({ accessToken, refreshToken }: TokenType) =>
             set(
               produce((state) => {
                 state.accessToken = accessToken;
@@ -58,6 +58,7 @@ export const useAuthStore = create<AuthState>()(
           name: STORAGE_KEY,
           partialize: (state) => ({
             accessToken: state.accessToken,
+            refreshToken: state.refreshToken,
             isHydrated: state.isHydrated,
           }),
           onRehydrateStorage: () => (state) => {
