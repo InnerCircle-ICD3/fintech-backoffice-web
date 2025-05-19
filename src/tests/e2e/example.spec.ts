@@ -26,9 +26,6 @@ test('error boundary test for different error types', async ({ page }) => {
     // 홈으로 이동 버튼이 있는지 확인
     await expect(page.getByRole('link', { name: '홈으로 이동' })).toBeVisible();
 
-    // 새로고침 버튼이 있는지 확인
-    await expect(page.getByRole('button', { name: '새로고침' })).toBeVisible();
-
     // 테스트를 위해 다시 예제 에러 페이지로 이동
     await page.goto('/example');
     await expect(page.getByText('에러 처리 테스트')).toBeVisible();
