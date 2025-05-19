@@ -1,32 +1,36 @@
-import { createApiEndpoint } from '@/services';
+import { createApiEndpoint } from '@/services/api-factory';
+import { axiosInstanceWithoutAccessToken } from '@/services/api-instance';
 import {
   LoginRequestSchema,
   LoginRequestType,
   LoginResponseSchema,
   LoginResponseType,
+  LogoutResponseType,
+  LogoutResponseSchema,
   ReissueResponseSchema,
   ReissueResponseType,
 } from './auth-schema';
-import { endPoint } from './auth-endpoint';
 
 /**
  * 인증 API 엔드포인트
  */
 export const authApi = {
   login: createApiEndpoint<LoginRequestType, LoginResponseType>({
-    path: endPoint.login,
+    path: '/merchants/login',
     method: 'post',
     requestSchema: LoginRequestSchema,
     responseSchema: LoginResponseSchema,
+    axiosInstance: axiosInstanceWithoutAccessToken,
   }),
   reissue: createApiEndpoint<undefined, ReissueResponseType>({
-    path: endPoint.reissue,
+    path: '/merchants/reissue',
     method: 'post',
     responseSchema: ReissueResponseSchema,
+    axiosInstance: axiosInstanceWithoutAccessToken,
   }),
-  logout: createApiEndpoint<undefined, ReissueResponseType>({
-    path: endPoint.logout,
+  logout: createApiEndpoint<undefined, LogoutResponseType>({
+    path: '/merchants/logout',
     method: 'post',
-    responseSchema: ReissueResponseSchema,
+    responseSchema: LogoutResponseSchema,
   }),
 };

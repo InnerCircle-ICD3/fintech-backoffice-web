@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { AxiosRequestConfig } from 'axios';
-import { axiosInstance } from './api-instance';
 import { fromZodError } from 'zod-validation-error';
+import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { axiosInstance as defaultAxiosInstance } from './api-instance';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
@@ -10,6 +10,7 @@ interface ApiEndpointDefinition<TReq, TRes> {
   method: HttpMethod;
   requestSchema?: z.ZodType<TReq>;
   responseSchema: z.ZodType<TRes>;
+  axiosInstance?: AxiosInstance;
 }
 
 export const createApiEndpoint = <TReq, TRes>({
@@ -17,6 +18,7 @@ export const createApiEndpoint = <TReq, TRes>({
   method,
   requestSchema,
   responseSchema,
+  axiosInstance = defaultAxiosInstance,
 }: ApiEndpointDefinition<TReq, TRes>) => {
   return async (
     payload?: TReq,
@@ -43,16 +45,17 @@ export const createApiEndpoint = <TReq, TRes>({
       payload = result.data;
     }
 
-    const response = await axiosInstance({
+    const data = await axiosInstance({
       ...axiosConfig,
       url,
       method,
       ...(method === 'get' || method === 'delete' ? { params: payload } : { data: payload }),
     });
 
-    const result = responseSchema.safeParse(response.data);
+    const result = responseSchema.safeParse(data);
 
     if (!result.success) {
+      console.error('Validation Error:', result.error);
       const error = fromZodError(result.error);
       throw error;
     }

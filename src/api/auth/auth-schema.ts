@@ -22,7 +22,6 @@ export type LoginResponseType = z.infer<typeof LoginResponseSchema>;
  * 엑세스토큰 재발급
  * /merchants/reissue
  */
-
 export const ReissueResponseSchema = z.object({
   accessToken: z.string(),
   refreshToken: z.string(),
