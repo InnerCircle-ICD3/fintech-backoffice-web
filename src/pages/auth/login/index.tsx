@@ -18,6 +18,8 @@ import { LoginFormSchema } from './login-schema';
 import { authApi } from '@/api/auth/auth-api';
 import { LoginRequestType } from '@/api/auth/auth-schema';
 import { useSetTokens } from '@/stores/auth-store';
+import Card from '@/components/ui/Card/Card';
+import * as styles from './login.css';
 
 type LoginFormType = z.infer<typeof LoginFormSchema>;
 
@@ -58,51 +60,57 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>로그인</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
-          {/* 이름 */}
-          <FormField
-            name="id"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel htmlFor="name">아이디</FormLabel>
-                <FormControl>
-                  <Input id="name" type="text" placeholder="이름을 입력해 주세요." {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <div className={styles.loginContainer}>
+      <Card width="532px" className={styles.loginCard}>
+        <h1>로그인</h1>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className={styles.loginForm}>
+            {/* 이름 */}
+            <FormField
+              name="id"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="name">아이디</FormLabel>
+                  <FormControl>
+                    <Input id="name" type="text" placeholder="이름을 입력해 주세요." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* 비밀번호 */}
-          <FormField
-            name="password"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel htmlFor="password">비밀번호</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    id="password"
-                    type="password"
-                    placeholder="비밀번호를 입력해 주세요."
-                    autoComplete="current-password"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* 비밀번호 */}
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="password">비밀번호</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="password"
+                      type="password"
+                      placeholder="비밀번호를 입력해 주세요."
+                      autoComplete="current-password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button type="submit" variant="secondary" disabled={!form.formState.isValid || isPending}>
-            {isPending ? '로그인중...' : '로그인'}
-          </Button>
-        </form>
-      </Form>
+            <Button
+              type="submit"
+              variant="secondary"
+              disabled={!form.formState.isValid || isPending}
+            >
+              {isPending ? '로그인중...' : '로그인'}
+            </Button>
+          </form>
+        </Form>
+      </Card>
     </div>
   );
 };
