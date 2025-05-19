@@ -14,6 +14,8 @@ export const card = recipe({
     type: {
       solid: {
         border: `1px solid ${vars.color.border}`,
+        background: vars.color.white,
+        boxShadow: '0px 0px 16px 0px rgba(243, 244, 246, 0.80)',
         borderRadius: '10px',
         padding: '20px',
         gap: '16px',
