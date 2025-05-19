@@ -2,7 +2,7 @@ export const SUB_MENU = [
   {
     menuId: 'TRANSACTION',
     pMenuId: '',
-    menuNm: 'Transaction',
+    menuNm: '거래 관리',
     trnslNm: 'Transaction',
     menuDp: 2,
     menuUrl: 'transaction',
@@ -15,7 +15,7 @@ export const SUB_MENU = [
   {
     menuId: 'TRANSACTION_LIST',
     pMenuId: 'TRANSACTION',
-    menuNm: 'Transaction List',
+    menuNm: '거래 내역',
     trnslNm: 'Transaction List',
     menuDp: 3,
     menuUrl: 'transaction/list',
@@ -28,7 +28,7 @@ export const SUB_MENU = [
   {
     menuId: 'ADMIN',
     pMenuId: '',
-    menuNm: 'ADMIN',
+    menuNm: '관리자',
     trnslNm: 'ADMIN',
     menuDp: 2,
     menuUrl: 'admin',
@@ -41,7 +41,7 @@ export const SUB_MENU = [
   {
     menuId: 'USER',
     pMenuId: 'ADMIN',
-    menuNm: 'User Manager',
+    menuNm: '사용자 관리',
     trnslNm: 'User Manager',
     menuDp: 2,
     menuUrl: 'admin/user-manager',
@@ -54,7 +54,7 @@ export const SUB_MENU = [
   {
     menuId: 'APPROVE',
     pMenuId: 'ADMIN',
-    menuNm: 'approve',
+    menuNm: '승인요청 관리',
     trnslNm: 'approve',
     menuDp: 2,
     menuUrl: 'admin/approve',

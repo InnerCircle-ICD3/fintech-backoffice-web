@@ -54,7 +54,6 @@ export const content = style({
   zIndex: 50,
   display: 'grid',
   width: '100%',
-  maxWidth: '32rem',
   transform: 'translate(-50%, -50%)',
   gap: '1rem',
   border: `1px solid ${vars.color.border}`,

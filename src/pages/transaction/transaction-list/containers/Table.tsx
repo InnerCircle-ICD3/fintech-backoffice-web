@@ -1,6 +1,7 @@
 import CustomTable, { CustomColumnDef } from '@/components/ui/table/CustomTable';
 import { CardTransactionType } from '@/types/transactionType';
-import { Button } from '@/components/ui/button/Button';
+
+import DetailButton from '@/pages/transaction/transaction-list/components/DetailButton';
 
 interface TableProps {
   data: any;
@@ -73,33 +74,25 @@ const Table = (props: TableProps) => {
     {
       id: 'detail',
       header: '상세',
-      cell: ({ row }) => (
-        <Button
-          size={'sm'}
-          variant={'ghost'}
-          onClick={() => {
-            console.log(row.original);
-          }}
-        >
-          상세
-        </Button>
-      ),
+      cell: ({ row }) => <DetailButton row={row} />,
       size: 120,
       meta: { textAlign: 'center' },
     },
   ];
 
   return (
-    <CustomTable
-      data={list}
-      columns={columns}
-      columnPinning={{ left: ['index', 'trDt', 'trTm'], right: ['detail'] }}
-      paging={page}
-      isPending={isPending}
-      isFetching={isFetching}
-      headerButton={''}
-      noDataMessage={'No DataMessage'}
-    />
+    <>
+      <CustomTable
+        data={list}
+        columns={columns}
+        columnPinning={{ left: ['index', 'trDt', 'trTm'], right: ['detail'] }}
+        paging={page}
+        isPending={isPending}
+        isFetching={isFetching}
+        headerButton={''}
+        noDataMessage={'No DataMessage'}
+      />
+    </>
   );
 };
 

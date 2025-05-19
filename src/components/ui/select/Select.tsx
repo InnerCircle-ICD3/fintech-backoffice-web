@@ -17,6 +17,7 @@ interface SearchSelectProps {
   disabled?: boolean;
   invalid?: boolean;
   maxHeight?: string;
+  width?: string;
 }
 
 const SearchSelect = (props: SearchSelectProps) => {
@@ -28,6 +29,7 @@ const SearchSelect = (props: SearchSelectProps) => {
     value,
     optionList = [],
     placeholder,
+    width,
     onChange,
   } = props;
 
