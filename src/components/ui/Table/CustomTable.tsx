@@ -19,7 +19,7 @@ import { table, tableContainer, td, th, tr } from '@/styles/table.css';
 import Pagination from '@/components/ui/Pagination/Pagination';
 import Card, { CardVariants } from '@/components/ui/Card/Card';
 import { Paging } from '@/types/commonType';
-import { getCurrentDate } from '@/utils/commonUtils';
+import { getCurrentDate } from '@/utils/common-utils';
 
 type ColumnMeta = {
   textAlign?: 'left' | 'center' | 'right';
