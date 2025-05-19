@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { axiosInstance } from '@/services';
+import { axiosInstance } from '@/services/api-instance';
 import Flex from '@/components/layout/flex/Flex';
 import { Button } from '@/components/ui/button/Button';
 import { useMutation, useQuery } from '@tanstack/react-query';

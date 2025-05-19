@@ -1,5 +1,5 @@
 import SearchContainer from '@/components/layout/container/SearchContainer';
-import { Label } from '@/components/ui/Label';
+import { Label } from '@/components/ui/label/Label';
 import Flex from '@/components/layout/flex/Flex';
 
 const Search = () => {

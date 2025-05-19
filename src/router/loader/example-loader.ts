@@ -1,4 +1,4 @@
-import { axiosInstance } from '@/services';
+import { axiosInstance } from '@/services/api-instance';
 import { QueryClient } from '@tanstack/react-query';
 
 export const loaderQueryOption = () => ({
