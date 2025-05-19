@@ -1,13 +1,14 @@
-import { createRouter } from '@/router';
-import { toast, Toaster } from 'sonner';
+import { createRouter } from './router';
+import { Toaster, toast } from 'sonner';
 import { RouterProvider } from 'react-router-dom';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { handleErrorMessage } from './services';
 import { useAuthStore } from './stores/auth-store';
-
-const DEFAULT_ERROR = 'Something went wrong';
+import { handleErrorMessage, RefreshTokenFailedError } from '@/services/api-error';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { OverlayProvider } from './contexts/overlay/OverlayProvider';
+import { matchQuery, MutationCache, QueryClient } from '@tanstack/react-query';
+
+const TOSAT_DURATION = 2000;
 
 /**
  * @see
@@ -56,36 +57,34 @@ const queryClient = new QueryClient({
           mutation.meta?.invalidates?.some((queryKey) => matchQuery({ queryKey }, query)) ?? false,
       });
     },
-
     onError: (error) => {
       const errorMessage = handleErrorMessage(error);
-      toast.error(errorMessage ?? DEFAULT_ERROR);
+      if (error instanceof RefreshTokenFailedError) {
+        toast.error(errorMessage, { id: 'refresh-token-error', duration: TOSAT_DURATION });
+      } else {
+        toast.error(errorMessage, {
+          duration: TOSAT_DURATION,
+        });
+      }
     },
   }),
 });
 
-const RootLayout = () => {
+const App = () => {
   const isHydrated = useAuthStore((state) => state.isHydrated);
 
-  if (!isHydrated) {
-    return;
-  }
-  return (
-    <RouterProvider
-      router={createRouter(queryClient)}
-      future={{ v7_startTransition: true }}
-      fallbackElement={<div>로딩 중...</div>}
-    />
-  );
-};
-
-const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <OverlayProvider>
-        <RootLayout />
+        {isHydrated && (
+          <RouterProvider
+            router={createRouter(queryClient)}
+            future={{ v7_startTransition: true }}
+            fallbackElement={<div>로딩 중...</div>}
+          />
+        )}
         <Toaster />
-        <ReactQueryDevtools initialIsOpen={true} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </OverlayProvider>
     </QueryClientProvider>
   );
