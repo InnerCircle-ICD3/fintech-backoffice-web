@@ -1,4 +1,4 @@
-import { useAccessToken } from '@/stores/auth-store';
+import { useAccessToken } from '@/stores/auth';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 export const PublicRoute = () => {

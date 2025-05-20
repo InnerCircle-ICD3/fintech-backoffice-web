@@ -1,5 +1,5 @@
-import { authApi } from '@/api/auth/auth-api';
-import { useAuthStore } from '@/stores/auth-store';
+import { authApi } from '@/api/auth/api';
+import { useAuthStore } from '@/stores/auth';
 import { RefreshTokenFailedError } from './api-error';
 
 export const requestRefresh = async (failedRequest: any) => {

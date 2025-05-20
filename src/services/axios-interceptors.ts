@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { requestRefresh } from './request-refresh';
-import { useAuthStore } from '@/stores/auth-store';
+import { useAuthStore } from '@/stores/auth';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 

@@ -12,7 +12,7 @@ import {
   RegisterRequestType,
   RegisterResponseType,
   RegisterResponseSchema,
-} from './auth-schema';
+} from './schema';
 
 /**
  * 인증 API 엔드포인트

@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/stores/auth-store';
+import { useAuthStore } from '@/stores/auth';
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { requestRefresh } from './request-refresh';
