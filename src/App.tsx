@@ -1,7 +1,6 @@
 import { createRouter } from './router';
 import { Toaster, toast } from 'sonner';
 import { RouterProvider } from 'react-router-dom';
-import { useAuthStore } from './stores/auth-store';
 import { handleErrorMessage, RefreshTokenFailedError } from '@/services/api-error';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -71,18 +70,14 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  const isHydrated = useAuthStore((state) => state.isHydrated);
-
   return (
     <QueryClientProvider client={queryClient}>
       <OverlayProvider>
-        {isHydrated && (
-          <RouterProvider
-            router={createRouter(queryClient)}
-            future={{ v7_startTransition: true }}
-            fallbackElement={<div>로딩 중...</div>}
-          />
-        )}
+        <RouterProvider
+          router={createRouter(queryClient)}
+          future={{ v7_startTransition: true }}
+          fallbackElement={<div>로딩 중...</div>}
+        />
         <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
       </OverlayProvider>

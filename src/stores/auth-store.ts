@@ -16,12 +16,10 @@ interface TokenType {
 }
 
 interface AuthState {
-  isHydrated: boolean /** 타이밍 이슈 해결을 위한 hydrated 상태 */;
   accessToken: string | null;
   refreshToken: string | null;
   rememberMe: boolean;
   setTokens: ({ accessToken, refreshToken }: TokenType, rememberMe: boolean) => void;
-  setIsHydrated: () => void;
   clearTokens: () => void;
 }
 
@@ -69,7 +67,6 @@ export const useAuthStore = create<AuthState>()(
     subscribeWithSelector(
       persist(
         (set) => ({
-          isHydrated: false,
           accessToken: null,
           refreshToken: null,
           rememberMe: true,
@@ -93,14 +90,6 @@ export const useAuthStore = create<AuthState>()(
               'auth/clearTokens'
             );
           },
-          setIsHydrated: () =>
-            set(
-              produce((state) => {
-                state.isHydrated = true;
-              }),
-              false,
-              'auth/setIsHydrated'
-            ),
         }),
         {
           name: STORAGE_KEY,
@@ -108,14 +97,8 @@ export const useAuthStore = create<AuthState>()(
           partialize: (state) => ({
             accessToken: state.accessToken,
             refreshToken: state.refreshToken,
-            isHydrated: state.isHydrated,
             rememberMe: state.rememberMe,
           }),
-          onRehydrateStorage: () => (state) => {
-            if (state) {
-              state.setIsHydrated();
-            }
-          },
         }
       )
     )
@@ -126,4 +109,3 @@ export const useAccessToken = () => useAuthStore((state) => state.accessToken);
 export const useRefreshToken = () => useAuthStore((state) => state.refreshToken);
 export const useSetTokens = () => useAuthStore((state) => state.setTokens);
 export const useClearTokens = () => useAuthStore((state) => state.clearTokens);
-export const useIsHydrated = () => useAuthStore((state) => state.isHydrated);
