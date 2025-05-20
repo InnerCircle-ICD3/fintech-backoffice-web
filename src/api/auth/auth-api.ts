@@ -9,6 +9,10 @@ import {
   LogoutResponseSchema,
   ReissueResponseSchema,
   ReissueResponseType,
+  RegisterRequestSchema,
+  RegisterRequestType,
+  RegisterResponseType,
+  RegisterResponseSchema,
 } from './auth-schema';
 
 /**
@@ -21,6 +25,12 @@ export const authApi = {
     requestSchema: LoginRequestSchema,
     responseSchema: LoginResponseSchema,
     axiosInstance: axiosInstanceWithoutAccessToken,
+  }),
+  register: createApiEndpoint<RegisterRequestType, RegisterResponseType>({
+    path: '/merchants/register',
+    method: 'post',
+    requestSchema: RegisterRequestSchema,
+    responseSchema: RegisterResponseSchema,
   }),
   reissue: createApiEndpoint<undefined, ReissueResponseType>({
     path: '/merchants/reissue',

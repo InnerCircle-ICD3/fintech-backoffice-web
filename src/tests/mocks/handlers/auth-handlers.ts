@@ -29,6 +29,20 @@ const authHandlers = [
   //     { status: 401 }
   //   );
   // }),
+
+  http.post(`${import.meta.env.VITE_API_URL}/merchants/register`, async (data) => {
+    console.log('data', data);
+
+    return HttpResponse.json(
+      {
+        merchantId: 4,
+        loginId: 'merchant1234',
+        name: '홍길동 가맹점1',
+        status: 'ACTIVE',
+      },
+      { status: 200 }
+    );
+  }),
 ];
 
 export default authHandlers;

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { startTransition } from 'react';
+import { startTransition, useState } from 'react';
 import { Button } from '@/components/ui/button/Button';
 import {
   Form,
@@ -13,19 +13,26 @@ import { Input } from '@/components/ui/input/Input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginFormSchema } from './login-schema';
 import { authApi } from '@/api/auth/auth-api';
 import { LoginRequestType } from '@/api/auth/auth-schema';
 import { useSetTokens } from '@/stores/auth-store';
 import Card from '@/components/ui/Card/Card';
+import Text from '@/components/ui/text/Text';
 import * as styles from './login.css';
+import Flex from '@/components/layout/flex/Flex';
+import { Checkbox } from '@/components/ui/checkbox/Checkbox';
+import { Label } from '@/components/ui/label/Label';
+import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 type LoginFormType = z.infer<typeof LoginFormSchema>;
 
 const Login = () => {
   const navigate = useNavigate();
   const setToken = useSetTokens();
+  const [showPassword, setShowPassword] = useState(false);
+  const [isRememberMe, setIsRememberMe] = useState(true);
 
   const form = useForm({
     resolver: zodResolver(LoginFormSchema),
@@ -40,7 +47,7 @@ const Login = () => {
     mutationKey: ['login'],
     mutationFn: async (data: LoginRequestType) => await authApi.login(data),
     onSuccess: (data) => {
-      setToken(data);
+      setToken(data, isRememberMe);
 
       form.reset();
 
@@ -62,7 +69,7 @@ const Login = () => {
   return (
     <div className={styles.loginContainer}>
       <Card width="532px" className={styles.loginCard}>
-        <h1>로그인</h1>
+        <h1 className={styles.loginTitle}>로그인</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className={styles.loginForm}>
             {/* 이름 */}
@@ -73,7 +80,15 @@ const Login = () => {
                 <FormItem>
                   <FormLabel htmlFor="name">아이디</FormLabel>
                   <FormControl>
-                    <Input id="name" type="text" placeholder="이름을 입력해 주세요." {...field} />
+                    <Input
+                      size={'lg'}
+                      id="name"
+                      type="text"
+                      placeholder="아이디를 입력해 주세요."
+                      {...field}
+                      autoComplete="username"
+                      autoFocus
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -89,11 +104,23 @@ const Login = () => {
                   <FormLabel htmlFor="password">비밀번호</FormLabel>
                   <FormControl>
                     <Input
+                      size={'lg'}
                       {...field}
                       id="password"
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="비밀번호를 입력해 주세요."
                       autoComplete="current-password"
+                      suffix={
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 보기'}
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <EyeOffIcon size={16} /> : <EyeIcon size={16} />}
+                        </Button>
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -101,13 +128,28 @@ const Login = () => {
               )}
             />
 
-            <Button
-              type="submit"
-              variant="secondary"
-              disabled={!form.formState.isValid || isPending}
-            >
-              {isPending ? '로그인중...' : '로그인'}
-            </Button>
+            <Flex justify="between" align="center" gap="8px" width="100%">
+              <Flex gap="8px" align="center">
+                <Checkbox
+                  id="rememberMe"
+                  checked={isRememberMe}
+                  onCheckedChange={(checked) => setIsRememberMe(!!checked)}
+                />
+                <Label htmlFor="rememberMe">자동 로그인</Label>
+              </Flex>
+              <Text style={{ cursor: 'pointer' }} onClick={() => alert('coming soon')}>
+                비밀번호 찾기
+              </Text>
+            </Flex>
+
+            <Flex direction="column" gap="16px" width="100%" className={styles.buttonContainer}>
+              <Button type="submit" variant="primary" disabled={isPending} size="lg">
+                로그인
+              </Button>
+              <Button type="button" variant="secondary" disabled={isPending} size="lg" asChild>
+                <Link to="/auth/register">회원가입</Link>
+              </Button>
+            </Flex>
           </form>
         </Form>
       </Card>
