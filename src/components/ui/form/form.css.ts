@@ -5,6 +5,7 @@ export const formItem = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '8px',
+  width: '100%',
 });
 
 export const formDescription = style({

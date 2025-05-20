@@ -14,7 +14,7 @@ const renderApp = async () => {
 const init = async () => {
   if (import.meta.env.DEV) {
     const { worker } = await import('@/tests/mocks/browser');
-    await worker.start();
+    await worker.start({ onUnhandledRequest: 'bypass' });
     console.log('MSW initialized successfully');
   }
 

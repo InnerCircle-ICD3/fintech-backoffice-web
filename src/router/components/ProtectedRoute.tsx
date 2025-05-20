@@ -1,11 +1,12 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { useAccessToken } from '@/stores/auth';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 export const ProtectedRoute = () => {
-  const hasToken = true;
+  const accessToken = useAccessToken();
+  const location = useLocation();
 
-  if (!hasToken) {
-    return <Navigate to={'/auth/login'} replace />;
+  if (!accessToken) {
+    return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
-
   return <Outlet />;
 };

@@ -1,10 +1,13 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { useAccessToken } from '@/stores/auth';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 export const PublicRoute = () => {
-  const hasToken = true;
+  const accessToken = useAccessToken();
+  const location = useLocation();
+  const from = location.state?.from?.pathname;
 
-  if (hasToken) {
-    return <Navigate to="/" replace />;
+  if (accessToken) {
+    return <Navigate to={from || '/'} replace />;
   }
 
   return <Outlet />;

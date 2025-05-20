@@ -1,9 +1,9 @@
-import api from '@/services/api-service';
-import type { QueryClient } from '@tanstack/react-query';
+import { axiosInstance } from '@/services/api-instance';
+import { QueryClient } from '@tanstack/react-query';
 
 export const loaderQueryOption = () => ({
   queryKey: ['error-loader'],
-  queryFn: () => api.get('/example-loader'),
+  queryFn: () => axiosInstance.get('/example-loader'),
 });
 
 export const exampleLoader = (queryClient: QueryClient) => async () => {

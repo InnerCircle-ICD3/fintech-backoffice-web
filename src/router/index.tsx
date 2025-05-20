@@ -13,7 +13,7 @@ export const createRouter = (queryClient: QueryClient) => {
       children: [
         {
           index: true,
-          element: <Navigate to="/admin/user-manager" replace />,
+          element: <Navigate to="/transaction/list" replace />,
         },
         authRoutes,
         adminRoutes,

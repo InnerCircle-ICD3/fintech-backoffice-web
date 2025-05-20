@@ -10,21 +10,21 @@ export const input = recipe({
     boxSizing: 'border-box',
     fontSize: vars.fontSize.md,
     padding: '10px 16px',
-    borderRadius: '4px',
+    borderRadius: '8px',
     border: `1px solid ${vars.color.border}`,
-    backgroundColor: vars.color.white,
+    backgroundColor: vars.color.inputBg,
     color: vars.color.text.main,
     outline: 'none',
     transition: 'all 0.2s ease',
 
     '::placeholder': {
       fontSize: vars.fontSize.sm,
-      color: vars.color.text.sub,
+      color: vars.color.text.caption,
+      fontWeight: vars.fontWeight.regular,
     },
 
     ':focus': {
       borderColor: vars.color.primary,
-      boxShadow: `0 0 0 2px ${vars.color.primaryL}`,
     },
 
     ':disabled': {
@@ -40,11 +40,12 @@ export const input = recipe({
         fontSize: vars.fontSize.sm,
       },
       md: {
-        padding: '10px 16px',
+        padding: '12px',
         fontSize: vars.fontSize.md,
       },
       lg: {
-        padding: '12px 20px',
+        padding: '16px',
+        borderRadius: '12px',
         fontSize: vars.fontSize.lg,
       },
     },

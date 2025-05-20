@@ -19,6 +19,14 @@ globalStyle('img', {
   pointerEvents: 'none',
 });
 
+globalStyle('a', {
+  textDecoration: 'none',
+});
+
+globalStyle('ui', {
+  listStyle: 'none',
+});
+
 globalStyle('::-webkit-scrollbar', {
   width: '4px',
   height: '4px',

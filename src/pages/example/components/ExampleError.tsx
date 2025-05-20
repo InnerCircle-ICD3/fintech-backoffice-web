@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import api from '@/services/api-service';
+import { axiosInstance } from '@/services/api-instance';
 import Flex from '@/components/layout/flex/Flex';
 import { Button } from '@/components/ui/button/Button';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -9,13 +9,13 @@ export const ExampleError = () => {
 
   const { refetch } = useQuery({
     queryKey: ['error-test', errorType],
-    queryFn: async () => await api.get(`/error/${errorType}`),
+    queryFn: async () => await axiosInstance.get(`/error/${errorType}`),
     enabled: false,
   });
 
   const { mutate } = useMutation({
     mutationKey: ['error-test-mutation', errorType],
-    mutationFn: async () => await api.get(`/error/${errorType}`),
+    mutationFn: async () => await axiosInstance.get(`/error/${errorType}`),
   });
 
   const handleMutationTest = () => {

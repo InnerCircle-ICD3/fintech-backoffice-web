@@ -1,18 +1,18 @@
-import type { AxiosError } from 'axios';
-import { createRouter } from '@/router';
-import { toast, Toaster } from 'sonner';
+import { createRouter } from './router';
+import { Toaster, toast } from 'sonner';
 import { RouterProvider } from 'react-router-dom';
+import { handleErrorMessage, RefreshTokenFailedError } from '@/services/api-error';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const DEFAULT_ERROR = 'Something went wrong';
 import { OverlayProvider } from './contexts/overlay/OverlayProvider';
+import { matchQuery, MutationCache, QueryClient } from '@tanstack/react-query';
+
+const TOSAT_DURATION = 2000;
 
 /**
  * @see
  * https://beomy.github.io/tech/react/tanstack-query-v5-api-reference/#mutationcache
  */
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -56,10 +56,15 @@ const queryClient = new QueryClient({
           mutation.meta?.invalidates?.some((queryKey) => matchQuery({ queryKey }, query)) ?? false,
       });
     },
-
-    onError: (cause) => {
-      const { response } = cause as AxiosError<{ message: string }>;
-      toast.error(response?.data.message ?? DEFAULT_ERROR);
+    onError: (error) => {
+      const errorMessage = handleErrorMessage(error);
+      if (error instanceof RefreshTokenFailedError) {
+        toast.error(errorMessage, { id: 'refresh-token-error', duration: TOSAT_DURATION });
+      } else {
+        toast.error(errorMessage, {
+          duration: TOSAT_DURATION,
+        });
+      }
     },
   }),
 });
@@ -71,7 +76,7 @@ const App = () => {
         <RouterProvider
           router={createRouter(queryClient)}
           future={{ v7_startTransition: true }}
-          fallbackElement={<div>앱 초기화 중...</div>}
+          fallbackElement={<div>로딩 중...</div>}
         />
         <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />

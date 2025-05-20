@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 
-import * as styles from './dialog.css';
+import * as styles from '@/components/ui/dialog/dialog.css';
 
 const Dialog = DialogPrimitive.Root;
 
