@@ -101,7 +101,6 @@ export const inputContainer = recipe({
     boxSizing: 'border-box',
     position: 'relative',
     display: 'inline-flex',
-    backgroundColor: vars.color.background,
   },
   variants: {
     fullWidth: {
