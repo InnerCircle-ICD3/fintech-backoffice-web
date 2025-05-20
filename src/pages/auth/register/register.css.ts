@@ -1,15 +1,14 @@
 import { vars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
-export const loginContainer = style({
+export const registerContainer = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100vh',
-  backgroundColor: vars.color.white,
+  padding: '50px 0',
 });
 
-export const loginCard = style({
+export const registerCard = style({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -19,13 +18,13 @@ export const loginCard = style({
   gap: '48px',
 });
 
-export const loginTitle = style({
+export const registerTitle = style({
   fontSize: vars.fontSize['4xl'],
   fontWeight: 'bold',
   margin: 0,
 });
 
-export const loginForm = style({
+export const registerForm = style({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -34,7 +33,7 @@ export const loginForm = style({
   gap: '16px',
 });
 
-export const buttonContainer = style({
+export const button = style({
   width: '100%',
   marginTop: '48px',
 });

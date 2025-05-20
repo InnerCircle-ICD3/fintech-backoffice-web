@@ -1,7 +1,5 @@
-import Text from '@/components/ui/text/Text';
-
 const ApprovalManage = () => {
-  return <Text size={'xl'}>ApprovalManage</Text>;
+  return <div>ApprovalManage</div>;
 };
 
 export default ApprovalManage;

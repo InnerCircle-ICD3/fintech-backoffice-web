@@ -5,7 +5,6 @@ import Flex from '@/components/layout/flex/Flex';
 import { card } from '@/styles/card.css';
 import Text from '@/components/ui/text/Text';
 import { cx } from '@/utils/cx';
-import { style } from '@vanilla-extract/css';
 
 export type CardVariants = RecipeVariants<typeof card>;
 

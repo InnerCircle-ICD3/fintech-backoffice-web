@@ -13,7 +13,7 @@ export const card = recipe({
   variants: {
     type: {
       solid: {
-        border: `1px solid ${vars.color.border}`,
+        border: `1px solid ${vars.color.background}`,
         background: vars.color.white,
         boxShadow: '0px 0px 16px 0px rgba(243, 244, 246, 0.80)',
         borderRadius: '10px',

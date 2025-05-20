@@ -3,6 +3,7 @@ import { vars } from '@/styles/theme.css';
 
 export const button = recipe({
   base: {
+    width: '100%',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -74,7 +75,8 @@ export const button = recipe({
       },
       lg: {
         fontSize: vars.fontSize.lg,
-        padding: '14px 24px',
+        padding: '20px',
+        borderRadius: '14px',
       },
     },
   },

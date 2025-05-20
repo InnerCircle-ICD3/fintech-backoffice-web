@@ -14,7 +14,7 @@ export const label = recipe({
       lg: { fontSize: vars.fontSize.md },
     },
     variant: {
-      default: { color: vars.color.text.main },
+      default: { color: vars.color.label },
       error: { color: vars.color.red },
       success: { color: vars.color.green },
     },
