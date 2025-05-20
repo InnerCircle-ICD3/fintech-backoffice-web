@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import Flex from '@/components/layout/flex/Flex';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button/Button';
-import { searchFilter } from '@/styles/searchFilter.css';
+import { searchFilter } from '@/components/layout/container/searchContainer/searchFilter.css';
 
 interface SearchFilterProps {
   children?: ReactNode;
@@ -41,10 +41,10 @@ const SearchContainer = (props: SearchFilterProps) => {
       <Flex grow={'wFull'} justify={'end'}>
         <Flex gap={'16px'}>
           <Button onClick={onReset} variant={'secondary'} size={'sm'}>
-            Reset
+            초기화
           </Button>
           <Button onClick={onSearch} size={'sm'}>
-            Search
+            검색
           </Button>
         </Flex>
       </Flex>

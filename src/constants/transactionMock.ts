@@ -1,3 +1,5 @@
+import { RowTableMetaData } from '@/types/commonType';
+
 export const cardTransactionList = {
   page: {
     totalCount: 8,
@@ -94,4 +96,37 @@ export const cardTransactionList = {
       status: '매입예정',
     },
   ],
+};
+
+export const transactionDetailMetaData: RowTableMetaData = {
+  trDt: {
+    label: '승인일자',
+  },
+  trTm: {
+    label: '승인시간',
+  },
+  cardCompany: {
+    label: '카드사',
+  },
+  cardNumber: {
+    label: '카드번호',
+  },
+  merchantId: {
+    label: '가맹점 ID',
+  },
+  merchantName: {
+    label: '가맹점명',
+    isMerge: true, // 병합해도 괜찮은 필드 (긴 값이라)
+  },
+  approvalAmount: {
+    label: '승인금액',
+    format: 'currency',
+  },
+  fee: {
+    label: '수수료',
+    format: 'currency',
+  },
+  status: {
+    label: '매입상태',
+  },
 };
