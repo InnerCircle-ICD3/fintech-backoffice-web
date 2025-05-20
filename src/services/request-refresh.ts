@@ -20,7 +20,7 @@ export const requestRefresh = async (failedRequest: any) => {
       {},
       {
         headers: {
-          Authorization: `Bearer ${refreshToken}`,
+          'Refresh-Token': `${refreshToken}`,
         },
       }
     );

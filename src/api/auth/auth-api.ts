@@ -1,5 +1,4 @@
 import { createApiEndpoint } from '@/services/api-factory';
-import { axiosInstanceWithoutAccessToken } from '@/services/api-instance';
 import {
   LoginRequestSchema,
   LoginRequestType,
@@ -24,7 +23,6 @@ export const authApi = {
     method: 'post',
     requestSchema: LoginRequestSchema,
     responseSchema: LoginResponseSchema,
-    axiosInstance: axiosInstanceWithoutAccessToken,
   }),
   register: createApiEndpoint<RegisterRequestType, RegisterResponseType>({
     path: '/merchants/register',
@@ -36,7 +34,6 @@ export const authApi = {
     path: '/merchants/reissue',
     method: 'post',
     responseSchema: ReissueResponseSchema,
-    axiosInstance: axiosInstanceWithoutAccessToken,
   }),
   logout: createApiEndpoint<undefined, LogoutResponseType>({
     path: '/merchants/logout',
