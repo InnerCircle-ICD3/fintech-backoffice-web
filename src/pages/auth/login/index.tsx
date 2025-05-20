@@ -14,7 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginFormSchema } from './login-schema';
+import { LoginFormSchema } from './schema';
 import { authApi } from '@/api/auth/api';
 import { LoginRequestType } from '@/api/auth/schema';
 import { useSetTokens } from '@/stores/auth';

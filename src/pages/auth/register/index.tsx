@@ -14,7 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { RegisterFormSchema } from './register-schema';
+import { RegisterFormSchema } from './schema';
 import { authApi } from '@/api/auth/api';
 import { RegisterRequestType } from '@/api/auth/schema';
 import Card from '@/components/ui/Card/Card';

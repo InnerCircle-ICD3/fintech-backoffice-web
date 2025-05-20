@@ -1,5 +1,5 @@
-import { LoginFormSchema } from '@/pages/auth/login/login-schema';
-import { RegisterFormBaseSchema } from '@/pages/auth/register/register-schema';
+import { LoginFormSchema } from '@/pages/auth/login/schema';
+import { RegisterFormBaseSchema } from '@/pages/auth/register/schema';
 import { z } from 'zod';
 
 /**
