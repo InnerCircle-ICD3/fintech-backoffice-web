@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { content } from '@/styles/content.css';
+import { content } from '@/components/layout/container/content/content.css';
 import { SIDE } from '@/constants/common';
 
 const Content = () => {

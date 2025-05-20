@@ -5,3 +5,11 @@ export interface Paging {
   size: number;
   setSize: (pageSize: number) => void;
 }
+
+export interface RowTableMetaData {
+  [key: string]: {
+    label: string;
+    isMerge?: boolean;
+    format?: 'date' | 'dateTime' | 'time' | 'currency' | 'percent';
+  };
+}

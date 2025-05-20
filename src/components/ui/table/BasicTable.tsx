@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { table, tableContainer, th } from '@/styles/table.css';
+import { table, tableContainer, th } from '@/components/ui/table/table.css';
 
 interface IBasicTableProps extends HTMLAttributes<HTMLTableElement> {
   columns: any;

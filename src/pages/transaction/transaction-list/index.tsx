@@ -1,6 +1,6 @@
-import Content from '@/components/layout/container/Content';
-import Search from '@/pages/Transaction/TransactionList/containers/Search';
-import Table from '@/pages/Transaction/TransactionList/containers/Table';
+import Content from '@/components/layout/container/content/Content';
+import Search from '@/pages/transaction/transaction-list/containers/Search';
+import Table from '@/pages/transaction/transaction-list/containers/Table';
 import { cardTransactionList } from '@/constants/transactionMock';
 
 const TransactionList = () => {
