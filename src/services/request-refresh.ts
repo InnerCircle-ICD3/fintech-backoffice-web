@@ -5,15 +5,10 @@ import { RefreshTokenFailedError } from './api-error';
 export const requestRefresh = async (failedRequest: any) => {
   try {
     const authStore = useAuthStore.getState();
-    console.log('Auth Store State:', {
-      accessToken: !!authStore.accessToken,
-      refreshToken: !!authStore.refreshToken,
-      isHydrated: authStore.isHydrated,
-    });
-
+    const rememberMe = authStore.rememberMe;
     const refreshToken = authStore.refreshToken;
+
     if (!refreshToken) {
-      console.log('No refresh token available');
       authStore.clearTokens();
       return Promise.reject(new RefreshTokenFailedError());
     }
@@ -29,7 +24,7 @@ export const requestRefresh = async (failedRequest: any) => {
         },
       }
     );
-    authStore.setTokens(newToken);
+    authStore.setTokens(newToken, rememberMe);
 
     const requestConfig = failedRequest.response?.config || failedRequest.config;
 
