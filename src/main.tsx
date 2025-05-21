@@ -1,6 +1,18 @@
-import React from 'react';
 import '@/styles/global.css.ts';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
+
+const hideLoading = () => {
+  const loadingElement = document.getElementById('root-loading');
+  if (loadingElement) {
+    loadingElement.style.opacity = '0';
+    loadingElement.style.transform = 'translateY(-20px)';
+    setTimeout(() => {
+      loadingElement.style.display = 'none';
+    }, 600);
+  }
+};
+
 const renderApp = async () => {
   const { default: App } = await import('./App');
 
@@ -19,6 +31,7 @@ const init = async () => {
   }
 
   await renderApp();
+  hideLoading();
 };
 
 init().catch(console.error);
