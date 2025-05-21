@@ -9,7 +9,7 @@ interface LogoutProps {
 
 export const Logout = ({ onLogout }: LogoutProps) => {
   return (
-    <Flex className={logoutSection} align="center" gap="8px">
+    <Flex className={logoutSection} align="center" gap="8px" onClick={onLogout}>
       <LogOut size={16} />
       <Text>로그아웃</Text>
     </Flex>

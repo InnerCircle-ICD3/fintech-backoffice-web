@@ -31,7 +31,7 @@ const authHandlers = [
   // }),
 
   http.post(`${import.meta.env.VITE_API_URL}/merchants/register`, async (data) => {
-    console.log('data', data);
+    console.log('register data', data);
 
     return HttpResponse.json(
       {
@@ -39,6 +39,17 @@ const authHandlers = [
         loginId: 'merchant1234',
         name: '홍길동 가맹점1',
         status: 'ACTIVE',
+      },
+      { status: 200 }
+    );
+  }),
+
+  http.post(`${import.meta.env.VITE_API_URL}/merchants/logout`, async (data) => {
+    console.log('logout data', data);
+
+    return HttpResponse.json(
+      {
+        message: '로그아웃 처리 완료',
       },
       { status: 200 }
     );

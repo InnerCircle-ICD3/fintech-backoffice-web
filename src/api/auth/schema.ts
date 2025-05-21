@@ -59,7 +59,6 @@ export type ReissueResponseType = z.infer<typeof ReissueResponseSchema>;
  * /merchants/logout
  */
 export const LogoutResponseSchema = z.object({
-  success: z.boolean(),
   message: z.string(),
 });
 
