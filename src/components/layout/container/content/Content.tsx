@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
 import Flex from '@/components/layout/flex/Flex';
 import Text, { TextProps } from '@/components/ui/text/Text';
+import { ReactNode } from 'react';
 
 interface ContentContainerProps extends TextProps {
   children?: ReactNode;
@@ -17,7 +17,7 @@ const Content = (props: ContentContainerProps) => {
       {((isVisibleHeader && label) || additionalElement) && (
         <Flex justify={'between'} align={'center'} grow={'wFull'} style={{ padding: '8px 0' }}>
           {isVisibleHeader && (
-            <Text size={'xl'} color={'primary'}>
+            <Text size={'4xl'} color={'main'} weight={'bold'}>
               {label}
             </Text>
           )}

@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css';
 import { flex } from '@/components/layout/flex/flex.css';
+import { style } from '@vanilla-extract/css';
 
 export const content = style([
   flex({ direction: 'column' }),
@@ -8,6 +8,6 @@ export const content = style([
     height: '100%',
     overflowX: 'auto',
     overflowY: 'auto',
-    padding: `20px 20px 20px 0`,
+    padding: `70px 73px 20px 73px`,
   },
 ]);
