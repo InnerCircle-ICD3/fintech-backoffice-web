@@ -19,7 +19,7 @@ export const registerCard = style({
 });
 
 export const registerTitle = style({
-  fontSize: vars.fontSize['4xl'],
+  fontSize: vars.fontSize['5xl'],
   fontWeight: 'bold',
   margin: 0,
 });
