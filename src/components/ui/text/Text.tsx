@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
 import { text } from '@/components/ui/text/text.css';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
 export type TextVariants = RecipeVariants<typeof text>;
 

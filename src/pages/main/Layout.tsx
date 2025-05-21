@@ -1,7 +1,6 @@
-import Lnb from '@/pages/main/containers/lnb';
 import Content from '@/pages/main/containers/Content';
+import Lnb from '@/pages/main/containers/lnb';
 import { layout, mainContainer } from '@/styles/layout.css';
-
 const Layout = () => {
   return (
     <div className={layout}>

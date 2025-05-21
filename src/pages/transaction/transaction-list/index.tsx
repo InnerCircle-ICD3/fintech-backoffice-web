@@ -1,7 +1,7 @@
 import Content from '@/components/layout/container/content/Content';
+import { cardTransactionList } from '@/constants/transactionMock';
 import Search from '@/pages/transaction/transaction-list/containers/Search';
 import Table from '@/pages/transaction/transaction-list/containers/Table';
-import { cardTransactionList } from '@/constants/transactionMock';
 
 const TransactionList = () => {
   return (

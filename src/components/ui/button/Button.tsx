@@ -1,7 +1,7 @@
-import React, { ComponentPropsWithoutRef } from 'react';
-import { button } from './button.css';
 import { cx } from '@/utils/cx';
 import { Slot } from '@radix-ui/react-slot';
+import React, { ComponentPropsWithoutRef } from 'react';
+import { button } from './button.css';
 
 type ButtonVariants = NonNullable<Parameters<typeof button>[0]>;
 
