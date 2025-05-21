@@ -1,5 +1,5 @@
-import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const text = recipe({
   base: {
@@ -23,6 +23,7 @@ export const text = recipe({
       '2xl': { fontSize: vars.fontSize['2xl'], lineHeight: '32px' },
       '3xl': { fontSize: vars.fontSize['3xl'], lineHeight: '34px' },
       '4xl': { fontSize: vars.fontSize['4xl'], lineHeight: '40px' },
+      '5xl': { fontSize: vars.fontSize['5xl'], lineHeight: '40px' },
     },
     color: {
       primary: { color: vars.color.primary },
