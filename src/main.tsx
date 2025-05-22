@@ -1,4 +1,5 @@
 import '@/styles/global.css.ts';
+import 'pretendard/dist/web/static/pretendard.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 

@@ -5,7 +5,7 @@ import Table from '@/pages/transaction/transaction-list/containers/Table';
 
 const TransactionList = () => {
   return (
-    <Content label={'Transaction List'}>
+    <Content label={'거래 관리'}>
       <Search />
       <Table data={cardTransactionList} isFetching={false} isPending={false} />
     </Content>
