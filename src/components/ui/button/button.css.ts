@@ -1,5 +1,5 @@
-import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const button = recipe({
   base: {
@@ -79,6 +79,14 @@ export const button = recipe({
         borderRadius: '14px',
       },
     },
+    width: {
+      full: {
+        width: '100%',
+      },
+      fit: {
+        width: 'fit-content',
+      },
+    },
   },
 
   compoundVariants: [],
@@ -86,5 +94,6 @@ export const button = recipe({
   defaultVariants: {
     variant: 'primary',
     size: 'md',
+    width: 'full',
   },
 });
