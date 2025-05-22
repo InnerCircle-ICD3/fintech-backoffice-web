@@ -15,7 +15,7 @@ const Content = (props: ContentContainerProps) => {
   return (
     <Flex direction={'column'} grow={'full'}>
       {((isVisibleHeader && label) || additionalElement) && (
-        <Flex justify={'between'} align={'center'} grow={'wFull'} style={{ padding: '8px 0' }}>
+        <Flex justify={'between'} align={'center'} grow={'wFull'} style={{ paddingBottom: '16px' }}>
           {isVisibleHeader && (
             <Text size={'4xl'} color={'main'} weight={'bold'}>
               {label}
