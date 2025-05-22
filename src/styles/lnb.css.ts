@@ -29,20 +29,6 @@ export const menu = style({
   background: vars.color.white,
 });
 
-// globalStyle(`${menu} .ps-menu-label`, {
-//   fontSize: '14px',
-//   fontWeight: vars.fontWeight.regular,
-// });
-
-// globalStyle(`${menu} .ps-active`, {
-//   fontWeight: vars.fontWeight.bold,
-//   color: vars.color.menu,
-// });
-
-// globalStyle(`${menu} .ps-menu-button:hover`, {
-//   backgroundColor: 'red',
-// });
-
 export const lnbControlContainer = style([
   flex({ grow: 'wFull', justify: 'between', align: 'center' }),
   {
@@ -66,6 +52,17 @@ export const LnbMenuContainer = recipe({
   variants: {
     expand: { true: {}, false: {} },
   },
+});
+
+export const sidebarContainer = style({
+  display: 'flex',
+  height: '100vh',
+});
+
+export const menuContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
 });
 
 export const profile = style({

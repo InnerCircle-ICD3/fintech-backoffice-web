@@ -1,9 +1,18 @@
 import Flex from '@/components/layout/flex/Flex';
 import type { MenuItemProps } from '@/types/menu';
-import { MenuItem as ProMenuItem, SubMenu } from 'react-pro-sidebar';
+import { MenuItem as ReactProMenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link, useLocation } from 'react-router-dom';
 
-export const MenuItem = ({ item, level = 0 }: MenuItemProps) => {
+interface MenuListProps {
+  items: MenuItemProps['item'][];
+  renderItem: (item: MenuItemProps['item'], index: number) => React.ReactNode;
+}
+
+const MenuList = ({ items, renderItem }: MenuListProps) => {
+  return <>{items.map((item, index) => renderItem(item, index))}</>;
+};
+
+const MenuItem = ({ item, level = 0 }: MenuItemProps) => {
   const location = useLocation();
   const { label, path, icon: Icon, children } = item;
 
@@ -29,11 +38,16 @@ export const MenuItem = ({ item, level = 0 }: MenuItemProps) => {
   }
 
   return (
-    <ProMenuItem
+    <ReactProMenuItem
       component={<Link to={path || '/'} className="link" />}
       active={location.pathname === path}
     >
       {menuContent}
-    </ProMenuItem>
+    </ReactProMenuItem>
   );
 };
+
+export const Menu = {
+  List: MenuList,
+  Item: MenuItem,
+} as const;

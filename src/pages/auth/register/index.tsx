@@ -1,6 +1,7 @@
-import { z } from 'zod';
-import { startTransition } from 'react';
+import { authApi } from '@/api/auth/api';
+import { RegisterRequestType } from '@/api/auth/schema';
 import { Button } from '@/components/ui/button/Button';
+import Card from '@/components/ui/card/Card';
 import {
   Form,
   FormControl,
@@ -10,16 +11,15 @@ import {
   FormMessage,
 } from '@/components/ui/form/Form';
 import { Input } from '@/components/ui/input/Input';
+import { formatBusinessNumber, formatPhoneNumber } from '@/utils/format-register';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { startTransition } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { RegisterFormSchema } from './schema';
-import { authApi } from '@/api/auth/api';
-import { RegisterRequestType } from '@/api/auth/schema';
-import Card from '@/components/ui/Card/Card';
+import { z } from 'zod';
 import * as styles from './register.css';
-import { formatPhoneNumber, formatBusinessNumber } from '@/utils/format-register';
+import { RegisterFormSchema } from './schema';
 
 type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 
