@@ -1,5 +1,5 @@
-import { globalStyle } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
+import { globalStyle } from '@vanilla-extract/css';
 
 globalStyle('body', {
   width: '100%',
@@ -8,6 +8,9 @@ globalStyle('body', {
   padding: 0,
 
   cursor: 'default',
+
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
 });
 
 globalStyle('*', {

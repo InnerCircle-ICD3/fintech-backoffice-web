@@ -1,11 +1,10 @@
-import { createRouter } from './router';
-import { Toaster, toast } from 'sonner';
-import { RouterProvider } from 'react-router-dom';
 import { handleErrorMessage, RefreshTokenFailedError } from '@/services/api-error';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { RouterProvider } from 'react-router-dom';
+import { toast, Toaster } from 'sonner';
 import { OverlayProvider } from './contexts/overlay/OverlayProvider';
-import { matchQuery, MutationCache, QueryClient } from '@tanstack/react-query';
+import { createRouter } from './router';
 
 const TOSAT_DURATION = 2000;
 

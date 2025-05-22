@@ -1,5 +1,5 @@
 import { vars } from '@/styles/theme.css';
-import { style, keyframes } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 const fadeIn = keyframes({
   from: { opacity: 0 },
@@ -54,7 +54,7 @@ export const content = style({
   zIndex: 50,
   display: 'grid',
   width: '100%',
-  maxWidth: '32rem',
+  maxWidth: '25rem',
   transform: 'translate(-50%, -50%)',
   gap: '1rem',
   border: `1px solid ${vars.color.border}`,

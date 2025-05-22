@@ -1,6 +1,9 @@
-import { z } from 'zod';
-import { startTransition, useState } from 'react';
+import { authApi } from '@/api/auth/api';
+import { LoginRequestType } from '@/api/auth/schema';
+import Flex from '@/components/layout/flex/Flex';
 import { Button } from '@/components/ui/button/Button';
+import Card from '@/components/ui/card/Card';
+import { Checkbox } from '@/components/ui/checkbox/Checkbox';
 import {
   Form,
   FormControl,
@@ -10,21 +13,18 @@ import {
   FormMessage,
 } from '@/components/ui/form/Form';
 import { Input } from '@/components/ui/input/Input';
+import { Label } from '@/components/ui/label/Label';
+import Text from '@/components/ui/text/Text';
+import { useSetTokens } from '@/stores/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { startTransition, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginFormSchema } from './schema';
-import { authApi } from '@/api/auth/api';
-import { LoginRequestType } from '@/api/auth/schema';
-import { useSetTokens } from '@/stores/auth';
-import Card from '@/components/ui/Card/Card';
-import Text from '@/components/ui/text/Text';
+import { z } from 'zod';
 import * as styles from './login.css';
-import Flex from '@/components/layout/flex/Flex';
-import { Checkbox } from '@/components/ui/checkbox/Checkbox';
-import { Label } from '@/components/ui/label/Label';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { LoginFormSchema } from './schema';
 
 type LoginFormType = z.infer<typeof LoginFormSchema>;
 
@@ -36,7 +36,7 @@ const Login = () => {
 
   const form = useForm({
     resolver: zodResolver(LoginFormSchema),
-    mode: 'all',
+    mode: 'onChange',
     defaultValues: {
       id: '',
       password: '',

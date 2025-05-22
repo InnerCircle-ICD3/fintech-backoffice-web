@@ -20,7 +20,7 @@ export const loginCard = style({
 });
 
 export const loginTitle = style({
-  fontSize: vars.fontSize['4xl'],
+  fontSize: vars.fontSize['5xl'],
   fontWeight: 'bold',
   margin: 0,
 });

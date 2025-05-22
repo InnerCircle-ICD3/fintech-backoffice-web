@@ -1,49 +1,39 @@
-import { useLayoutEffect, useState } from 'react';
 import Flex from '@/components/layout/flex/Flex';
-import MenuLink from '@/pages/main/components/MenuLink';
-import { menu } from '@/styles/menu.css';
-import type { MenuItem } from '@/types/menu-data';
+import type { MenuItemProps } from '@/types/menu';
+import { MenuItem as ProMenuItem, SubMenu } from 'react-pro-sidebar';
+import { Link, useLocation } from 'react-router-dom';
 
-interface MenuItemProps {
-  data: MenuItem;
-}
+export const MenuItem = ({ item, level = 0 }: MenuItemProps) => {
+  const location = useLocation();
+  const { label, path, icon: Icon, children } = item;
 
-const MenuItem = (props: MenuItemProps) => {
-  const { data } = props;
-  const { menuId, menuNm = '', menuUrl = '' } = data;
-  const [activeLnb, setActiveLnb] = useState('');
+  const menuContent = (
+    <Flex align="center" gap="8px">
+      {Icon && <Icon size={16} />}
+      <span>{label}</span>
+    </Flex>
+  );
 
-  const handleSubMenuOpen = () => {
-    setActiveLnb(activeLnb === menuId ? '' : menuId);
-  };
-
-  useLayoutEffect(() => {
-    if (window.location.pathname.includes(menuUrl)) {
-      setActiveLnb(menuId);
-    }
-  }, [menuId, menuUrl]);
+  if (children) {
+    return (
+      <SubMenu
+        label={menuContent}
+        defaultOpen={true}
+        rootStyles={level === 0 ? { marginTop: '16px' } : undefined}
+      >
+        {children.map((child, index) => (
+          <MenuItem key={`${label}-${index}`} item={child} level={level + 1} />
+        ))}
+      </SubMenu>
+    );
+  }
 
   return (
-    <div style={{ width: '100%', whiteSpace: 'nowrap' }}>
-      {data.menuTypeCd === 'C' ? (
-        <Flex direction={'column'} grow={'wFull'}>
-          <div
-            className={menu({
-              division: '1depth',
-              active: data.menuId === activeLnb,
-            })}
-            onClick={handleSubMenuOpen}
-          >
-            <Flex align={'center'} gap={'8px'}>
-              {menuNm}
-            </Flex>
-          </div>
-        </Flex>
-      ) : (
-        <MenuLink label={menuNm} menuId={menuId} to={menuUrl} division={'2depth'} type={'page'} />
-      )}
-    </div>
+    <ProMenuItem
+      component={<Link to={path || '/'} className="link" />}
+      active={location.pathname === path}
+    >
+      {menuContent}
+    </ProMenuItem>
   );
 };
-
-export default MenuItem;
