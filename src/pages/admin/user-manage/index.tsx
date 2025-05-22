@@ -1,4 +1,4 @@
-import Text from '@/components/ui/text/Text';
+import Content from '@/components/layout/container/content/Content';
 import { lazy, Suspense } from 'react';
 
 const UserManage1 = lazy(() => import('./UserManage1'));
@@ -6,9 +6,7 @@ const UserManage2 = lazy(() => import('./UserManage2'));
 
 const UserManage = () => {
   return (
-    <div>
-      <Text size={'xl'}>UserManage</Text>
-
+    <Content label={'사용자 관리'}>
       {/* UserManage1 */}
       <div
         style={{
@@ -36,7 +34,7 @@ const UserManage = () => {
           <UserManage2 />
         </Suspense>
       </div>
-    </div>
+    </Content>
   );
 };
 
