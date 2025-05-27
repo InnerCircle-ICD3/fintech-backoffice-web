@@ -1,11 +1,13 @@
 import { authApi } from '@/api/auth/api';
+import Flex from '@/components/layout/flex/Flex';
 import { MENU_ITEMS } from '@/constants/menu';
 import { useOverlay } from '@/contexts/overlay';
 import { Logout } from '@/pages/main/components/lnb/Logout';
 import { Menu } from '@/pages/main/components/lnb/Menu';
 import { Profile } from '@/pages/main/components/lnb/Profile';
+import SdkKeyButton from '@/pages/main/components/lnb/SdkKeyButton';
 import { useClearTokens } from '@/stores/auth';
-import { expandIcon, lnb, menuContainer, sidebarContainer } from '@/styles/lnb.css';
+import { expandIcon, footerSection, lnb, menuContainer, sidebarContainer } from '@/styles/lnb.css';
 import { vars } from '@/styles/theme.css';
 import { useMutation } from '@tanstack/react-query';
 import { ChevronRight } from 'lucide-react';
@@ -68,8 +70,12 @@ const Lnb = () => {
               renderItem={(item) => <Menu.Item key={item.id} item={item} />}
             />
           </ReactProMenu>
-          {/* 로그아웃 */}
-          <Logout onLogout={handleLogout} />
+          <Flex className={footerSection} direction="column">
+            {/* SDK 키 발급 */}
+            <SdkKeyButton />
+            {/* 로그아웃 */}
+            <Logout onLogout={handleLogout} />
+          </Flex>
         </div>
       </Sidebar>
     </div>

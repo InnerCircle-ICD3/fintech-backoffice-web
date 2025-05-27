@@ -108,9 +108,23 @@ export const expandIcon = style({
   },
 });
 
-export const logoutSection = style({
-  cursor: 'pointer',
+export const footerSection = style({
   marginTop: 'auto',
   padding: '16px 20px',
   borderTop: `1px solid ${vars.color.border}`,
+});
+
+export const footerMenuButton = style({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  gap: '8px',
+  padding: '10px',
+});
+
+export const sdkKeyCopyButton = style({
+  padding: '0px',
+});
+
+export const sdkKeyButtonSubmitButton = style({
+  padding: '10px 16px',
 });
