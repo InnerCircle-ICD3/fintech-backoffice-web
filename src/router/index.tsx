@@ -16,7 +16,7 @@ export const createRouter = (queryClient: QueryClient) => {
           element: <Navigate to="/transaction/list" replace />,
         },
         authRoutes,
-        adminRoutes,
+        ...adminRoutes(queryClient),
         ...exampleRoutes(queryClient),
         {
           path: '*',
