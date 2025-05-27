@@ -1,16 +1,15 @@
 import Flex from '@/components/layout/flex/Flex';
+import { Suspense } from 'react';
 import {
+  ExampleDatePicker,
   ExampleForm,
   ExampleInput,
-  ExampleSwitch,
   ExamplePopover,
-  ExampleDatePicker,
+  ExampleSwitch,
 } from './components';
 import { ExampleButton } from './components/ExampleButton';
 import { ExampleError } from './components/ExampleError';
-import { lazy, Suspense } from 'react';
 
-const ExampleLoader = lazy(() => import('./components/ExampleLoader'));
 import { ExampleDialog } from './components/ExampleDialog';
 
 const Example = () => {
@@ -33,7 +32,6 @@ const Example = () => {
       <Flex justify="center" style={{ width: '100%' }}>
         <Suspense fallback={<div>로딩 중...</div>}>
           <ExampleDialog />
-          <ExampleLoader />
         </Suspense>
         <ExampleError />
       </Flex>

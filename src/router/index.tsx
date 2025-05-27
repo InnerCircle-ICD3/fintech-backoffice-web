@@ -2,7 +2,7 @@ import { GlobalErrorBoundary } from '@/components/error-boundary';
 import Main from '@/pages/main';
 import type { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
-import { adminRoutes, authRoutes, exampleRoutes } from './routes';
+import { adminRoutes, authRoutes } from './routes';
 
 export const createRouter = (queryClient: QueryClient) => {
   const routes: RouteObject[] = [
@@ -17,7 +17,6 @@ export const createRouter = (queryClient: QueryClient) => {
         },
         authRoutes,
         ...adminRoutes(queryClient),
-        ...exampleRoutes(queryClient),
         {
           path: '*',
           element: <Navigate to="/" replace />,
