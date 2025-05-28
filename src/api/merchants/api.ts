@@ -1,5 +1,5 @@
 import { createApiEndpoint } from '@/services/api-factory';
-import { MerchantInfoResponseSchema, MerchantInfoResponseType } from './schema';
+import { MerchantInfoResponseSchema, type MerchantInfoResponseType } from './schema';
 
 /**
  * 가맹점 API 엔드포인트
