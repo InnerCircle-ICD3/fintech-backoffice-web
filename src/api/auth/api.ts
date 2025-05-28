@@ -4,14 +4,14 @@ import {
   LoginRequestType,
   LoginResponseSchema,
   LoginResponseType,
-  LogoutResponseType,
   LogoutResponseSchema,
-  ReissueResponseSchema,
-  ReissueResponseType,
+  LogoutResponseType,
   RegisterRequestSchema,
   RegisterRequestType,
-  RegisterResponseType,
   RegisterResponseSchema,
+  RegisterResponseType,
+  ReissueResponseSchema,
+  ReissueResponseType,
 } from './schema';
 
 /**
