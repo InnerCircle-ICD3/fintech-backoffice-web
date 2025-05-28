@@ -1,6 +1,6 @@
+import Flex from '@/components/layout/flex';
+import Text from '@/components/ui/text';
 import { ReactNode } from 'react';
-import Flex from '@/components/layout/flex/Flex';
-import Text from '@/components/ui/text/Text';
 
 export interface TableSubHeaderProps {
   totalCount: number;
@@ -11,7 +11,7 @@ export interface TableSubHeaderProps {
   headerButton?: ReactNode;
 }
 
-const TableSubHeader = (props: TableSubHeaderProps) => {
+export const TableSubHeader = (props: TableSubHeaderProps) => {
   const {
     totalCount,
     searchTime = '',
@@ -51,5 +51,3 @@ const TableSubHeader = (props: TableSubHeaderProps) => {
     </Flex>
   );
 };
-
-export default TableSubHeader;

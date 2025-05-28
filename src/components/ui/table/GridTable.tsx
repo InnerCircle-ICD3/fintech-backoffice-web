@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
-import { RowTableMetaData } from '@/types/commonType';
+import type { RowTableMetaData } from '@/types/common';
 import { formatDate, isEmpty } from '@/utils/common-utils';
+import { Fragment } from 'react';
 import { formatDay } from 'react-day-picker';
 
-import { th, td, table } from '@/components/ui/table/table.css';
+import { table, td, th } from '@/components/ui/table/table.css';
 
 interface DetailTableProps {
   data: Record<string, any>;
@@ -16,7 +16,7 @@ interface RowGroupProps {
   label?: string;
 }
 
-const GridTable = (props: DetailTableProps) => {
+export const GridTable = (props: DetailTableProps) => {
   const { data, metaData, rowSpan = 2 } = props;
 
   const rows = Object.entries(metaData);
@@ -145,5 +145,3 @@ const GridTable = (props: DetailTableProps) => {
     </table>
   );
 };
-
-export default GridTable;

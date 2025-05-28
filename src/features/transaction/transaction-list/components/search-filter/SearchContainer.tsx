@@ -1,0 +1,55 @@
+import Flex from '@/components/layout/flex';
+import { Button } from '@/components/ui/button';
+import { searchContainer } from '@/features/transaction/transaction-list/components/search-filter/search-filter.css';
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
+
+interface SearchFilterProps {
+  children?: ReactNode;
+  advancedSearch?: ReactNode;
+  onSearch?: () => void;
+  onReset?: () => void;
+}
+
+const SearchContainer = (props: SearchFilterProps) => {
+  const { children, advancedSearch, onSearch, onReset } = props;
+
+  return (
+    <div className={searchContainer}>
+      <Flex direction={'column'} grow={'wFull'}>
+        <Flex gap={'16px'} style={{ flexWrap: 'wrap' }}>
+          {children}
+        </Flex>
+
+        <motion.div
+          initial={{
+            height: 0,
+            opacity: 0,
+          }}
+          animate={{
+            height: 0,
+            opacity: 0,
+          }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+          <Flex gap={'16px'} style={{ marginTop: '16px' }}>
+            {advancedSearch}
+          </Flex>
+        </motion.div>
+      </Flex>
+
+      <Flex grow={'wFull'} justify={'end'}>
+        <Flex gap={'16px'}>
+          <Button onClick={onReset} variant={'secondary'} size={'sm'} width={'fit'}>
+            초기화
+          </Button>
+          <Button onClick={onSearch} size={'sm'} width={'fit'}>
+            검색
+          </Button>
+        </Flex>
+      </Flex>
+    </div>
+  );
+};
+
+export default SearchContainer;

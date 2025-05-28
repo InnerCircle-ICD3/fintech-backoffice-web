@@ -1,7 +1,7 @@
+import type { ConfirmDialogProps } from '@/components/confirm-dialog';
+import ConfirmDialog from '@/components/confirm-dialog';
 import { useCallback, useContext } from 'react';
 import { OverlayContext } from './overlay-context';
-import ConfirmDialog from '@/components/confirm-dialog/ConfirmDialog';
-import type { ConfirmDialogProps } from '@/components/confirm-dialog/ConfirmDialog';
 
 export function useOverlay() {
   const openOverlay = useContext(OverlayContext);

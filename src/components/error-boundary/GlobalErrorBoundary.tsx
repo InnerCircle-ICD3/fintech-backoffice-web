@@ -1,8 +1,8 @@
-import { AlertTriangle } from 'lucide-react';
-import * as styles from './error-boundary.css';
+import { Button } from '@/components/ui/button';
 import { handleErrorMessage } from '@/services/api-error';
+import { AlertTriangle } from 'lucide-react';
 import { useRouteError } from 'react-router-dom';
-import { Button } from '@/components/ui/button/Button';
+import * as styles from './error-boundary.css';
 
 export const GlobalErrorBoundary = () => {
   const error = useRouteError();
