@@ -1,4 +1,4 @@
-import { merchantsApi } from '@/api/merchants/info/api';
+import { merchantsApi } from '@/api/merchants/api';
 import { QUERY_KEYS } from '@/constants/queries';
 import { QueryClient } from '@tanstack/react-query';
 import { LoaderFunction } from 'react-router-dom';

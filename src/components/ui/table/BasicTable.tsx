@@ -1,12 +1,12 @@
-import { HTMLAttributes, ReactNode } from 'react';
 import { table, tableContainer, th } from '@/components/ui/table/table.css';
+import { HTMLAttributes, ReactNode } from 'react';
 
 interface IBasicTableProps extends HTMLAttributes<HTMLTableElement> {
   columns: any;
   tbody: ReactNode;
 }
 
-const BasicTable = (props: IBasicTableProps) => {
+export const BasicTable = (props: IBasicTableProps) => {
   const { columns, tbody, ...attribute } = props;
 
   return (
@@ -27,5 +27,3 @@ const BasicTable = (props: IBasicTableProps) => {
     </div>
   );
 };
-
-export default BasicTable;

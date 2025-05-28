@@ -1,5 +1,5 @@
 import { GlobalErrorBoundary } from '@/components/error-boundary';
-import Main from '@/pages/main';
+import Main from '@/features/main';
 import type { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
 import { adminRoutes, authRoutes } from './routes';

@@ -1,25 +1,25 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react';
+import { type CSSProperties, useEffect, useRef, useState } from 'react';
 
 import {
-  Column,
-  ColumnDef,
-  ColumnPinningState,
+  type Column,
+  type ColumnDef,
+  type ColumnPinningState,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/constants/common';
-import Nodata, { NodataProps } from '@/components/ui/Nodata';
-import TableSubHeader, { TableSubHeaderProps } from '@/components/ui/table/TableSubHeader';
-import { vars } from '@/styles/theme.css';
-import Spinner from '@/components/ui/spinner/Spinner';
-import Flex from '@/components/layout/flex/Flex';
+import Flex from '@/components/layout/flex';
+import Nodata, { type NodataProps } from '@/components/ui/Nodata';
+import Card, { type CardVariants } from '@/components/ui/card';
+import Pagination from '@/components/ui/pagination';
+import Spinner from '@/components/ui/spinner';
 import { table, tableContainer, td, th, tr } from '@/components/ui/table/table.css';
-import Pagination from '@/components/ui/pagination/Pagination';
-import Card, { CardVariants } from '@/components/ui/card/Card';
-import { Paging } from '@/types/commonType';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/constants/common';
+import { vars } from '@/styles/theme.css';
+import type { Paging } from '@/types/common';
 import { getCurrentDate } from '@/utils/common-utils';
+import { TableSubHeader, type TableSubHeaderProps } from './TableSubHeader';
 
 type ColumnMeta = {
   textAlign?: 'left' | 'center' | 'right';
@@ -44,7 +44,7 @@ type CustomTableProps<T> = CardVariants &
     onRowClick?: (row: any) => void;
   };
 
-const CustomTable = <T,>(props: CustomTableProps<T>) => {
+export const CustomTable = <T,>(props: CustomTableProps<T>) => {
   const {
     data,
     columns,
@@ -84,8 +84,12 @@ const CustomTable = <T,>(props: CustomTableProps<T>) => {
       zIndex: isPinned ? 1 : 0,
       left: isPinned === 'left' ? `${column.getStart('left')}px` : undefined,
       right: isPinned === 'right' ? `${column.getAfter('right')}px` : undefined,
-      ...(isLastLeftPinnedColumn && { borderRight: `1px solid ${vars.color.primary}` }),
-      ...(isFirstRightPinnedColumn && { borderLeft: `1px solid ${vars.color.primary}` }),
+      ...(isLastLeftPinnedColumn && {
+        borderRight: `1px solid ${vars.color.primary}`,
+      }),
+      ...(isFirstRightPinnedColumn && {
+        borderLeft: `1px solid ${vars.color.primary}`,
+      }),
     };
   };
 
@@ -198,7 +202,10 @@ const CustomTable = <T,>(props: CustomTableProps<T>) => {
                               className={td}
                               style={{
                                 width: !size ? 'auto' : size,
-                                ...(minSize && { minWidth: minSize, width: minSize }),
+                                ...(minSize && {
+                                  minWidth: minSize,
+                                  width: minSize,
+                                }),
                                 ...(size && { maxWidth: size }),
                                 textAlign: meta?.textAlign || 'left',
                                 ...getCommonPinningStyles(cell.column),
@@ -229,5 +236,3 @@ const CustomTable = <T,>(props: CustomTableProps<T>) => {
     </>
   );
 };
-
-export default CustomTable;

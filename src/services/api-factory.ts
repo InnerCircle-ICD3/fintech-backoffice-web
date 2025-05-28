@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import type { AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { z } from 'zod';
 import { fromZodError } from 'zod-validation-error';
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { axiosInstance } from './api-instance';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
@@ -36,27 +36,30 @@ export const createApiEndpoint = <TReq, TRes>({
       path
     );
 
-    if (payload && requestSchema) {
-      const result = requestSchema.safeParse(payload);
-      if (!result.success) {
-        throw fromZodError(result.error);
-      }
-      payload = result.data;
-    }
+    const validatedPayload =
+      payload && requestSchema
+        ? (() => {
+            const result = requestSchema.safeParse(payload);
+            if (!result.success) {
+              throw fromZodError(result.error);
+            }
+            return result.data;
+          })()
+        : payload;
 
     const data = await axiosInstance({
       ...axiosConfig,
       url,
       method,
-      ...(method === 'get' || method === 'delete' ? { params: payload } : { data: payload }),
+      ...(method === 'get' || method === 'delete'
+        ? { params: validatedPayload }
+        : { data: validatedPayload }),
     });
 
     const result = responseSchema.safeParse(data);
-
     if (!result.success) {
-      console.error('Validation Error:', result.error);
-      const error = fromZodError(result.error);
-      throw error;
+      console.error('에러:', result.error);
+      throw new Error(`API 응답이 예상과 달라요: ${fromZodError(result.error).toString()}`);
     }
 
     return result.data;
