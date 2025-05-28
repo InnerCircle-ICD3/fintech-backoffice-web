@@ -10,8 +10,8 @@ import {
 import { Input } from '@/components/ui/input';
 import Text from '@/components/ui/text';
 import { useOverlay } from '@/contexts/overlay';
-import { OverlayProps } from '@/contexts/overlay/overlay-context';
-import { MerchantInfo } from '@/queries';
+import type { OverlayProps } from '@/contexts/overlay/overlay-context';
+import type { MerchantInfo } from '@/queries';
 import * as styles from '@/styles/lnb.css';
 import { footerMenuButton } from '@/styles/lnb.css';
 import { useMutation } from '@tanstack/react-query';

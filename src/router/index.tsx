@@ -1,7 +1,7 @@
 import { GlobalErrorBoundary } from '@/components/error-boundary';
 import Main from '@/features/main';
 import type { QueryClient } from '@tanstack/react-query';
-import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
+import { Navigate, type RouteObject, createBrowserRouter } from 'react-router-dom';
 import { adminRoutes, authRoutes } from './routes';
 
 export const createRouter = (queryClient: QueryClient) => {
