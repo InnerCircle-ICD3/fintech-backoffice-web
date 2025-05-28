@@ -30,8 +30,8 @@ const MenuItem = ({ item, level = 0 }: MenuItemProps) => {
         defaultOpen={true}
         rootStyles={level === 0 ? { marginTop: '16px' } : undefined}
       >
-        {children.map((child, index) => (
-          <MenuItem key={`${label}-${index}`} item={child} level={level + 1} />
+        {children.map((child) => (
+          <MenuItem key={child.id} item={child} level={level + 1} />
         ))}
       </SubMenu>
     );
