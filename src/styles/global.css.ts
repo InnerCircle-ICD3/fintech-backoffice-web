@@ -29,6 +29,8 @@ globalStyle('a', {
 
 globalStyle('ui', {
   listStyle: 'none',
+  padding: 0,
+  margin: 0,
 });
 
 globalStyle('::-webkit-scrollbar', {
