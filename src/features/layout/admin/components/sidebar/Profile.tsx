@@ -1,13 +1,32 @@
-import { logo, logoIcon, profile } from '@/styles/lnb.css';
+import LogoIcon from '@/assets/images/logo/logo.png';
+import type { MerchantInfo } from '@/queries';
 import { Link } from 'react-router-dom';
+import { logo, logoIcon, profile, profileInfo, profileInfoItem } from './sidebar.css';
 
-export const Profile = () => {
+interface ProfileProps {
+  merchantInfo: MerchantInfo;
+}
+
+export const Profile = ({ merchantInfo }: ProfileProps) => {
+  const { name, contact } = merchantInfo;
+
   return (
     <div className={profile}>
       <Link to="/" className={logo}>
-        <div className={logoIcon}>Y</div>
-        <span>열정페이</span>
+        <Logo />
+        <ul className={profileInfo}>
+          <span>{name}</span>
+          <span className={profileInfoItem}>{contact.email}</span>
+        </ul>
       </Link>
+    </div>
+  );
+};
+
+const Logo = () => {
+  return (
+    <div>
+      <img src={LogoIcon} alt="logo" className={logoIcon} />
     </div>
   );
 };
