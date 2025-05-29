@@ -5,14 +5,15 @@ import { useOverlay } from '@/contexts/overlay';
 import { Logout } from '@/features/layout/admin/components/sidebar/Logout';
 import { Menu } from '@/features/layout/admin/components/sidebar/Menu';
 import { Profile } from '@/features/layout/admin/components/sidebar/Profile';
-import SdkKeyButton from '@/features/layout/admin/components/sidebar/SdkKeyButton';
+import { SdkKey } from '@/features/layout/admin/components/sidebar/SdkKey';
+import type { MerchantInfo } from '@/queries';
 import { useClearTokens } from '@/stores/auth';
-import { expandIcon, footerSection, lnb, menuContainer, sidebarContainer } from '@/styles/lnb.css';
 import { vars } from '@/styles/theme.css';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ChevronRight } from 'lucide-react';
-import { Menu as ReactProMenu, Sidebar } from 'react-pro-sidebar';
-import { useNavigate } from 'react-router-dom';
+import { Menu as ReactProMenu, Sidebar as ReactProSidebar } from 'react-pro-sidebar';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { expandIcon, footerSection, menuContainer, sidebar, sidebarContainer } from './sidebar.css';
 
 const menuStyles = {
   button: ({ level, active }: { level: number; active: boolean }) => ({
@@ -26,15 +27,21 @@ const menuStyles = {
   }),
 };
 
-const Lnb = () => {
+const Sidebar = () => {
+  const merchantInfo = useLoaderData() as MerchantInfo;
+  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
   const clearTokens = useClearTokens();
-  const { openConfirmation } = useOverlay();
+  const { openConfirmation, openOverlay } = useOverlay();
 
   const { mutate: logoutMutate } = useMutation({
     mutationFn: () => authApi.logout(),
     onSuccess: () => {
       clearTokens();
+      queryClient.invalidateQueries({
+        predicate: () => true,
+      });
       navigate('/auth/login');
     },
   });
@@ -50,7 +57,7 @@ const Lnb = () => {
 
   return (
     <div className={sidebarContainer}>
-      <Sidebar className={lnb} backgroundColor={vars.color.white}>
+      <ReactProSidebar className={sidebar} backgroundColor={vars.color.white}>
         <div className={menuContainer}>
           <ReactProMenu
             menuItemStyles={menuStyles}
@@ -63,7 +70,7 @@ const Lnb = () => {
             )}
           >
             {/* 프로필 */}
-            <Profile />
+            <Profile merchantInfo={merchantInfo} />
             {/* 메뉴 */}
             <Menu.List
               items={MENU_ITEMS}
@@ -72,14 +79,18 @@ const Lnb = () => {
           </ReactProMenu>
           <Flex className={footerSection} direction="column">
             {/* SDK 키 발급 */}
-            <SdkKeyButton />
+            <SdkKey.Button
+              onSdkKeyIssue={() =>
+                openOverlay((props) => <SdkKey.Dialog merchantInfo={merchantInfo} {...props} />)
+              }
+            />
             {/* 로그아웃 */}
             <Logout onLogout={handleLogout} />
           </Flex>
         </div>
-      </Sidebar>
+      </ReactProSidebar>
     </div>
   );
 };
 
-export default Lnb;
+export default Sidebar;
