@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { test as base, expect, Page } from '@playwright/test';
 import fixtures from '../mocks/fixtures';
 import { MockAuthStorage } from '../mocks/stores/auth-store';
