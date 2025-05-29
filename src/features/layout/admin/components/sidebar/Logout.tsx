@@ -9,7 +9,12 @@ interface LogoutProps {
 
 export const Logout = ({ onLogout }: LogoutProps) => {
   return (
-    <Button variant="ghost" onClick={onLogout} className={footerMenuButton}>
+    <Button
+      variant="ghost"
+      onClick={onLogout}
+      className={footerMenuButton}
+      data-testid="logout-button"
+    >
       <LogOut size={16} />
       <Text>로그아웃</Text>
     </Button>
