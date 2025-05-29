@@ -1,11 +1,10 @@
-import { loginResponse } from './auth/login';
-import exampleLoader from './example-loader';
-import { merchantsInfoResponse } from './merchants/info';
-import { issueResponse } from './sdk/issue';
+import { login, reissue } from './auth';
+import { merchantsInfo } from './merchants/info';
+import { sdkIssue } from './sdk/issue';
 
 export default {
-  exampleLoader,
-  loginResponse,
-  issueResponse,
-  merchantsInfoResponse,
+  login,
+  reissue,
+  sdkIssue,
+  merchantsInfo,
 };
