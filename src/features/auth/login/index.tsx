@@ -88,6 +88,7 @@ const Login = () => {
                       {...field}
                       autoComplete="username"
                       autoFocus
+                      data-testid="login-id-input"
                     />
                   </FormControl>
                   <FormMessage />
@@ -110,6 +111,7 @@ const Login = () => {
                       type={showPassword ? 'text' : 'password'}
                       placeholder="비밀번호를 입력해 주세요."
                       autoComplete="current-password"
+                      data-testid="login-password-input"
                       suffix={
                         <Button
                           type="button"
@@ -134,6 +136,7 @@ const Login = () => {
                   id="rememberMe"
                   checked={isRememberMe}
                   onCheckedChange={(checked) => setIsRememberMe(!!checked)}
+                  data-testid="auto-login-checkbox"
                 />
                 <Label htmlFor="rememberMe">자동 로그인</Label>
               </Flex>
@@ -143,7 +146,13 @@ const Login = () => {
             </Flex>
 
             <Flex direction="column" gap="16px" width="100%" className={styles.buttonContainer}>
-              <Button type="submit" variant="primary" disabled={isPending} size="lg">
+              <Button
+                type="submit"
+                variant="primary"
+                disabled={isPending}
+                size="lg"
+                data-testid="login-submit-button"
+              >
                 로그인
               </Button>
               <Button type="button" variant="secondary" disabled={isPending} size="lg" asChild>

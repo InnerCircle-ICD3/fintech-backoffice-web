@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 import type { z } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import { axiosInstance } from './api-instance';
@@ -10,7 +10,6 @@ interface ApiEndpointDefinition<TReq, TRes> {
   method: HttpMethod;
   requestSchema?: z.ZodType<TReq>;
   responseSchema: z.ZodType<TRes>;
-  axiosInstance?: AxiosInstance;
 }
 
 export const createApiEndpoint = <TReq, TRes>({

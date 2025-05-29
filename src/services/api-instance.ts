@@ -1,17 +1,15 @@
 import { useAuthStore } from '@/stores/auth';
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
-import { requestRefresh } from './request-refresh';
 import { StatusCodes } from 'http-status-codes';
+import { requestRefresh } from './request-refresh';
 
 export const TIME_OUT = 5000; // 5초
 
-const baseConfig = {
+export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: TIME_OUT,
-};
-
-export const axiosInstance = axios.create(baseConfig);
+});
 
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
@@ -31,7 +29,7 @@ axiosInstance.interceptors.response.use(
   (error) => Promise.reject(error)
 );
 
-/** 리프레시 토큰 인터셉터 */
+// 리프레시 토큰 인터셉터 설정
 createAuthRefreshInterceptor(axiosInstance, requestRefresh, {
   statusCodes: [StatusCodes.UNAUTHORIZED],
   pauseInstanceWhileRefreshing: true,

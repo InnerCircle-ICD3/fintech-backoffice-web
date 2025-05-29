@@ -40,6 +40,7 @@ export const ConfirmDialog = ({
             {cancelButtonText || '취소'}
           </AlertDialogCancel>
           <AlertDialogAction
+            data-testid="confirm-dialog-action-button"
             onClick={() => {
               onRequestClose();
               onSubmit();
