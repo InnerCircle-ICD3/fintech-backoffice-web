@@ -1,15 +1,12 @@
-import { flex } from '@/components/layout/flex/flex.css';
 import { vars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
-export const lnbContainer = style({
-  height: '100%',
-  padding: '20px',
-  whiteSpace: 'nowrap',
+export const sidebarContainer = style({
+  display: 'flex',
+  height: '100vh',
 });
 
-export const lnb = style([
+export const sidebar = style([
   {
     width: '100%',
     height: '100%',
@@ -22,41 +19,9 @@ export const lnb = style([
   },
 ]);
 
-export const top = style([flex({ direction: 'column', grow: 'full' }), { gap: '16px' }]);
-
 export const menu = style({
   width: '100%',
   background: vars.color.white,
-});
-
-export const lnbControlContainer = style([
-  flex({ grow: 'wFull', justify: 'between', align: 'center' }),
-  {
-    height: '40px',
-    minHeight: '40px',
-    padding: '8px 16px',
-    borderBottom: `1px solid ${vars.color.border}`,
-  },
-]);
-
-export const LnbMenuContainer = recipe({
-  base: [
-    flex({ direction: 'column' }),
-    {
-      width: '100%',
-      height: '100%',
-      overflowY: 'auto',
-      overflowX: 'hidden',
-    },
-  ],
-  variants: {
-    expand: { true: {}, false: {} },
-  },
-});
-
-export const sidebarContainer = style({
-  display: 'flex',
-  height: '100vh',
 });
 
 export const menuContainer = style({
@@ -72,6 +37,20 @@ export const profile = style({
   cursor: 'pointer',
 });
 
+export const profileInfo = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '4px',
+  padding: 0,
+});
+
+export const profileInfoItem = style({
+  padding: 0,
+  fontSize: vars.fontSize.sm,
+  fontWeight: vars.fontWeight.regular,
+  color: vars.color.text.sub,
+});
+
 export const logo = style({
   fontSize: vars.fontSize.md,
   fontWeight: vars.fontWeight.bold,
@@ -79,14 +58,13 @@ export const logo = style({
   letterSpacing: '-0.02em',
   display: 'flex',
   alignItems: 'center',
-  gap: '8px',
+  gap: '14px',
 });
 
 export const logoIcon = style({
-  width: '32px',
-  height: '32px',
+  width: '28px',
+  height: '28px',
   borderRadius: '8px',
-  backgroundColor: vars.color.primary,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

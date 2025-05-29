@@ -9,36 +9,24 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import Text from '@/components/ui/text';
-import { useOverlay } from '@/contexts/overlay';
 import type { OverlayProps } from '@/contexts/overlay/overlay-context';
 import type { MerchantInfo } from '@/queries';
-import * as styles from '@/styles/lnb.css';
-import { footerMenuButton } from '@/styles/lnb.css';
 import { useMutation } from '@tanstack/react-query';
 import { Copy, KeyRound } from 'lucide-react';
 import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import { toast } from 'sonner';
+import { footerMenuButton, sdkKeyButtonSubmitButton, sdkKeyCopyButton } from './sidebar.css';
 
-const SdkKeyButton = () => {
-  const merchantInfo = useLoaderData() as MerchantInfo;
-  const { openOverlay } = useOverlay();
-
+export const SdkKeyButton = ({ onSdkKeyIssue }: { onSdkKeyIssue: () => void }) => {
   return (
-    <Button
-      variant="ghost"
-      onClick={() =>
-        openOverlay((props) => <SdkKeyDialog merchantInfo={merchantInfo} {...props} />)
-      }
-      className={footerMenuButton}
-    >
+    <Button variant="ghost" onClick={() => onSdkKeyIssue()} className={footerMenuButton}>
       <KeyRound size={16} />
       <Text>SDK 키 발급</Text>
     </Button>
   );
 };
 
-const SdkKeyDialog = ({
+export const SdkKeyDialog = ({
   merchantInfo,
   isOpen,
   onRequestClose,
@@ -54,10 +42,6 @@ const SdkKeyDialog = ({
     },
   });
 
-  const handleSubmit = async () => {
-    createSdkKey({ merchantId: merchantInfo.merchantId });
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={onRequestClose}>
       <DialogContent style={{ width: '400px' }}>
@@ -65,25 +49,20 @@ const SdkKeyDialog = ({
           <DialogTitle>SDK 키 발급</DialogTitle>
           <DialogDescription>아래 버튼을 클릭하면 SDK 키가 발급됩니다.</DialogDescription>
         </DialogHeader>
-        <Input
-          type="text"
-          readOnly
-          value={sdkKey || ''}
-          suffix={
-            <Button
-              variant="ghost"
-              size={'sm'}
-              className={styles.sdkKeyCopyButton}
-              onClick={() => {
-                navigator.clipboard.writeText(sdkKey);
-                toast.success('SDK 키가 복사되었습니다.');
-              }}
-            >
-              <Copy size={16} />
-            </Button>
-          }
-        />
-        <Button onClick={handleSubmit} size="sm" className={styles.sdkKeyButtonSubmitButton}>
+        {sdkKey ? (
+          <SdkKeyInput
+            sdkKey={sdkKey}
+            onCopy={() => {
+              navigator.clipboard.writeText(sdkKey);
+              toast.success('SDK 키가 복사되었습니다.');
+            }}
+          />
+        ) : null}
+        <Button
+          onClick={() => createSdkKey({ merchantId: merchantInfo.merchantId })}
+          size="sm"
+          className={sdkKeyButtonSubmitButton}
+        >
           {sdkKey ? 'SDK 재발급 하기' : 'SDK 발급하기'}
         </Button>
       </DialogContent>
@@ -91,4 +70,27 @@ const SdkKeyDialog = ({
   );
 };
 
-export default SdkKeyButton;
+interface SdkKeyInputProps {
+  sdkKey: string;
+  onCopy: () => void;
+}
+
+const SdkKeyInput = ({ sdkKey, onCopy }: SdkKeyInputProps) => {
+  return (
+    <Input
+      type="text"
+      readOnly
+      value={sdkKey || ''}
+      suffix={
+        <Button variant="ghost" size={'sm'} className={sdkKeyCopyButton} onClick={() => onCopy()}>
+          <Copy size={16} />
+        </Button>
+      }
+    />
+  );
+};
+
+export const SdkKey = {
+  Button: SdkKeyButton,
+  Dialog: SdkKeyDialog,
+} as const;

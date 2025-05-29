@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Text from '@/components/ui/text';
-import { footerMenuButton } from '@/styles/lnb.css';
 import { LogOut } from 'lucide-react';
+import { footerMenuButton } from './sidebar.css';
 
 interface LogoutProps {
   onLogout: () => void;
