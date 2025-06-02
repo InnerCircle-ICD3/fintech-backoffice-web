@@ -1,7 +1,7 @@
 import { RefreshTokenFailedError } from '@/services/api-error';
 import { useAuthStore } from '@/stores/auth';
 import type { AxiosError } from 'axios';
-import { axiosInstance } from './api-instance';
+import { mainApiInstance } from './api-instance';
 
 export const requestRefresh = async (failedRequest: AxiosError) => {
   try {
@@ -16,7 +16,7 @@ export const requestRefresh = async (failedRequest: AxiosError) => {
 
     console.log('Attempting token refresh...');
 
-    const { data: newToken } = await axiosInstance({
+    const { data: newToken } = await mainApiInstance({
       url: '/auth/reissue',
       method: 'POST',
       headers: {
