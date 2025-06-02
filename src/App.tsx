@@ -1,4 +1,4 @@
-import { handleErrorMessage, RefreshTokenFailedError } from '@/services/api-error';
+import { handleErrorMessage } from '@/services/api-error';
 import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from 'react-router-dom';
@@ -57,13 +57,10 @@ const queryClient = new QueryClient({
     },
     onError: (error) => {
       const errorMessage = handleErrorMessage(error);
-      if (error instanceof RefreshTokenFailedError) {
-        toast.error(errorMessage, { id: 'refresh-token-error', duration: TOSAT_DURATION });
-      } else {
-        toast.error(errorMessage, {
-          duration: TOSAT_DURATION,
-        });
-      }
+      toast.error(errorMessage, {
+        className: 'error-toast',
+        duration: TOSAT_DURATION,
+      });
     },
   }),
 });

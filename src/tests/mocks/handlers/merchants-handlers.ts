@@ -1,9 +1,9 @@
+import fixtures from '@/tests/mocks/fixtures';
 import { http, HttpResponse } from 'msw';
-import fixtures from '../fixtures';
 
 const merchantsHandlers = [
   http.get(`${import.meta.env.VITE_API_URL}/merchants/info`, async () => {
-    return HttpResponse.json(fixtures.merchantsInfoResponse, { status: 200 });
+    return HttpResponse.json(fixtures.merchantsInfo.infoResponse, { status: 200 });
   }),
 ];
 
