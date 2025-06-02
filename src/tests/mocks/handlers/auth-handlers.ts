@@ -3,7 +3,7 @@ import fixtures from '@/tests/mocks/fixtures';
 import { http, HttpResponse } from 'msw';
 
 const authHandlers = [
-  http.post(`${import.meta.env.VITE_API_URL}/merchants/login`, async ({ request }) => {
+  http.post(`${import.meta.env.VITE_MAIN_API_URL}/merchants/login`, async ({ request }) => {
     const { loginId, loginPw } = (await request.json()) as LoginRequestType;
 
     if (loginId === fixtures.login.request.loginId && loginPw === fixtures.login.request.loginPw) {
@@ -16,7 +16,7 @@ const authHandlers = [
     );
   }),
 
-  http.post(`${import.meta.env.VITE_API_URL}/merchants/reissue`, async ({ request }) => {
+  http.post(`${import.meta.env.VITE_MAIN_API_URL}/merchants/reissue`, async ({ request }) => {
     const refreshToken = request.headers.get('Refresh-Token');
 
     if (refreshToken && refreshToken === fixtures.login.response.refreshToken) {
@@ -29,7 +29,7 @@ const authHandlers = [
     );
   }),
 
-  http.post(`${import.meta.env.VITE_API_URL}/merchants/register`, async (data) => {
+  http.post(`${import.meta.env.VITE_MAIN_API_URL}/merchants/register`, async (data) => {
     console.log('register data', data);
 
     return HttpResponse.json(
@@ -43,7 +43,7 @@ const authHandlers = [
     );
   }),
 
-  http.post(`${import.meta.env.VITE_API_URL}/merchants/logout`, async (data) => {
+  http.post(`${import.meta.env.VITE_MAIN_API_URL}/merchants/logout`, async (data) => {
     console.log('logout data', data);
 
     return HttpResponse.json(
