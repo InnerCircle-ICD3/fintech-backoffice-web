@@ -1,4 +1,5 @@
 import { createApiEndpoint } from '@/services/api-factory';
+import { paymentApiInstance } from '@/services/api-instance';
 import {
   SdkKeyRequestSchema,
   SdkKeyRequestType,
@@ -15,5 +16,6 @@ export const sdkApi = {
     method: 'post',
     requestSchema: SdkKeyRequestSchema,
     responseSchema: SdkKeyResponseSchema,
+    apiInstance: paymentApiInstance,
   }),
 };
