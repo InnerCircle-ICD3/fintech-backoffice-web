@@ -1,7 +1,7 @@
-import type { AxiosRequestConfig } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import type { z } from 'zod';
 import { fromZodError } from 'zod-validation-error';
-import { axiosInstance } from './api-instance';
+import { mainApiInstance } from './api-instance';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
@@ -10,6 +10,7 @@ interface ApiEndpointDefinition<TReq, TRes> {
   method: HttpMethod;
   requestSchema?: z.ZodType<TReq>;
   responseSchema: z.ZodType<TRes>;
+  apiInstance?: AxiosInstance;
 }
 
 export const createApiEndpoint = <TReq, TRes>({
@@ -17,6 +18,7 @@ export const createApiEndpoint = <TReq, TRes>({
   method,
   requestSchema,
   responseSchema,
+  apiInstance = mainApiInstance,
 }: ApiEndpointDefinition<TReq, TRes>) => {
   return async (
     payload?: TReq,
@@ -46,7 +48,7 @@ export const createApiEndpoint = <TReq, TRes>({
           })()
         : payload;
 
-    const data = await axiosInstance({
+    const data = await apiInstance({
       ...axiosConfig,
       url,
       method,

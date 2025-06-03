@@ -6,32 +6,41 @@ import { requestRefresh } from './request-refresh';
 
 export const TIME_OUT = 5000; // 5초
 
-export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  timeout: TIME_OUT,
-});
+const createAxiosInstance = (baseURL: string) => {
+  const instance = axios.create({
+    baseURL,
+    timeout: TIME_OUT,
+  });
 
-axiosInstance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const accessToken = useAuthStore.getState().accessToken;
+  instance.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+      const accessToken = useAuthStore.getState().accessToken;
 
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
+      if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+      }
 
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
 
-axiosInstance.interceptors.response.use(
-  (response) => response.data,
-  (error) => Promise.reject(error)
-);
+  instance.interceptors.response.use(
+    (response) => response.data,
+    (error) => Promise.reject(error)
+  );
 
-// 리프레시 토큰 인터셉터 설정
-createAuthRefreshInterceptor(axiosInstance, requestRefresh, {
-  statusCodes: [StatusCodes.UNAUTHORIZED],
-  pauseInstanceWhileRefreshing: true,
-  interceptNetworkError: true,
-});
+  createAuthRefreshInterceptor(instance, requestRefresh, {
+    statusCodes: [StatusCodes.UNAUTHORIZED],
+    pauseInstanceWhileRefreshing: true,
+    interceptNetworkError: true,
+  });
+
+  return instance;
+};
+
+// 백오피스 API 인스턴스
+export const mainApiInstance = createAxiosInstance(import.meta.env.VITE_MAIN_API_URL);
+
+// 결제 서버 API 인스턴스
+export const paymentApiInstance = createAxiosInstance(import.meta.env.VITE_PAYMENT_API_URL);
