@@ -1,5 +1,5 @@
 import type { MenuItem } from '@/types/menu';
-import { BarChart2, ClipboardCheck, Users } from 'lucide-react';
+import { BarChart2, Calculator, ClipboardCheck, Users } from 'lucide-react';
 
 export const MENU_ITEMS: MenuItem[] = [
   {
@@ -11,6 +11,12 @@ export const MENU_ITEMS: MenuItem[] = [
         label: '거래 내역',
         path: '/transaction/list',
         icon: BarChart2,
+      },
+      {
+        id: 'settlement-summaries',
+        label: '정산 내역',
+        path: '/transaction/settlement-summaries',
+        icon: Calculator,
       },
     ],
   },
