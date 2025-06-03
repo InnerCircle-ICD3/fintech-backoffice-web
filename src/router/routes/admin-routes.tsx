@@ -8,11 +8,16 @@ import type { RouteObject } from 'react-router-dom';
 const UserManage = lazyImport(() => import('@/features/admin/user-manage'));
 const ApprovalManage = lazyImport(() => import('@/features/admin/approval-manage'));
 const TransactionList = lazyImport(() => import('@/features/transaction/transaction-list'));
+const SettlementSummaries = lazyImport(() => import('@/features/transaction/settlement-summaries'));
 
 const transactionSectionRoutes = [
   {
     path: '/transaction/list',
     lazy: TransactionList,
+  },
+  {
+    path: '/transaction/settlement-summaries',
+    lazy: SettlementSummaries,
   },
 ];
 
