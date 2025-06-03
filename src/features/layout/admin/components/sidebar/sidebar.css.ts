@@ -93,16 +93,33 @@ export const footerSection = style({
 });
 
 export const footerMenuButton = style({
-  display: 'flex',
+  width: '100%',
   justifyContent: 'flex-start',
   gap: '8px',
-  padding: '10px',
 });
 
-export const sdkKeyCopyButton = style({
+export const keyValueCopyButton = style({
   padding: '0px',
 });
 
-export const sdkKeyButtonSubmitButton = style({
-  padding: '10px 16px',
+export const keyIssueButtonSubmitButton = style({
+  width: '100%',
+});
+
+export const keyIssueFormContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+});
+
+export const keyIssueInputContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+});
+
+export const keyFormsContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '16px',
 });
