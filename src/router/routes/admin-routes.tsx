@@ -9,6 +9,7 @@ const UserManage = lazyImport(() => import('@/features/admin/user-manage'));
 const ApprovalManage = lazyImport(() => import('@/features/admin/approval-manage'));
 const TransactionList = lazyImport(() => import('@/features/transaction/transaction-list'));
 const SettlementSummaries = lazyImport(() => import('@/features/transaction/settlement-summaries'));
+const MerchantInfo = lazyImport(() => import('@/features/merchant/info'));
 
 const transactionSectionRoutes = [
   {
@@ -21,6 +22,12 @@ const transactionSectionRoutes = [
   },
 ];
 
+const merchantSectionRoutes = [
+  {
+    path: '/merchant/info',
+    lazy: MerchantInfo,
+  },
+];
 const adminSectionRoutes = [
   {
     path: '/admin/user-manager',
@@ -40,7 +47,7 @@ export const adminRoutes = (queryClient: QueryClient): RouteObject[] => {
         {
           element: <AdminLayout />,
           loader: merchantLoader(queryClient),
-          children: [...transactionSectionRoutes, ...adminSectionRoutes],
+          children: [...transactionSectionRoutes, ...merchantSectionRoutes, ...adminSectionRoutes],
         },
       ],
     },
