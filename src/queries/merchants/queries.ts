@@ -8,7 +8,7 @@ import { formatMerchantInfo } from './format';
 const merchantInfoQuery = {
   queryKey: QUERY_KEYS.MERCHANT.INFO,
   queryFn: async () => {
-    const response = await merchantsApi.getInfo();
+    const response = await merchantsApi.get();
     return formatMerchantInfo(response);
   },
 };

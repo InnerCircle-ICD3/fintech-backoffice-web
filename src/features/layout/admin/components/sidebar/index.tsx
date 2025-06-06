@@ -6,7 +6,7 @@ import { KeyIssue } from '@/features/layout/admin/components/sidebar/KeyIssue';
 import { Logout } from '@/features/layout/admin/components/sidebar/Logout';
 import { Menu } from '@/features/layout/admin/components/sidebar/Menu';
 import { Profile } from '@/features/layout/admin/components/sidebar/Profile';
-import type { MerchantInfo } from '@/queries';
+import type { MerchantInfoType } from '@/queries';
 import { useClearTokens } from '@/stores/auth';
 import { vars } from '@/styles/theme.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -28,7 +28,7 @@ const menuStyles = {
 };
 
 const Sidebar = () => {
-  const merchantInfo = useLoaderData() as MerchantInfo;
+  const merchantInfo = useLoaderData() as MerchantInfoType;
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();

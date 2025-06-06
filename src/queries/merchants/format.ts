@@ -12,4 +12,4 @@ export const formatMerchantInfo = (response: MerchantInfoResponseType) => ({
   status: response.status,
 });
 
-export type MerchantInfo = ReturnType<typeof formatMerchantInfo>;
+export type MerchantInfoType = ReturnType<typeof formatMerchantInfo>;
