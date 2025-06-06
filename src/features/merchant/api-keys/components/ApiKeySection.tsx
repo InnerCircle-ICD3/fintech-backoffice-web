@@ -117,7 +117,7 @@ const ApiKeySection = ({ apiKeyList }: ApiKeySectionProps) => {
                 <TableCell>{apiKey.id}</TableCell>
 
                 {/* client key */}
-                <TableCell className={styles.keyCell}>
+                <TableCell>
                   <div className={styles.keyCellContent}>
                     <span>{apiKey.key}</span>
                     <Button
@@ -132,7 +132,7 @@ const ApiKeySection = ({ apiKeyList }: ApiKeySectionProps) => {
                 </TableCell>
 
                 {/* secret key */}
-                <TableCell className={styles.keyCell}>
+                <TableCell>
                   <div className={styles.keyCellContent}>
                     <span>{maskSecretKey(apiKey.secret, visibleSecretKeys[apiKey.id])}</span>
                     <Button

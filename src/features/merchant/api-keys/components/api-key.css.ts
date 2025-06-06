@@ -30,13 +30,6 @@ export const tableHeaderButtonIcon = style({
   fontSize: vars.fontSize.sm,
 });
 
-export const keyCell = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-  maxWidth: '320px',
-});
-
 export const keyCellContent = style({
   display: 'flex',
   alignItems: 'center',
