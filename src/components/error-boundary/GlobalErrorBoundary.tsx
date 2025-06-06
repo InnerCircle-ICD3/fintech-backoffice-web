@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { handleErrorMessage } from '@/services/api-error';
 import { AlertTriangle } from 'lucide-react';
-import { useRouteError } from 'react-router-dom';
+import { useNavigate, useRouteError } from 'react-router-dom';
 import * as styles from './error-boundary.css';
 
 export const GlobalErrorBoundary = () => {
+  const navigate = useNavigate();
   const error = useRouteError();
   const errorMessage = handleErrorMessage(error);
 
@@ -19,7 +20,7 @@ export const GlobalErrorBoundary = () => {
           {errorMessage || '알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'}
         </p>
         <div className={styles.buttonContainerStyle}>
-          <Button onClick={() => window.location.reload()}>새로고침</Button>
+          <Button onClick={() => navigate('/auth/login')}>홈으로 이동</Button>
         </div>
       </div>
     </div>
