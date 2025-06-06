@@ -1,4 +1,5 @@
 import { merchantsApi } from '@/api/merchants/api';
+import { CardHeader } from '@/components/card-header';
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui/card';
 import {
@@ -20,7 +21,6 @@ import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { CardHeader } from './CardHeader';
 import * as styles from './merchant-info.css';
 
 type MerchantInfoFormType = z.infer<typeof MerchantInfoSchema>;
