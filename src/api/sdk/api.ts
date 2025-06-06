@@ -1,21 +1,33 @@
 import { createApiEndpoint } from '@/services/api-factory';
-import { paymentApiInstance } from '@/services/api-instance';
 import {
-  SdkKeyRequestSchema,
-  SdkKeyRequestType,
+  SdkKeyActivateResponseSchema,
+  SdkKeyActivateResponseType,
+  SdkKeyDeactivateResponseSchema,
+  SdkKeyDeactivateResponseType,
   SdkKeyResponseSchema,
   SdkKeyResponseType,
 } from './schema';
 
 /**
- * SDK API 엔드포인트
+ * SDK 키 API 엔드포인트
  */
 export const sdkApi = {
-  issue: createApiEndpoint<SdkKeyRequestType, SdkKeyResponseType>({
-    path: '/sdk/issue',
-    method: 'post',
-    requestSchema: SdkKeyRequestSchema,
+  /** SDK 키 조회 */
+  get: createApiEndpoint<undefined, SdkKeyResponseType>({
+    path: '/sdk-key',
+    method: 'get',
     responseSchema: SdkKeyResponseSchema,
-    apiInstance: paymentApiInstance,
+  }),
+  /** SDK 키 활성화 */
+  activate: createApiEndpoint<undefined, SdkKeyActivateResponseType>({
+    path: '/sdk-key/activate',
+    method: 'post',
+    responseSchema: SdkKeyActivateResponseSchema,
+  }),
+  /** SDK 키 비활성화 */
+  deactivate: createApiEndpoint<undefined, SdkKeyDeactivateResponseType>({
+    path: '/sdk-key/deactivate',
+    method: 'post',
+    responseSchema: SdkKeyDeactivateResponseSchema,
   }),
 };
