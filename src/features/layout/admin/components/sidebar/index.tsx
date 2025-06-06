@@ -2,7 +2,6 @@ import { authApi } from '@/api/auth/api';
 import Flex from '@/components/layout/flex';
 import { MENU_ITEMS } from '@/constants/menu';
 import { useOverlay } from '@/contexts/overlay';
-import { KeyIssue } from '@/features/layout/admin/components/sidebar/KeyIssue';
 import { Logout } from '@/features/layout/admin/components/sidebar/Logout';
 import { Menu } from '@/features/layout/admin/components/sidebar/Menu';
 import { Profile } from '@/features/layout/admin/components/sidebar/Profile';
@@ -78,12 +77,6 @@ const Sidebar = () => {
             />
           </ReactProMenu>
           <Flex className={footerSection} direction="column">
-            {/* 키 발급 */}
-            <KeyIssue.Button
-              onSdkKeyIssue={() =>
-                openOverlay((props) => <KeyIssue.Dialog merchantInfo={merchantInfo} {...props} />)
-              }
-            />
             {/* 로그아웃 */}
             <Logout onLogout={handleLogout} />
           </Flex>

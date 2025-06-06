@@ -88,7 +88,7 @@ export const expandIcon = style({
 
 export const footerSection = style({
   marginTop: 'auto',
-  padding: '16px 20px',
+  padding: '12px',
   borderTop: `1px solid ${vars.color.border}`,
 });
 
@@ -96,30 +96,4 @@ export const footerMenuButton = style({
   width: '100%',
   justifyContent: 'flex-start',
   gap: '8px',
-});
-
-export const keyValueCopyButton = style({
-  padding: '0px',
-});
-
-export const keyIssueButtonSubmitButton = style({
-  width: '100%',
-});
-
-export const keyIssueFormContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-});
-
-export const keyIssueInputContainer = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-});
-
-export const keyFormsContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '16px',
 });
