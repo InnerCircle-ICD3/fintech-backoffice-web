@@ -30,8 +30,6 @@ export const sdkKeyContent = style({
 
 export const input = style({
   fontSize: vars.fontSize.sm,
-  width: '300px',
-  flex: 0.5,
 });
 
 export const infoGrid = style({});

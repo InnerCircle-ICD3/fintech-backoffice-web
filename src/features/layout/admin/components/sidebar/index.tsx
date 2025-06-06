@@ -32,7 +32,7 @@ const Sidebar = () => {
 
   const navigate = useNavigate();
   const clearTokens = useClearTokens();
-  const { openConfirmation, openOverlay } = useOverlay();
+  const { openConfirmation } = useOverlay();
 
   const { mutate: logoutMutate } = useMutation({
     mutationFn: () => authApi.logout(),

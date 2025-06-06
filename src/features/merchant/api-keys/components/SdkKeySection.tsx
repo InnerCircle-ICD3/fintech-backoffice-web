@@ -65,6 +65,7 @@ const SdkKeySection = ({ sdkKey }: SdkKeySectionProps) => {
                   <Copy size={16} />
                 </Button>
               }
+              className={styles.input}
             />
             <div className={styles.statusWrapper}>
               <div
