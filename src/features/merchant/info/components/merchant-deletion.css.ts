@@ -46,3 +46,9 @@ export const buttonWrapper = style({
   justifyContent: 'flex-end',
   gap: '8px',
 });
+
+export const buttonIcon = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+});
