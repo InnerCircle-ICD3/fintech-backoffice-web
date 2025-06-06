@@ -1,12 +1,12 @@
 import { login, reissue } from './auth';
 import { merchantsApiKeys } from './merchants/api-keys';
 import { merchantsInfo } from './merchants/info';
-import { sdkIssue } from './sdk/issue';
+import { sdkKey } from './merchants/sdk-keys';
 
 export default {
   login,
   reissue,
-  sdkIssue,
+  sdkKey,
   merchantsApiKeys,
   merchantsInfo,
 };
