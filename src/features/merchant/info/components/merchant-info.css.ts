@@ -12,15 +12,6 @@ export const headerContainer = style({
   alignItems: 'center',
 });
 
-export const merchantInfoHeader = style({
-  width: '100%',
-  padding: '16px',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '4px',
-  borderBottom: `1px solid ${vars.color.border}`,
-});
-
 export const merchantInfoContent = style({
   width: '100%',
   padding: '24px',
@@ -50,4 +41,5 @@ export const buttonIcon = style({
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
+  fontSize: vars.fontSize.sm,
 });

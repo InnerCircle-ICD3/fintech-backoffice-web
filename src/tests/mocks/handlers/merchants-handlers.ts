@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw';
 import fixtures from '../fixtures';
 
 const merchantsHandlers = [
-  http.get(`${import.meta.env.VITE_MAIN_API_URL}/merchants/info`, async ({ request }) => {
+  http.get(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/info`, async ({ request }) => {
     const token = request.headers.get('Authorization');
 
     if (!token) {
@@ -12,7 +12,7 @@ const merchantsHandlers = [
 
     return HttpResponse.json(fixtures.merchantsInfo.infoResponse, { status: 200 });
   }),
-  http.put(`${import.meta.env.VITE_MAIN_API_URL}/merchants/modify`, async ({ request }) => {
+  http.put(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/modify`, async ({ request }) => {
     const body = await request.json();
 
     const { success, data } = MerchantModifyRequestSchema.safeParse(body);
@@ -23,7 +23,7 @@ const merchantsHandlers = [
 
     return HttpResponse.json(data, { status: 200 });
   }),
-  http.delete(`${import.meta.env.VITE_MAIN_API_URL}/merchants/delete`, async ({ request }) => {
+  http.delete(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/delete`, async ({ request }) => {
     const token = request.headers.get('Authorization');
 
     if (!token) {

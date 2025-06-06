@@ -1,11 +1,6 @@
 import { vars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
-export const cardContainer = style({
-  gap: '0',
-  padding: '0',
-});
-
 export const contentWrapper = style({
   width: '100%',
   padding: '1rem',
@@ -13,13 +8,24 @@ export const contentWrapper = style({
 
 export const noticeContainer = style({
   width: '100%',
-  backgroundColor: '#FFF5F5',
-  border: '1px solid #FFE3E3',
-  color: '#E03131',
+  backgroundColor: '#FFFBEB',
+  border: `1px solid ${vars.color.yellow}`,
+  color: '#92400E',
   fontSize: '0.875rem',
   lineHeight: '1.5',
   padding: '1rem',
   borderRadius: '0.5rem',
+});
+
+export const noticeTitle = style({
+  margin: 0,
+  fontSize: vars.fontSize.md,
+  fontWeight: 'bold',
+  marginBottom: '0.5rem',
+  color: '#92400E',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
 });
 
 export const noticeList = style({
@@ -28,7 +34,7 @@ export const noticeList = style({
   listStyle: 'none',
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.5rem',
+  paddingLeft: '1rem',
 });
 
 export const noticeItem = style({
@@ -39,18 +45,4 @@ export const noticeItem = style({
     position: 'absolute',
     left: 0,
   },
-});
-
-export const buttonWrapper = style({
-  marginTop: '24px',
-  display: 'flex',
-  justifyContent: 'flex-end',
-  gap: '8px',
-});
-
-export const buttonIcon = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-  fontSize: vars.fontSize.sm,
 });

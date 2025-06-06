@@ -10,6 +10,7 @@ const ApprovalManage = lazyImport(() => import('@/features/admin/approval-manage
 const TransactionList = lazyImport(() => import('@/features/transaction/transaction-list'));
 const SettlementSummaries = lazyImport(() => import('@/features/transaction/settlement-summaries'));
 const MerchantInfo = lazyImport(() => import('@/features/merchant/info'));
+const MerchantApiKeys = lazyImport(() => import('@/features/merchant/api-keys'));
 
 const transactionSectionRoutes = [
   {
@@ -26,6 +27,10 @@ const merchantSectionRoutes = [
   {
     path: '/merchant/info',
     lazy: MerchantInfo,
+  },
+  {
+    path: '/merchant/api-keys',
+    lazy: MerchantApiKeys,
   },
 ];
 const adminSectionRoutes = [

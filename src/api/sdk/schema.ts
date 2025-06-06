@@ -1,14 +1,20 @@
 import { z } from 'zod';
 
-/** POST sdk키 발급 /sdk/issue */
-export const SdkKeyRequestSchema = z.object({
-  merchantId: z.string(),
-});
-
+/** POST sdk키 조회 /sdk-key */
 export const SdkKeyResponseSchema = z.object({
   sdkKey: z.string(),
-  expiresAt: z.string(),
 });
 
-export type SdkKeyRequestType = z.infer<typeof SdkKeyRequestSchema>;
+export const SdkKeyActivateResponseSchema = z.object({
+  success: z.boolean(),
+  message: z.string(),
+});
+
+export const SdkKeyDeactivateResponseSchema = z.object({
+  success: z.boolean(),
+  message: z.string(),
+});
+
 export type SdkKeyResponseType = z.infer<typeof SdkKeyResponseSchema>;
+export type SdkKeyActivateResponseType = z.infer<typeof SdkKeyActivateResponseSchema>;
+export type SdkKeyDeactivateResponseType = z.infer<typeof SdkKeyDeactivateResponseSchema>;

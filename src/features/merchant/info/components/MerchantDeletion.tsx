@@ -1,4 +1,5 @@
 import { merchantsApi } from '@/api/merchants/api';
+import { CardHeader } from '@/components/card-header';
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui/card';
 import { useOverlay } from '@/contexts/overlay';
@@ -6,7 +7,6 @@ import { useClearTokens } from '@/stores/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Trash } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { CardHeader } from './CardHeader';
 import * as styles from './merchant-deletion.css';
 
 const MerchantDeletion = () => {
