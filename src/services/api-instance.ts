@@ -39,8 +39,8 @@ const createAxiosInstance = (baseURL: string) => {
   return instance;
 };
 
-// 백오피스 API 인스턴스
-export const mainApiInstance = createAxiosInstance(import.meta.env.VITE_MAIN_API_URL);
+// 가맹점 API 인스턴스
+export const merchantApiInstance = createAxiosInstance(import.meta.env.VITE_MERCHANT_API_URL);
 
-// 결제 서버 API 인스턴스
-export const paymentApiInstance = createAxiosInstance(import.meta.env.VITE_PAYMENT_API_URL);
+// 백오피스 서버 API 인스턴스
+export const backofficeApiInstance = createAxiosInstance(import.meta.env.VITE_BACKOFFICE_API_URL);
