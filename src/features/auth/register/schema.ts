@@ -34,8 +34,7 @@ export const RegisterFormBaseSchema = z.object({
     })
     .trim()
     .min(2, '이름은 최소 2자 이상이어야 해요.')
-    .max(20, '이름은 최대 20자까지 가능해요.')
-    .regex(/^[가-힣a-zA-Z\s]+$/, '이름은 한글과 영문만 입력 가능합니다.'),
+    .max(20, '이름은 최대 20자까지 가능해요.'),
 
   businessNumber: z
     .string({
