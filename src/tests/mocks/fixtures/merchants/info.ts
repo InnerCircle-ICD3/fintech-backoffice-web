@@ -1,4 +1,4 @@
-import { MerchantInfoResponseType } from '@/api/merchants/schema';
+import { MerchantDeleteResponseType, MerchantInfoResponseType } from '@/api/merchants/schema';
 
 const merchantsInfoResponse: MerchantInfoResponseType = {
   name: '홍길동 가맹점',
@@ -10,6 +10,12 @@ const merchantsInfoResponse: MerchantInfoResponseType = {
   status: 'ACTIVE',
 };
 
+const merchnatDeleteResponse: MerchantDeleteResponseType = {
+  success: true,
+  message: '가맹점 탈퇴 완료',
+};
+
 export const merchantsInfo = {
   infoResponse: merchantsInfoResponse,
+  deleteResponse: merchnatDeleteResponse,
 };
