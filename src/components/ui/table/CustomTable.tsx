@@ -66,7 +66,6 @@ export const CustomTable = <T,>(props: CustomTableProps<T>) => {
     countLabel,
     isShowCount,
     headerButton,
-    type,
   } = props;
 
   const tableContainerRef = useRef<HTMLDivElement>(null);
