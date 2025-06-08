@@ -9,6 +9,6 @@ export const adminLayoutContent = style([
     height: '100%',
     overflowX: 'auto',
     overflowY: 'auto',
-    padding: '70px 73px 20px 73px',
+    padding: '38px',
   },
 ]);
