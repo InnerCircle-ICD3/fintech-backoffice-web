@@ -11,7 +11,7 @@ import {
 
 import Flex from '@/components/layout/flex';
 import Nodata, { type NodataProps } from '@/components/ui/Nodata';
-import Card, { type CardVariants } from '@/components/ui/card';
+import { type CardVariants } from '@/components/ui/card';
 import Pagination from '@/components/ui/pagination';
 import Spinner from '@/components/ui/spinner';
 import { table, tableContainer, td, th, tr } from '@/components/ui/table/table.css';
@@ -137,102 +137,100 @@ export const CustomTable = <T,>(props: CustomTableProps<T>) => {
     <>
       {isFetching && <Spinner />}
 
-      <Card type={type}>
-        <Flex direction={'column'} grow={'full'} gap={'16px'}>
-          {isSubHeader && (
-            <TableSubHeader
-              totalCount={paging?.totalCount}
-              searchTime={searchTime}
-              countLabel={countLabel}
-              isShowCount={isShowCount}
-              headerButton={headerButton}
-            />
-          )}
+      <Flex direction={'column'} grow={'full'} gap={'16px'}>
+        {isSubHeader && (
+          <TableSubHeader
+            totalCount={paging?.totalCount}
+            searchTime={searchTime}
+            countLabel={countLabel}
+            isShowCount={isShowCount}
+            headerButton={headerButton}
+          />
+        )}
 
-          {!data || data?.length === 0 ? (
-            <Nodata noDataMessage={noDataMessage} />
-          ) : (
-            <>
-              <div ref={tableContainerRef} className={tableContainer}>
-                <table className={table}>
-                  <thead>
-                    {tableConfig.getHeaderGroups().map((headerGroup) => (
-                      <tr key={headerGroup.id}>
-                        {headerGroup.headers.map((header) => {
-                          const column = columns.find((column) => column.id === header.id);
-                          const { size, minSize, meta } = column || {};
+        {!data || data?.length === 0 ? (
+          <Nodata noDataMessage={noDataMessage} />
+        ) : (
+          <>
+            <div ref={tableContainerRef} className={tableContainer}>
+              <table className={table}>
+                <thead>
+                  {tableConfig.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => {
+                        const column = columns.find((column) => column.id === header.id);
+                        const { size, minSize, meta } = column || {};
 
-                          return (
-                            <th
-                              key={header.id}
-                              className={th}
-                              style={{
-                                width: !size ? 'auto' : size,
-                                ...(minSize && { minWidth: minSize }),
-                                ...(size && { maxWidth: size }),
-                                textAlign: meta?.textAlign || 'left',
-                                ...getCommonPinningStyles(header.column),
-                              }}
-                            >
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )?.toString() || ''}
-                            </th>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </thead>
+                        return (
+                          <th
+                            key={header.id}
+                            className={th}
+                            style={{
+                              width: !size ? 'auto' : size,
+                              ...(minSize && { minWidth: minSize }),
+                              ...(size && { maxWidth: size }),
+                              textAlign: meta?.textAlign || 'left',
+                              ...getCommonPinningStyles(header.column),
+                            }}
+                          >
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )?.toString() || ''}
+                          </th>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </thead>
 
-                  <tbody>
-                    {tableConfig.getRowModel().rows.map((row) => (
-                      <tr
-                        key={row.id}
-                        className={tr({ clickable: isClickable })}
-                        onClick={() => onRowClick(row.original)}
-                      >
-                        {row.getVisibleCells().map((cell) => {
-                          const column = columns.find((column) => column.id === cell.column.id);
-                          const { size, minSize, meta } = column || {};
+                <tbody>
+                  {tableConfig.getRowModel().rows.map((row) => (
+                    <tr
+                      key={row.id}
+                      className={tr({ clickable: isClickable })}
+                      onClick={() => onRowClick(row.original)}
+                    >
+                      {row.getVisibleCells().map((cell) => {
+                        const column = columns.find((column) => column.id === cell.column.id);
+                        const { size, minSize, meta } = column || {};
 
-                          return (
-                            <td
-                              key={cell.id}
-                              className={td}
-                              style={{
-                                width: !size ? 'auto' : size,
-                                ...(minSize && {
-                                  minWidth: minSize,
-                                  width: minSize,
-                                }),
-                                ...(size && { maxWidth: size }),
-                                textAlign: meta?.textAlign || 'left',
-                                ...getCommonPinningStyles(cell.column),
-                              }}
-                            >
-                              {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                        return (
+                          <td
+                            key={cell.id}
+                            className={td}
+                            style={{
+                              width: !size ? 'auto' : size,
+                              ...(minSize && {
+                                minWidth: minSize,
+                                width: minSize,
+                              }),
+                              ...(size && { maxWidth: size }),
+                              textAlign: meta?.textAlign || 'left',
+                              ...getCommonPinningStyles(cell.column),
+                            }}
+                          >
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-              {isPaging && (
-                <Pagination
-                  totalCount={paging?.totalCount}
-                  forcePage={paging?.page - 1}
-                  pageSize={paging?.size}
-                  onPageChange={(value) => paging?.setPage(value.selected + 1)}
-                />
-              )}
-            </>
-          )}
-        </Flex>
-      </Card>
+            {isPaging && (
+              <Pagination
+                totalCount={paging?.totalCount}
+                forcePage={paging?.page - 1}
+                pageSize={paging?.size}
+                onPageChange={(value) => paging?.setPage(value.selected + 1)}
+              />
+            )}
+          </>
+        )}
+      </Flex>
     </>
   );
 };

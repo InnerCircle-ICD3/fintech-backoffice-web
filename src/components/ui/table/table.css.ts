@@ -18,11 +18,12 @@ export const table = style({
 
 export const th = style({
   padding: '12px 16px',
-  backgroundColor: vars.color.table,
+  backgroundColor: vars.color.white,
   color: vars.color.text.title,
   fontSize: vars.fontSize.sm,
   fontWeight: vars.fontWeight.medium,
   lineHeight: '24px',
+  borderBottom: `1px solid ${vars.color.border}`,
 });
 
 export const tr = recipe({
@@ -36,7 +37,7 @@ export const tr = recipe({
 });
 
 export const td = style({
-  padding: '20px 16px',
+  padding: '12px 16px',
 
   background: vars.color.white,
 

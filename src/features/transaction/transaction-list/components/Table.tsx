@@ -103,6 +103,7 @@ const Table = (props: TableProps) => {
       isFetching={isFetching}
       headerButton={''}
       noDataMessage={'No DataMessage'}
+      isShowCount={false}
     />
   );
 };
