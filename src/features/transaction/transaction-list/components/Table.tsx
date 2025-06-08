@@ -1,3 +1,5 @@
+import Flex from '@/components/layout/flex';
+import Pagination from '@/components/ui/pagination';
 import { CustomTable, type CustomColumnDef } from '@/components/ui/table';
 import { useTransactionParams } from '../hooks/useTransactionParams';
 import { FormattedTransaction, FormattedTransactionResponse } from '../selectors';
@@ -76,35 +78,34 @@ const Table = (props: TableProps) => {
   ];
 
   return (
-    <CustomTable
-      data={data?.content}
-      columns={columns}
-      columnPinning={{
-        left: [
-          'index',
-          'approvedAt',
-          'status',
-          'paymentId',
-          'transactionId',
-          'cardInfo',
-          'paidAmount',
-          'merchantName',
-        ],
-        right: ['detail'],
-      }}
-      paging={{
-        totalCount: data?.totalElements || 0,
-        page: (data?.pageable?.pageNumber || 0) + 1,
-        size: data?.pageable?.pageSize || 10,
-        setPage: (newPage) => updateParams({ page: newPage - 1 }),
-        setSize: (newSize) => updateParams({ size: newSize, page: 0 }),
-      }}
-      isPending={isPending}
-      isFetching={isFetching}
-      headerButton={''}
-      noDataMessage={'No DataMessage'}
-      isShowCount={false}
-    />
+    <Flex direction={'column'} grow={'full'} gap={'16px'}>
+      <CustomTable
+        data={data?.content}
+        columns={columns}
+        columnPinning={{
+          left: [
+            'index',
+            'approvedAt',
+            'status',
+            'paymentId',
+            'transactionId',
+            'cardInfo',
+            'paidAmount',
+            'merchantName',
+          ],
+          right: ['detail'],
+        }}
+        isPending={isPending}
+        isFetching={isFetching}
+        noDataMessage={'No DataMessage'}
+      />
+      <Pagination
+        totalCount={data?.totalElements || 0}
+        forcePage={data?.pageable?.pageNumber || 0}
+        pageSize={data?.pageable?.pageSize || 10}
+        onPageChange={(value) => updateParams({ page: value.selected + 1 })}
+      />
+    </Flex>
   );
 };
 
