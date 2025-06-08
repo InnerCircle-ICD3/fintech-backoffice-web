@@ -156,18 +156,11 @@ const SearchFilter = () => {
                 size={'sm'}
                 variant={'ghost'}
                 width={'fit'}
-                style={{ height: '45px' }}
                 onClick={handleReset}
               >
                 <RotateCcw size={18} />
               </Button>
-              <Button
-                type="submit"
-                size={'sm'}
-                variant={'secondary'}
-                width={'fit'}
-                style={{ height: '45px' }}
-              >
+              <Button type="submit" size={'sm'} variant={'secondary'} width={'fit'}>
                 <SearchIcon size={18} />
               </Button>
             </Flex>

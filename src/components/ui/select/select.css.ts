@@ -23,7 +23,7 @@ export const trigger = style({
       opacity: 0.5,
     },
     '&[data-size="default"]': {
-      height: '45px',
+      height: '43px',
     },
     '&[data-size="sm"]': {
       height: '32px',

@@ -47,7 +47,7 @@ export const datePickerButton = style({
   fontSize: vars.fontSize.sm,
   fontWeight: vars.fontWeight.regular,
   backgroundColor: vars.color.inputBg,
-  height: '45px',
+  height: '43px',
 });
 
 export const datePickerButtonSingle = style({
