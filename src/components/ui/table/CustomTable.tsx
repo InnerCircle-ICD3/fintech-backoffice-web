@@ -224,7 +224,7 @@ export const CustomTable = <T,>(props: CustomTableProps<T>) => {
               {isPaging && (
                 <Pagination
                   totalCount={paging?.totalCount}
-                  forcePage={paging?.page}
+                  forcePage={paging?.page - 1}
                   pageSize={paging?.size}
                   onPageChange={(value) => paging?.setPage(value.selected + 1)}
                 />
