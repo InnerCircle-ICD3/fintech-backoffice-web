@@ -34,7 +34,7 @@ const commonVars = createGlobalTheme(':root', {
       main: '#4D4D4D',
       sub: '#858585',
       strong: '#0A0A0A',
-      caption: '#B0B0B0',
+      caption: '#7D7D7D',
     },
     inputBg: '#F8F8F8',
     menu: '#393939',

@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import dayjs from 'dayjs';
+import { format } from 'date-fns';
 import { RefreshCw, Trash2 } from 'lucide-react';
 import * as styles from './api-key-detail.css';
 
@@ -27,7 +27,7 @@ const ApiKeyDetailDialog = ({
   onDelete,
 }: ApiKeyDetailDialogProps) => {
   const formatDate = (date: string) => {
-    return dayjs(date).format('YYYY/MM/DD');
+    return format(new Date(date), 'yyyy/MM/dd');
   };
 
   return (

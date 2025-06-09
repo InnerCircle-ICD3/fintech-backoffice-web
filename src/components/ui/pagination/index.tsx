@@ -27,7 +27,7 @@ const Pagination = (props: PaginationComponentProps) => {
       <ReactPaginate
         className={'pagination-Component'}
         pageCount={pageCount}
-        forcePage={forcePage - 1}
+        forcePage={forcePage}
         onPageChange={onPageChange}
         previousLabel={
           <ArrowIcon fill={vars.color.text.main} style={{ transform: 'rotate(90deg)' }} />

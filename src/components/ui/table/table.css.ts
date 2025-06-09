@@ -1,12 +1,11 @@
+import { vars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { vars } from '@/styles/theme.css';
 
 export const tableContainer = style({
   overflow: 'auto',
   width: '100%',
-  borderTopLeftRadius: '8px',
-  borderTopRightRadius: '8px',
+  borderRadius: '12px',
   border: `1px solid ${vars.color.border}`,
 });
 
@@ -18,14 +17,13 @@ export const table = style({
 });
 
 export const th = style({
-  padding: '8px 16px',
-
-  backgroundColor: vars.color.table,
-
+  padding: '12px 16px',
+  backgroundColor: vars.color.white,
   color: vars.color.text.title,
   fontSize: vars.fontSize.sm,
   fontWeight: vars.fontWeight.medium,
   lineHeight: '24px',
+  borderBottom: `1px solid ${vars.color.border}`,
 });
 
 export const tr = recipe({
@@ -39,7 +37,7 @@ export const tr = recipe({
 });
 
 export const td = style({
-  padding: '8px 16px',
+  padding: '12px 16px',
 
   background: vars.color.white,
 
@@ -52,7 +50,7 @@ export const td = style({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 
-  borderBottom: `1px solid ${vars.color.border}`,
+  // borderBottom: `1px solid ${vars.color.border}`,
 
   selectors: {
     [`${tr()}:last-child &`]: {

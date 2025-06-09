@@ -13,4 +13,8 @@ export const QUERY_KEYS = {
     REISSUE: ['api', 'keys', 'reissue'] as const,
     DELETE: ['api', 'keys', 'delete'] as const,
   },
+  TRANSACTION: {
+    ALL: ['transaction', 'all'] as const,
+    DETAIL: ['transaction', 'detail'] as const,
+  },
 } as const;

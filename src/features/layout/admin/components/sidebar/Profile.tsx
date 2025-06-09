@@ -1,10 +1,10 @@
 import LogoIcon from '@/assets/images/logo/logo.png';
-import type { MerchantInfo } from '@/queries';
+import type { MerchantInfoType } from '@/queries';
 import { Link } from 'react-router-dom';
 import { logo, logoIcon, profile, profileInfo, profileInfoItem } from './sidebar.css';
 
 interface ProfileProps {
-  merchantInfo: MerchantInfo;
+  merchantInfo: MerchantInfoType;
 }
 
 export const Profile = ({ merchantInfo }: ProfileProps) => {

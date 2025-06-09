@@ -3,7 +3,7 @@ import { z } from 'zod';
 /** GET 가맹점 조회 응답 /merchants/info */
 export const MerchantInfoResponseSchema = z.object({
   name: z.string(),
-  merchantId: z.string(),
+  merchantId: z.number(),
   businessNumber: z.string(),
   contactName: z.string(),
   contactEmail: z.string(),

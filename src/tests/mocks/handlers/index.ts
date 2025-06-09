@@ -3,6 +3,7 @@ import authHandlers from './auth-handlers';
 import errorHandlers from './error-handlers';
 import merchantsHandlers from './merchants-handlers';
 import sdkHandlers from './sdk-handlers';
+import transactionHandlers from './transaction-handlers';
 
 export default [
   ...errorHandlers,
@@ -10,4 +11,5 @@ export default [
   ...sdkHandlers,
   ...merchantsHandlers,
   ...apiKeyHandlers,
+  ...transactionHandlers,
 ];

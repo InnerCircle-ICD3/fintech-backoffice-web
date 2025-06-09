@@ -1,98 +1,111 @@
-import { type CustomColumnDef, CustomTable } from '@/components/ui/table';
-import type { CardTransactionType } from '@/types/transaction';
-
-import DetailButton from '@/features/transaction/transaction-list/components/DetailButton';
+import Flex from '@/components/layout/flex';
+import Pagination from '@/components/ui/pagination';
+import { CustomTable, type CustomColumnDef } from '@/components/ui/table';
+import { useTransactionParams } from '../hooks/useTransactionParams';
+import { FormattedTransaction, FormattedTransactionResponse } from '../selectors';
+import DetailButton from './DetailButton';
+import * as styles from './table.css';
 
 interface TableProps {
-  data: any;
+  data: FormattedTransactionResponse;
   isPending?: boolean;
   isFetching?: boolean;
 }
 
 const Table = (props: TableProps) => {
   const { data, isPending, isFetching } = props;
+  const { updateParams } = useTransactionParams();
 
-  const { list, page } = data;
-
-  const columns: CustomColumnDef<CardTransactionType>[] = [
+  const columns: CustomColumnDef<FormattedTransaction>[] = [
     {
-      id: 'trDt',
+      id: 'index',
+      header: 'No',
+      cell: ({ row }) => {
+        const currentPage = data?.pageable?.pageNumber || 0;
+        const pageSize = data?.pageable?.pageSize || 10;
+        const totalElements = data?.totalElements || 0;
+        return totalElements - (currentPage * pageSize + row.index);
+      },
+      size: 50,
+      meta: { textAlign: 'center' },
+    },
+    {
+      id: 'date',
       header: '거래일',
-      cell: ({ row }) => row.original.trDt,
+      cell: ({ row }) => row.original.date || '-',
       size: 100,
-    },
-    {
-      id: 'trTm',
-      header: '거래시간',
-      cell: ({ row }) => row.original.trTm,
-      size: 100,
-    },
-    {
-      id: 'cardCompany',
-      header: '카드사',
-      cell: ({ row }) => row.original.cardCompany,
-      size: 100,
-    },
-    {
-      id: 'cardNumber',
-      header: '카드번호',
-      cell: ({ row }) => row.original.cardNumber,
-      size: 140,
-    },
-    {
-      id: 'merchantId',
-      header: '가맹점 ID',
-      cell: ({ row }) => row.original.merchantId,
-      size: 120,
-    },
-    {
-      id: 'merchantName',
-      header: '가맹점명',
-      cell: ({ row }) => row.original.merchantName,
-      minSize: 200,
-    },
-    {
-      id: 'approvalAmount',
-      header: '승인금액',
-      cell: ({ row }) => row.original.approvalAmount.toLocaleString(),
-      size: 120,
-      meta: { textAlign: 'right' },
-    },
-    {
-      id: 'fee',
-      header: '수수료',
-      cell: ({ row }) => row.original.fee.toLocaleString(),
-      size: 100,
-      meta: { textAlign: 'right' },
+      meta: { textAlign: 'center' },
     },
     {
       id: 'status',
-      header: '매입상태',
-      cell: ({ row }) => row.original.status,
+      header: '거래상태',
+      cell: ({ row }) => (
+        <span className={styles.status({ status: row.original.paymentStatus })}>
+          {row.original.paymentStatus || '-'}
+        </span>
+      ),
       size: 100,
+      meta: { textAlign: 'center' },
+    },
+    {
+      id: 'paymentId',
+      header: '주문번호',
+      cell: ({ row }) => row.original.paymentId || '-',
+      size: 100,
+      meta: { textAlign: 'center' },
+    },
+    {
+      id: 'transactionId',
+      header: '거래번호',
+      cell: ({ row }) => row.original.transactionId || '-',
+      size: 100,
+      meta: { textAlign: 'center' },
+    },
+    {
+      id: 'paidAmount',
+      header: '금액',
+      cell: ({ row }) => row.original.paidAmount || '-',
+      size: 100,
+      meta: { textAlign: 'center' },
     },
     {
       id: 'detail',
-      header: '상세',
+      header: '작업',
       cell: ({ row }) => <DetailButton row={row} />,
-      size: 120,
+      size: 100,
       meta: { textAlign: 'center' },
     },
   ];
 
   return (
-    <>
+    <Flex direction={'column'} grow={'full'} gap={'16px'}>
       <CustomTable
-        data={list}
+        data={data?.content}
         columns={columns}
-        columnPinning={{ left: ['index', 'trDt', 'trTm'], right: ['detail'] }}
-        paging={page}
+        columnPinning={{
+          left: [
+            'index',
+            'approvedAt',
+            'status',
+            'paymentId',
+            'transactionId',
+            'cardInfo',
+            'paidAmount',
+            'merchantName',
+          ],
+          right: ['detail'],
+        }}
         isPending={isPending}
         isFetching={isFetching}
-        headerButton={''}
         noDataMessage={'No DataMessage'}
       />
-    </>
+      <Pagination
+        totalCount={data?.totalElements || 0}
+        forcePage={data?.pageable?.pageNumber || 0}
+        pageSize={data?.pageable?.pageSize || 10}
+        onPageChange={(value) => updateParams({ page: value.selected + 1 })}
+      />
+    </Flex>
   );
 };
 

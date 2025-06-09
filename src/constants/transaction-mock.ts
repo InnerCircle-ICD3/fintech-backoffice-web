@@ -99,10 +99,10 @@ export const cardTransactionList = {
 };
 
 export const transactionDetailMetaData: RowTableMetaData = {
-  trDt: {
+  date: {
     label: '승인일자',
   },
-  trTm: {
+  time: {
     label: '승인시간',
   },
   cardCompany: {
@@ -111,22 +111,11 @@ export const transactionDetailMetaData: RowTableMetaData = {
   cardNumber: {
     label: '카드번호',
   },
-  merchantId: {
-    label: '가맹점 ID',
-  },
-  merchantName: {
-    label: '가맹점명',
-    isMerge: true, // 병합해도 괜찮은 필드 (긴 값이라)
-  },
-  approvalAmount: {
+  paidAmount: {
     label: '승인금액',
     format: 'currency',
   },
-  fee: {
-    label: '수수료',
-    format: 'currency',
-  },
-  status: {
-    label: '매입상태',
+  paymentStatus: {
+    label: '거래상태',
   },
 };

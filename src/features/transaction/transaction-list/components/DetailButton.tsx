@@ -10,9 +10,11 @@ import {
 } from '@/components/ui/dialog';
 import { GridTable } from '@/components/ui/table';
 import { transactionDetailMetaData } from '@/constants/transaction-mock';
+import { Row } from '@tanstack/react-table';
+import { FormattedTransaction } from '../selectors';
 
 interface DetailButtonProps {
-  row: any;
+  row: Row<FormattedTransaction>;
 }
 
 const DetailButton = ({ row }: DetailButtonProps) => {
@@ -23,17 +25,13 @@ const DetailButton = ({ row }: DetailButtonProps) => {
           상세
         </Button>
       </DialogTrigger>
-      <DialogContent style={{ width: '600px' }}>
+      <DialogContent style={{ width: '800px' }}>
         <DialogHeader>
           <DialogTitle>거래 상세 정보</DialogTitle>
         </DialogHeader>
         <DialogDescription>
           <Flex gap={'6px'} direction={'column'}>
             <GridTable data={row?.original} metaData={transactionDetailMetaData} />
-
-            <Button size={'sm'} variant={'secondary'} color={'red'}>
-              취소
-            </Button>
           </Flex>
         </DialogDescription>
       </DialogContent>
