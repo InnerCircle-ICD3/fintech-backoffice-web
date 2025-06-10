@@ -1,7 +1,7 @@
 import AdminSection from '@/components/layout/section/admin';
-import { useOutletContext } from 'react-router-dom';
-
 import { MerchantInfoType } from '@/queries/merchants/format';
+import { Suspense } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import MerchantDeletion from './components/MerchantDeletion';
 import MerchantInfoForm from './components/MerchantInfoForm';
 
@@ -10,7 +10,9 @@ const MerchantInfo = () => {
 
   return (
     <AdminSection label={'가맹점 정보'}>
-      <MerchantInfoForm merchantInfo={merchantInfo} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MerchantInfoForm merchantInfo={merchantInfo} />
+      </Suspense>
       <MerchantDeletion />
     </AdminSection>
   );

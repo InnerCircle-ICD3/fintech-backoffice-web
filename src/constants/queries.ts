@@ -1,6 +1,8 @@
 export const QUERY_KEYS = {
   MERCHANT: {
     INFO: ['merchant', 'info'] as const,
+    DELETE: ['merchant', 'info', 'delete'] as const,
+    UPDATE: ['merchant', 'info', 'update'] as const,
   },
   SDK: {
     KEY: ['sdk', 'key'] as const,
