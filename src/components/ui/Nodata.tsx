@@ -1,7 +1,6 @@
-import ErrorIcon from '@/assets/images/icon/icon_error_yellow.svg';
-
 import Flex from '@/components/layout/flex';
 import Text from '@/components/ui/text';
+import { TriangleAlertIcon } from 'lucide-react';
 
 export interface NodataProps {
   noDataMessage?: string;
@@ -19,7 +18,7 @@ const Nodata = (props: NodataProps) => {
       gap={'16px'}
       style={{ paddingTop: '32px', paddingBottom: '32px' }}
     >
-      <ErrorIcon />
+      <TriangleAlertIcon />
 
       <Text size={'sm'} weight={'regular'}>
         {noDataMessage}
