@@ -2,7 +2,6 @@ import { MerchantModifyRequestSchema } from '@/api/merchants/schema';
 import { http, HttpResponse } from 'msw';
 import fixtures from '../fixtures';
 
-// 가맹점 정보를 로컬 상태로 관리
 let merchantInfoStore = { ...fixtures.merchantsInfo.infoResponse };
 
 const merchantsHandlers = [
