@@ -99,12 +99,14 @@ const Table = (props: TableProps) => {
         isFetching={isFetching}
         noDataMessage={'No DataMessage'}
       />
-      <Pagination
-        totalCount={data?.totalElements || 0}
-        forcePage={data?.pageable?.pageNumber || 0}
-        pageSize={data?.pageable?.pageSize || 10}
-        onPageChange={(value) => updateParams({ page: value.selected + 1 })}
-      />
+      {data?.content?.length > 0 && (
+        <Pagination
+          totalCount={data?.totalElements || 0}
+          forcePage={data?.pageable?.pageNumber || 0}
+          pageSize={data?.pageable?.pageSize || 10}
+          onPageChange={(value) => updateParams({ page: value.selected })}
+        />
+      )}
     </Flex>
   );
 };
