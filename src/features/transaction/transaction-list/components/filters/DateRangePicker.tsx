@@ -8,6 +8,26 @@ import { ko } from 'date-fns/locale';
 import { CalendarIcon } from 'lucide-react';
 import * as styles from './date-range-picker.css';
 
+type DateRange = {
+  from?: Date;
+  to?: Date;
+};
+
+const formatDateRange = (dateRange?: DateRange) => {
+  if (!dateRange?.from) {
+    return '날짜를 선택하세요';
+  }
+
+  const formattedFrom = format(dateRange.from, 'yyyy년 MM월 dd일', { locale: ko });
+
+  if (!dateRange.to) {
+    return formattedFrom;
+  }
+
+  const formattedTo = format(dateRange.to, 'yyyy년 MM월 dd일', { locale: ko });
+  return `${formattedFrom} - ${formattedTo}`;
+};
+
 export const DateRangePicker = () => {
   return (
     <FormField
@@ -24,18 +44,7 @@ export const DateRangePicker = () => {
                     className={cx(styles.datePickerButton, !field.value && styles.mutedText)}
                   >
                     <CalendarIcon className={styles.calendarIcon} />
-                    {field.value?.from ? (
-                      field.value.to ? (
-                        <>
-                          {format(field.value.from, 'yyyy년 MM월 dd일', { locale: ko })} -{' '}
-                          {format(field.value.to, 'yyyy년 MM월 dd일', { locale: ko })}
-                        </>
-                      ) : (
-                        format(field.value.from, 'yyyy년 MM월 dd일', { locale: ko })
-                      )
-                    ) : (
-                      <span>날짜를 선택하세요</span>
-                    )}
+                    <span>{formatDateRange(field.value)}</span>
                   </Button>
                 </FormControl>
               </PopoverTrigger>
