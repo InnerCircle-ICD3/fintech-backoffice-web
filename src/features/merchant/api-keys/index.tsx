@@ -23,7 +23,7 @@ const ApiKeysPage = () => {
     queryKey: QUERY_KEYS.API_KEYS.LIST,
     queryFn: () =>
       apiKeysApi.get(undefined, {
-        merchantId: merchantInfo.merchantId,
+        merchantId: String(merchantInfo.merchantId),
       }),
   });
 

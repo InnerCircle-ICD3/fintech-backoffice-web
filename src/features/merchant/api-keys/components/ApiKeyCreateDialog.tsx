@@ -31,7 +31,7 @@ export const ApiKeyCreateDialog = ({
     mutationKey: [QUERY_KEYS.API_KEYS.CREATE],
     mutationFn: () =>
       apiKeysApi.create(undefined, {
-        merchantId: merchantInfo.merchantId,
+        merchantId: String(merchantInfo.merchantId),
       }),
     onSuccess: () => {
       toast.success('API 키가 생성되었습니다.');

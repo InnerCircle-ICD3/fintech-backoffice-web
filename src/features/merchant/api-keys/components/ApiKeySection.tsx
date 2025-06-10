@@ -53,7 +53,7 @@ const ApiKeySection = ({ apiKeyList }: ApiKeySectionProps) => {
     mutationKey: [QUERY_KEYS.API_KEYS.REISSUE],
     mutationFn: (key: string) =>
       apiKeysApi.reissue(undefined, {
-        merchantId: merchantInfo.merchantId,
+        merchantId: String(merchantInfo.merchantId),
         currentKey: key,
       }),
     onSuccess: () => {
