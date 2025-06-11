@@ -53,7 +53,7 @@ const ApiKeySection = ({ apiKeyList }: ApiKeySectionProps) => {
     mutationKey: [QUERY_KEYS.API_KEYS.REISSUE],
     mutationFn: (key: string) =>
       apiKeysApi.reissue(undefined, {
-        merchantId: merchantInfo.merchantId,
+        merchantId: String(merchantInfo.merchantId),
         currentKey: key,
       }),
     onSuccess: () => {
@@ -107,66 +107,74 @@ const ApiKeySection = ({ apiKeyList }: ApiKeySectionProps) => {
               <TableHead>ID</TableHead>
               <TableHead>API 키</TableHead>
               <TableHead>Secret 키</TableHead>
-              <TableHead>작업</TableHead>
+              <TableHead style={{ textAlign: 'center' }}>작업</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {apiKeyList.map((apiKey) => (
-              <TableRow key={apiKey.id}>
-                {/* id */}
-                <TableCell>{apiKey.id}</TableCell>
+            {apiKeyList.length > 0 ? (
+              apiKeyList.map((apiKey) => (
+                <TableRow key={apiKey.id}>
+                  {/* id */}
+                  <TableCell>{apiKey.id}</TableCell>
 
-                {/* client key */}
-                <TableCell>
-                  <div className={styles.keyCellContent}>
-                    <span>{apiKey.key}</span>
+                  {/* client key */}
+                  <TableCell>
+                    <div className={styles.keyCellContent}>
+                      <span>{apiKey.key}</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleCopy(apiKey.key)}
+                        className={styles.keyCellButton}
+                      >
+                        <Copy size={16} />
+                      </Button>
+                    </div>
+                  </TableCell>
+
+                  {/* secret key */}
+                  <TableCell>
+                    <div className={styles.keyCellContent}>
+                      <span>{maskSecretKey(apiKey.secret, visibleSecretKeys[apiKey.id])}</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => toggleSecretKeyVisibility(apiKey.id)}
+                        className={styles.keyCellButton}
+                      >
+                        {visibleSecretKeys[apiKey.id] ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </Button>
+                    </div>
+                  </TableCell>
+
+                  {/* action */}
+                  <TableCell>
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => handleCopy(apiKey.key)}
-                      className={styles.keyCellButton}
+                      onClick={() =>
+                        openDetailDialog((props) => (
+                          <ApiKeyDetailDialog
+                            {...props}
+                            apiKey={apiKey}
+                            onReissue={() => reissueApiKey(apiKey.key)}
+                            onDelete={() => deleteApiKey(apiKey.key)}
+                          />
+                        ))
+                      }
                     >
-                      <Copy size={16} />
+                      <MoreHorizontal size={16} />
                     </Button>
-                  </div>
-                </TableCell>
-
-                {/* secret key */}
-                <TableCell>
-                  <div className={styles.keyCellContent}>
-                    <span>{maskSecretKey(apiKey.secret, visibleSecretKeys[apiKey.id])}</span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => toggleSecretKeyVisibility(apiKey.id)}
-                      className={styles.keyCellButton}
-                    >
-                      {visibleSecretKeys[apiKey.id] ? <EyeOff size={16} /> : <Eye size={16} />}
-                    </Button>
-                  </div>
-                </TableCell>
-
-                {/* action */}
-                <TableCell>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() =>
-                      openDetailDialog((props) => (
-                        <ApiKeyDetailDialog
-                          {...props}
-                          apiKey={apiKey}
-                          onReissue={() => reissueApiKey(apiKey.key)}
-                          onDelete={() => deleteApiKey(apiKey.key)}
-                        />
-                      ))
-                    }
-                  >
-                    <MoreHorizontal size={16} />
-                  </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} style={{ textAlign: 'center' }}>
+                  발급된 API 키가 없습니다.
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </div>

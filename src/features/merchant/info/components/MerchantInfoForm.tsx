@@ -1,6 +1,4 @@
-import { merchantsApi } from '@/api/merchants/api';
 import { CardHeader } from '@/components/card-header';
-import { Button } from '@/components/ui/button';
 import Card from '@/components/ui/card';
 import {
   Form,
@@ -11,28 +9,27 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { QUERY_KEYS } from '@/constants/queries';
 import { MerchantInfoSchema } from '@/features/merchant/info/schema';
 import { MerchantInfoType } from '@/queries';
 import { formatBusinessNumber, formatPhoneNumber } from '@/utils/format-register';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
-import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useUpdateMerchant } from '../hooks/useUpdateMerchant';
 import * as styles from './merchant-info.css';
+import MerchantInfoFormAction from './MerchantInfoFormAction';
 
-type MerchantInfoFormType = z.infer<typeof MerchantInfoSchema>;
+type FormValues = z.infer<typeof MerchantInfoSchema>;
 
-interface MerchantInfoFormProps {
+interface Props {
   merchantInfo: MerchantInfoType;
 }
 
-const MerchantInfoForm = ({ merchantInfo }: MerchantInfoFormProps) => {
+const MerchantInfoForm = ({ merchantInfo }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const form = useForm<MerchantInfoFormType>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(MerchantInfoSchema),
     mode: 'all',
     defaultValues: {
@@ -44,27 +41,12 @@ const MerchantInfoForm = ({ merchantInfo }: MerchantInfoFormProps) => {
     },
   });
 
-  const { mutate: updateMerchantInfo, isPending } = useMutation({
-    mutationFn: (data: MerchantInfoFormType) => {
-      return merchantsApi.update({
-        name: data.name,
-        businessNumber: data.businessNumber,
-        contactName: data.contactName,
-        contactEmail: data.contactEmail,
-        contactPhone: data.contactPhone,
-      });
-    },
-    meta: {
-      invalidates: [[QUERY_KEYS.MERCHANT.INFO]],
-    },
-    onSuccess: () => {
-      setIsEditing(false);
-      form.reset();
-    },
+  const { mutate: updateMerchant, isPending } = useUpdateMerchant(() => {
+    setIsEditing(false);
   });
 
-  const handleSubmit = async (data: MerchantInfoFormType) => {
-    updateMerchantInfo(data);
+  const handleCancel = () => {
+    setIsEditing(false);
   };
 
   return (
@@ -72,7 +54,7 @@ const MerchantInfoForm = ({ merchantInfo }: MerchantInfoFormProps) => {
       <CardHeader title="기본 정보" description="가맹점의 기본 정보를 확인할 수 있습니다." />
       <div className={styles.merchantInfoContent}>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
+          <form onSubmit={form.handleSubmit((data) => updateMerchant(data))}>
             <div className={styles.formGrid}>
               <FormField
                 control={form.control}
@@ -163,33 +145,13 @@ const MerchantInfoForm = ({ merchantInfo }: MerchantInfoFormProps) => {
 
             <div className={styles.buttonWrapper}>
               {isEditing ? (
-                <div className={styles.buttonContainer}>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={() => {
-                      form.reset();
-                      setIsEditing(false);
-                    }}
-                    disabled={isPending}
-                  >
-                    취소
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    disabled={!form.formState.isValid || isPending}
-                  >
-                    {isPending ? '저장 중...' : '저장'}
-                  </Button>
-                </div>
+                <MerchantInfoFormAction.EditButtons
+                  onCancel={handleCancel}
+                  isSubmitting={isPending}
+                  isValid={form.formState.isValid}
+                />
               ) : (
-                <Button width="fit" variant="primary" onClick={() => setIsEditing(true)}>
-                  <div className={styles.buttonIcon}>
-                    <Pencil size={16} />
-                    정보 수정
-                  </div>
-                </Button>
+                <MerchantInfoFormAction.ModifyButton onClick={() => setIsEditing(true)} />
               )}
             </div>
           </form>

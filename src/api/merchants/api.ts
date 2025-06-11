@@ -1,5 +1,7 @@
 import { createApiEndpoint } from '@/services/api-factory';
 import {
+  MerchantDeleteResponseSchema,
+  MerchantDeleteResponseType,
   MerchantInfoResponseSchema,
   MerchantModifyRequestSchema,
   MerchantModifyRequestType,
@@ -24,10 +26,9 @@ export const merchantsApi = {
     requestSchema: MerchantModifyRequestSchema,
     responseSchema: MerchantModifyResponseSchema,
   }),
-  delete: createApiEndpoint<MerchantModifyRequestType, MerchantModifyResponseType>({
-    path: '/merchants/modify',
-    method: 'put',
-    requestSchema: MerchantModifyRequestSchema,
-    responseSchema: MerchantModifyResponseSchema,
+  delete: createApiEndpoint<undefined, MerchantDeleteResponseType>({
+    path: '/merchants/delete',
+    method: 'delete',
+    responseSchema: MerchantDeleteResponseSchema,
   }),
 };

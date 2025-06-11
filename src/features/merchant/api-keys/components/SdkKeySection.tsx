@@ -82,10 +82,6 @@ const SdkKeySection = ({ sdkKey }: SdkKeySectionProps) => {
             </div>
           </div>
         </div>
-
-        {/* <div className={styles.infoGrid}>
-          <div className={styles.infoItem}></div>
-        </div> */}
       </div>
     </Card>
   );

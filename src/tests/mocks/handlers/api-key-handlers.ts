@@ -1,5 +1,8 @@
+import { ApiKeysResponseListType } from '@/api/api-keys/schema';
 import { http, HttpResponse } from 'msw';
 import fixtures from '../fixtures';
+
+let apiKeysStore: ApiKeysResponseListType = [...fixtures.merchantsApiKeys.get];
 
 const apiKeyHandlers = [
   http.get(
@@ -13,7 +16,7 @@ const apiKeyHandlers = [
         );
       }
 
-      return HttpResponse.json(fixtures.merchantsApiKeys.get, { status: 200 });
+      return HttpResponse.json(apiKeysStore, { status: 200 });
     }
   ),
   http.post(
@@ -27,6 +30,8 @@ const apiKeyHandlers = [
           { status: 400 }
         );
       }
+
+      apiKeysStore.push(fixtures.merchantsApiKeys.post);
 
       return HttpResponse.json(fixtures.merchantsApiKeys.post, { status: 200 });
     }
@@ -43,6 +48,11 @@ const apiKeyHandlers = [
         );
       }
 
+      const existingKeyIndex = apiKeysStore.findIndex((key) => key.active);
+      if (existingKeyIndex !== -1) {
+        apiKeysStore[existingKeyIndex] = fixtures.merchantsApiKeys.reissue;
+      }
+
       return HttpResponse.json(fixtures.merchantsApiKeys.reissue, { status: 200 });
     }
   ),
@@ -54,6 +64,8 @@ const apiKeyHandlers = [
       if (!key) {
         return HttpResponse.json({ success: false, message: 'Key is required' }, { status: 400 });
       }
+
+      apiKeysStore = apiKeysStore.filter((apiKey) => apiKey.key !== key);
 
       return HttpResponse.json({ status: 200 });
     }
