@@ -11,7 +11,7 @@ const TRANSACTION_DEFAULTS = {
   /** 기본 페이지 크기 */
   PAGE_SIZE: 10,
   /** 기본 조회 기간 (일) */
-  SEARCH_PERIOD_DAYS: 20,
+  SEARCH_PERIOD_DAYS: 7,
 } as const;
 
 export const useTransactionParams = () => {
