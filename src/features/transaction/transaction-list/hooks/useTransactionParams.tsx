@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 type TransactionParams = Omit<TransactionRequestType, 'merchantId'>;
 
 /** 거래 내역 조회 기본값 */
-const TRANSACTION_DEFAULTS = {
+export const TRANSACTION_DEFAULTS = {
   /** 기본 페이지 번호 */
   PAGE_NUMBER: 0,
   /** 기본 페이지 크기 */

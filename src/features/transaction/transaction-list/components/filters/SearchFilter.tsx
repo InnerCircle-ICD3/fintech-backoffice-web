@@ -2,7 +2,10 @@ import Flex from '@/components/layout/flex';
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui/card';
 import { Form } from '@/components/ui/form';
-import { useTransactionParams } from '@/features/transaction/transaction-list/hooks/useTransactionParams';
+import {
+  TRANSACTION_DEFAULTS,
+  useTransactionParams,
+} from '@/features/transaction/transaction-list/hooks/useTransactionParams';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { addDays, format } from 'date-fns';
 import { RotateCcw, SearchIcon } from 'lucide-react';
@@ -71,7 +74,7 @@ const SearchFilter: React.FC<{ children: ReactNode }> & SearchFilterComposition 
   const handleReset = () => {
     const defaultValues = {
       dateRange: {
-        from: addDays(new Date(), -20),
+        from: addDays(new Date(), -TRANSACTION_DEFAULTS.SEARCH_PERIOD_DAYS),
         to: new Date(),
       },
       status: '',
