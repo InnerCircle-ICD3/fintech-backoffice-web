@@ -1,6 +1,6 @@
 import AdminLayout from '@/features/layout/admin/AdminLayout';
 import { merchantLoader } from '@/queries';
-import { ProtectedRoute, protectedLoader } from '@/router/components';
+import { protectedLoader, ProtectedRoute } from '@/router/components';
 import { lazyImport } from '@/utils/lazy-lmport';
 import type { QueryClient } from '@tanstack/react-query';
 import type { RouteObject } from 'react-router-dom';
@@ -52,9 +52,9 @@ export const adminRoutes = (queryClient: QueryClient): RouteObject[] => {
       children: [
         {
           element: <AdminLayout />,
+          loader: merchantLoader(queryClient),
           children: [
             {
-              loader: merchantLoader(queryClient),
               children: [
                 ...transactionSectionRoutes,
                 ...merchantSectionRoutes,
