@@ -1,6 +1,6 @@
 import Flex from '@/components/layout/flex';
 import { Button } from '@/components/ui/button';
-import { axiosInstance } from '@/services/api-instance';
+import { merchantApiInstance } from '@/services/api-instance';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
@@ -9,13 +9,13 @@ export const ExampleError = () => {
 
   const { refetch } = useQuery({
     queryKey: ['error-test', errorType],
-    queryFn: async () => await axiosInstance.get(`/error/${errorType}`),
+    queryFn: async () => await merchantApiInstance.get(`/error/${errorType}`),
     enabled: false,
   });
 
   const { mutate } = useMutation({
     mutationKey: ['error-test-mutation', errorType],
-    mutationFn: async () => await axiosInstance.get(`/error/${errorType}`),
+    mutationFn: async () => await merchantApiInstance.get(`/error/${errorType}`),
   });
 
   const handleMutationTest = () => {
