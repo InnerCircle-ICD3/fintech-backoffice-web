@@ -1,0 +1,1 @@
+import{j as e}from"./index-_5xsdmz-.js";import{T as s}from"./App-DPRSQoot.js";var h="_1soh2ah0",t="_1soh2ah1";const l=({title:a,description:i,action:r})=>e.jsxs("div",{className:h,children:[e.jsxs("div",{className:t,children:[e.jsx(s,{size:"lg",weight:"bold",children:a}),e.jsx(s,{size:"sm",weight:"regular",children:i})]}),r&&r]});export{l as C};
