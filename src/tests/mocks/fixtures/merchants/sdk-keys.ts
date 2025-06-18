@@ -1,6 +1,7 @@
 import {
   SdkKeyActivateResponseType,
   SdkKeyDeactivateResponseType,
+  SdkKeyRegenerateResponseType,
   SdkKeyResponseType,
 } from '@/api/sdk/schema';
 
@@ -18,8 +19,14 @@ const sdkKeyDeactivateResponse: SdkKeyDeactivateResponseType = {
   message: 'SDK 키 비활성화 성공',
 };
 
+const sdkKeyRegenerateResponse: SdkKeyRegenerateResponseType = {
+  success: true,
+  message: 'SDK 키 재발급 성공',
+};
+
 export const sdkKey = {
   get: sdkKeyResponse,
   activate: sdkKeyActivateResponse,
   deactivate: sdkKeyDeactivateResponse,
+  regenerate: sdkKeyRegenerateResponse,
 };
