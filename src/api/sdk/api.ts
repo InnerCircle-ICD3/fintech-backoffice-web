@@ -1,33 +1,40 @@
-import { createApiEndpoint } from '@/services/api-factory';
-import {
-  SdkKeyActivateResponseSchema,
-  SdkKeyActivateResponseType,
-  SdkKeyDeactivateResponseSchema,
-  SdkKeyDeactivateResponseType,
-  SdkKeyResponseSchema,
-  SdkKeyResponseType,
-} from './schema';
+import { merchantApiClient } from '@/services/api/merchant/api-client';
+import { SdkKeyResponseSchema } from './schema';
+
+const getSdkKey = async () => {
+  return merchantApiClient.get('/sdk-key', {
+    schema: SdkKeyResponseSchema,
+  });
+};
+
+const activateSdkKey = async () => {
+  return merchantApiClient.post('/sdk-key/activate', {
+    schema: SdkKeyResponseSchema,
+  });
+};
+
+const deactivateSdkKey = async () => {
+  return merchantApiClient.post('/sdk-key/deactivate', {
+    schema: SdkKeyResponseSchema,
+  });
+};
+
+const regenerateSdkKey = async () => {
+  return merchantApiClient.post('/sdk-key/regenerate', {
+    schema: SdkKeyResponseSchema,
+  });
+};
 
 /**
  * SDK 키 API 엔드포인트
  */
 export const sdkApi = {
   /** SDK 키 조회 */
-  get: createApiEndpoint<undefined, SdkKeyResponseType>({
-    path: '/sdk-key',
-    method: 'get',
-    responseSchema: SdkKeyResponseSchema,
-  }),
+  get: getSdkKey,
   /** SDK 키 활성화 */
-  activate: createApiEndpoint<undefined, SdkKeyActivateResponseType>({
-    path: '/sdk-key/activate',
-    method: 'post',
-    responseSchema: SdkKeyActivateResponseSchema,
-  }),
+  activate: activateSdkKey,
+  /** SDK 키 재발급 */
+  regenerate: regenerateSdkKey,
   /** SDK 키 비활성화 */
-  deactivate: createApiEndpoint<undefined, SdkKeyDeactivateResponseType>({
-    path: '/sdk-key/deactivate',
-    method: 'post',
-    responseSchema: SdkKeyDeactivateResponseSchema,
-  }),
+  deactivate: deactivateSdkKey,
 };

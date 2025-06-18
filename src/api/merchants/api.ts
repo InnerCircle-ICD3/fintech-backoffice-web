@@ -1,34 +1,38 @@
-import { createApiEndpoint } from '@/services/api-factory';
+import { merchantApiClient } from '@/services/api/merchant/api-client';
 import {
   MerchantDeleteResponseSchema,
-  MerchantDeleteResponseType,
   MerchantInfoResponseSchema,
-  MerchantModifyRequestSchema,
   MerchantModifyRequestType,
-  MerchantModifyResponseSchema,
-  MerchantModifyResponseType,
-  type MerchantInfoResponseType,
+  MerchantModifySchema,
 } from './schema';
+
+const getMerchantInfo = async () => {
+  return merchantApiClient.get('/merchants/info', {
+    schema: MerchantInfoResponseSchema,
+  });
+};
+
+const updateMerchantInfo = async (payload: MerchantModifyRequestType) => {
+  return merchantApiClient.put('/merchants/modify', {
+    data: payload,
+    schema: MerchantModifySchema,
+  });
+};
+
+const deleteMerchant = async () => {
+  return merchantApiClient.delete('/merchants/delete', {
+    schema: MerchantDeleteResponseSchema,
+  });
+};
 
 /**
  * 가맹점 API 엔드포인트
  */
 export const merchantsApi = {
-  get: createApiEndpoint<undefined, MerchantInfoResponseType>({
-    path: '/merchants/info',
-    method: 'get',
-    requestSchema: undefined,
-    responseSchema: MerchantInfoResponseSchema,
-  }),
-  update: createApiEndpoint<MerchantModifyRequestType, MerchantModifyResponseType>({
-    path: '/merchants/modify',
-    method: 'put',
-    requestSchema: MerchantModifyRequestSchema,
-    responseSchema: MerchantModifyResponseSchema,
-  }),
-  delete: createApiEndpoint<undefined, MerchantDeleteResponseType>({
-    path: '/merchants/delete',
-    method: 'delete',
-    responseSchema: MerchantDeleteResponseSchema,
-  }),
+  /** 가맹점 정보 조회 */
+  get: getMerchantInfo,
+  /** 가맹점 정보 수정 */
+  update: updateMerchantInfo,
+  /** 가맹점 정보 삭제 */
+  delete: deleteMerchant,
 };

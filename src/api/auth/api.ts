@@ -1,43 +1,60 @@
-import { createApiEndpoint } from '@/services/api-factory';
+import { merchantApiClient } from '@/services/api/merchant/api-client';
 import {
-  LoginRequestSchema,
   LoginRequestType,
   LoginResponseSchema,
-  LoginResponseType,
   LogoutResponseSchema,
-  LogoutResponseType,
-  RegisterRequestSchema,
   RegisterRequestType,
   RegisterResponseSchema,
-  RegisterResponseType,
   ReissueResponseSchema,
-  ReissueResponseType,
+  UpdatePasswordRequestType,
+  UpdatePasswordResponseSchema,
 } from './schema';
+
+const login = async (payload: LoginRequestType) => {
+  return merchantApiClient.post('/merchants/login', {
+    data: payload,
+    schema: LoginResponseSchema,
+  });
+};
+
+const register = async (payload: RegisterRequestType) => {
+  return merchantApiClient.post('/merchants/register', {
+    data: payload,
+    schema: RegisterResponseSchema,
+  });
+};
+
+const reissue = async () => {
+  return merchantApiClient.post('/merchants/reissue', {
+    schema: ReissueResponseSchema,
+  });
+};
+
+const logout = async () => {
+  return merchantApiClient.post('/merchants/logout', {
+    schema: LogoutResponseSchema,
+  });
+};
+
+const updatePassword = async (payload: UpdatePasswordRequestType) => {
+  return merchantApiClient.put('/merchants/update-password', {
+    data: payload,
+    schema: UpdatePasswordResponseSchema,
+  });
+};
 
 /**
  * 인증 API 엔드포인트
  */
 export const authApi = {
-  login: createApiEndpoint<LoginRequestType, LoginResponseType>({
-    path: '/merchants/login',
-    method: 'post',
-    requestSchema: LoginRequestSchema,
-    responseSchema: LoginResponseSchema,
-  }),
-  register: createApiEndpoint<RegisterRequestType, RegisterResponseType>({
-    path: '/merchants/register',
-    method: 'post',
-    requestSchema: RegisterRequestSchema,
-    responseSchema: RegisterResponseSchema,
-  }),
-  reissue: createApiEndpoint<undefined, ReissueResponseType>({
-    path: '/merchants/reissue',
-    method: 'post',
-    responseSchema: ReissueResponseSchema,
-  }),
-  logout: createApiEndpoint<undefined, LogoutResponseType>({
-    path: '/merchants/logout',
-    method: 'post',
-    responseSchema: LogoutResponseSchema,
-  }),
+  /** 로그인 */
+  login,
+  /** 회원가입 */
+  register,
+  /** 토큰 재발급 */
+  reissue,
+  /** 로그아웃 */
+  logout,
+  /** 비밀번호 변경 */
+  updatePassword,
 };

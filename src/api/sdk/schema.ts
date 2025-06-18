@@ -1,20 +1,32 @@
 import { z } from 'zod';
+import { BaseResponseSchema } from '../base/base-schema';
 
-/** POST sdk키 조회 /sdk-key */
+/**
+ * GET sdk키 조회 응답
+ * /sdk-key
+ *
+ * @param sdkKey sdk키
+ */
 export const SdkKeyResponseSchema = z.object({
   sdkKey: z.string(),
 });
 
-export const SdkKeyActivateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-});
-
-export const SdkKeyDeactivateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-});
-
 export type SdkKeyResponseType = z.infer<typeof SdkKeyResponseSchema>;
-export type SdkKeyActivateResponseType = z.infer<typeof SdkKeyActivateResponseSchema>;
-export type SdkKeyDeactivateResponseType = z.infer<typeof SdkKeyDeactivateResponseSchema>;
+
+/**
+ * POST sdk키 활성화 응답
+ * /sdk-key/activate
+ */
+export const SdkKeyActivateResponseSchema = BaseResponseSchema;
+export type SdkKeyActivateResponseType = z.infer<typeof BaseResponseSchema>;
+
+/** sdk키 재발급 응답 */
+export const SdkKeyRegenerateRequestSchema = BaseResponseSchema;
+export type SdkKeyRegenerateResponseType = z.infer<typeof BaseResponseSchema>;
+
+/**
+ * POST sdk키 비활성화 응답
+ * /sdk-key/deactivate
+ */
+export const SdkKeyDeactivateResponseSchema = BaseResponseSchema;
+export type SdkKeyDeactivateResponseType = z.infer<typeof BaseResponseSchema>;
