@@ -31,4 +31,4 @@ export type SdkKeyDeactivateResponseType = z.infer<typeof BaseResponseSchema>;
  * /sdk-key/regenerate
  */
 export const SdkKeyRegenerateResponseSchema = BaseResponseSchema;
-export type SdkKeyRegenerateRequestType = z.infer<typeof BaseResponseSchema>;
+export type SdkKeyRegenerateResponseType = z.infer<typeof BaseResponseSchema>;

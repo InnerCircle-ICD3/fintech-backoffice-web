@@ -13,6 +13,7 @@ export const QUERY_KEYS = {
   },
   SDK: {
     KEY: ['sdk', 'key'] as const,
+    REGENERATE: ['sdk', 'key', 'regenerate'] as const,
     ACTIVATE: ['sdk', 'key', 'activate'] as const,
     DEACTIVATE: ['sdk', 'key', 'deactivate'] as const,
   },
