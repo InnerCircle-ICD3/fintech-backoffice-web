@@ -1,23 +1,22 @@
-import { MerchantModifyRequestSchema } from '@/api/merchants/schema';
+import { MerchantModifySchema } from '@/api/merchants/schema';
 import { http, HttpResponse } from 'msw';
 import fixtures from '../fixtures';
 
 let merchantInfoStore = { ...fixtures.merchantsInfo.infoResponse };
 
 const merchantsHandlers = [
-  http.get(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/info`, async ({ request }) => {
+  http.get(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/info`, async () => {
+    return HttpResponse.json(merchantInfoStore, { status: 200 });
+  }),
+  http.put(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/modify`, async ({ request }) => {
     const token = request.headers.get('Authorization');
+    const body = await request.json();
 
     if (!token) {
       return HttpResponse.json({ success: false, message: '재로그인 필요' }, { status: 401 });
     }
 
-    return HttpResponse.json(merchantInfoStore, { status: 200 });
-  }),
-  http.put(`${import.meta.env.VITE_MERCHANT_API_URL}/merchants/modify`, async ({ request }) => {
-    const body = await request.json();
-
-    const { success, data } = MerchantModifyRequestSchema.safeParse(body);
+    const { success, data } = MerchantModifySchema.safeParse(body);
 
     if (!success) {
       return HttpResponse.json({ success: false, message: '잘못된 요청입니다.' }, { status: 400 });
@@ -41,10 +40,5 @@ const merchantsHandlers = [
     return HttpResponse.json(fixtures.merchantsInfo.deleteResponse, { status: 200 });
   }),
 ];
-
-// 테스트를 위한 초기화 함수
-export const resetMerchantInfoStore = () => {
-  merchantInfoStore = { ...fixtures.merchantsInfo.infoResponse };
-};
 
 export default merchantsHandlers;
