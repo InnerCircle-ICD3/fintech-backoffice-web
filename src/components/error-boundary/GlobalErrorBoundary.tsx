@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { handleErrorMessage } from '@/services/api-error';
+import { handleErrorMessage } from '@/services/error/api-error';
 import { AlertTriangle } from 'lucide-react';
 import { useNavigate, useRouteError } from 'react-router-dom';
 import * as styles from './error-boundary.css';
