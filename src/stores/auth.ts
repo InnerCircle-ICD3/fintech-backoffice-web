@@ -10,16 +10,18 @@ import {
 
 const STORAGE_KEY = 'auth-store';
 
-interface TokenType {
+interface UserType {
+  userId: number;
   accessToken: string;
   refreshToken: string;
 }
 
 interface AuthState {
+  userId: number | null;
   accessToken: string | null;
   refreshToken: string | null;
   rememberMe: boolean;
-  setTokens: ({ accessToken, refreshToken }: TokenType, rememberMe: boolean) => void;
+  setUser: (user: UserType, rememberMe: boolean) => void;
   clearTokens: () => void;
 }
 
@@ -67,18 +69,20 @@ export const useAuthStore = create<AuthState>()(
     subscribeWithSelector(
       persist(
         (set) => ({
+          userId: null,
           accessToken: null,
           refreshToken: null,
           rememberMe: true,
-          setTokens: ({ accessToken, refreshToken }: TokenType, rememberMe: boolean) =>
+          setUser: (user: UserType, rememberMe: boolean) =>
             set(
               produce((state) => {
-                state.accessToken = accessToken;
-                state.refreshToken = refreshToken;
+                state.userId = user.userId;
+                state.accessToken = user.accessToken;
+                state.refreshToken = user.refreshToken;
                 state.rememberMe = rememberMe;
               }),
               false,
-              'auth/setTokens'
+              'auth/setUser'
             ),
           clearTokens: () => {
             set(
@@ -95,6 +99,7 @@ export const useAuthStore = create<AuthState>()(
           name: STORAGE_KEY,
           storage: createJSONStorage(getCustomPersistentStorage),
           partialize: (state) => ({
+            userId: state.userId,
             accessToken: state.accessToken,
             refreshToken: state.refreshToken,
             rememberMe: state.rememberMe,
@@ -105,7 +110,8 @@ export const useAuthStore = create<AuthState>()(
   )
 );
 
+export const useUserId = () => useAuthStore((state) => state.userId);
 export const useAccessToken = () => useAuthStore((state) => state.accessToken);
 export const useRefreshToken = () => useAuthStore((state) => state.refreshToken);
-export const useSetTokens = () => useAuthStore((state) => state.setTokens);
+export const useSetUser = () => useAuthStore((state) => state.setUser);
 export const useClearTokens = () => useAuthStore((state) => state.clearTokens);
