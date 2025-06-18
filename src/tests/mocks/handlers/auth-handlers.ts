@@ -27,7 +27,7 @@ const authHandlers = [
     console.log('register data', data);
     return HttpResponse.json(
       {
-        merchantId: 4,
+        merchantId: 1,
         loginId: 'merchant1234',
         name: '홍길동 가맹점1',
         status: 'ACTIVE',
@@ -39,6 +39,7 @@ const authHandlers = [
     console.log('logout data', data);
     return HttpResponse.json(
       {
+        success: true,
         message: '로그아웃 처리 완료',
       },
       { status: 200 }
