@@ -1,8 +1,6 @@
-import { TransactionRequestType } from '@/api/transaction/schema';
+import { TransactionParams } from '@/types/transaction-params';
 import { addDays, format } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
-
-type TransactionParams = Omit<TransactionRequestType, 'merchantId'>;
 
 /** 거래 내역 조회 기본값 */
 export const TRANSACTION_DEFAULTS = {

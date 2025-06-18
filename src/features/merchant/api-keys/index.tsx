@@ -1,39 +1,41 @@
-import { apiKeysApi } from '@/api/api-keys/api';
-import { sdkApi } from '@/api/sdk/api';
+import { CardHeader } from '@/components/card-header';
 import AdminSection from '@/components/layout/section/admin';
-import { QUERY_KEYS } from '@/constants/queries';
-import { MerchantInfoType } from '@/queries';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { SuspenseQuery } from '@/components/react-query/SuspenseQuery';
+import Card from '@/components/ui/card';
+import { apiKeyQueryOptions, sdkKeyQueryOptions } from '@/queries/api-keys';
+import { useUserId } from '@/stores/auth';
 import { Suspense } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import ApiKeySection from './components/ApiKeySection';
+import { ApiKeyCreateButton } from './components/ApiKeyCreateButton';
+import { ApiKeyList } from './components/ApiKeySection';
 import SdkKeySection from './components/SdkKeySection';
+import * as styles from './styles/api-key.css';
 
 const ApiKeysPage = () => {
-  const merchantInfo = useOutletContext<MerchantInfoType>();
-
-  const {
-    data: { sdkKey },
-  } = useSuspenseQuery({
-    queryKey: QUERY_KEYS.SDK.KEY,
-    queryFn: () => sdkApi.get(),
-  });
-
-  const { data: apiKeyList } = useSuspenseQuery({
-    queryKey: QUERY_KEYS.API_KEYS.LIST,
-    queryFn: () =>
-      apiKeysApi.get(undefined, {
-        merchantId: String(merchantInfo.merchantId),
-      }),
-  });
+  const userId = useUserId();
 
   return (
     <AdminSection label="API 키">
+      {/* SDK 키 */}
       <Suspense fallback={<div>Loading...</div>}>
-        <SdkKeySection sdkKey={sdkKey} />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ApiKeySection apiKeyList={apiKeyList} />
+        <SuspenseQuery {...sdkKeyQueryOptions()}>
+          {({ data }) => <SdkKeySection sdkKey={data.sdkKey} />}
+        </SuspenseQuery>
+
+        {/* API 키 목록 */}
+        {userId !== null && (
+          <SuspenseQuery {...apiKeyQueryOptions(userId)}>
+            {({ data }) => (
+              <Card className={styles.container}>
+                <CardHeader
+                  title="API 개별 연동 키"
+                  description="결제 시스템과 연동하기 위한 API 키를 관리합니다."
+                  action={<ApiKeyCreateButton userId={userId} />}
+                />
+                <ApiKeyList apiKeyList={data} userId={userId} />
+              </Card>
+            )}
+          </SuspenseQuery>
+        )}
       </Suspense>
     </AdminSection>
   );
