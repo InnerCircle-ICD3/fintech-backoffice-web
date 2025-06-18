@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { QUERY_KEYS } from '@/constants/queries';
 import { formatBusinessNumber, formatPhoneNumber } from '@/utils/format-register';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -42,7 +43,7 @@ const Register = () => {
   });
 
   const { isPending, mutateAsync } = useMutation({
-    mutationKey: ['register'],
+    mutationKey: QUERY_KEYS.AUTH.REGISTER,
     mutationFn: async (data: RegisterRequestType) => await authApi.register(data),
     onSuccess: () => {
       form.reset();
