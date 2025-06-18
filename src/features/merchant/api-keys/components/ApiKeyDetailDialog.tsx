@@ -7,16 +7,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { useOverlay } from '@/contexts/overlay';
+import * as styles from '@/features/merchant/api-keys/styles/api-key-detail.css';
 import { format } from 'date-fns';
 import { RefreshCw, Trash2 } from 'lucide-react';
-import * as styles from './api-key-detail.css';
 
 interface ApiKeyDetailDialogProps {
   apiKey: ApiKeyResponseType;
   isOpen: boolean;
   onRequestClose: () => void;
-  onReissue: (apiKeyId: number) => void;
-  onDelete: (apiKeyId: number) => void;
+  onReissue: () => void;
+  onDelete: () => void;
 }
 
 const ApiKeyDetailDialog = ({
@@ -26,6 +27,8 @@ const ApiKeyDetailDialog = ({
   onReissue,
   onDelete,
 }: ApiKeyDetailDialogProps) => {
+  const { openConfirmation } = useOverlay();
+
   const formatDate = (date: string) => {
     return format(new Date(date), 'yyyy/MM/dd');
   };
@@ -41,7 +44,7 @@ const ApiKeyDetailDialog = ({
         <div className={styles.content}>
           <div className={styles.infoItem}>
             <span className={styles.label}>ID</span>
-            <span className={styles.value}>{apiKey.id}</span>
+            <span className={styles.value}>{apiKey.key}</span>
           </div>
           <div className={styles.infoItem}>
             <span className={styles.label}>상태</span>
@@ -65,8 +68,14 @@ const ApiKeyDetailDialog = ({
           <Button
             variant="secondary"
             onClick={() => {
-              onReissue(apiKey.id);
-              onRequestClose();
+              openConfirmation({
+                title: 'API 키 재발급',
+                body: 'API 키를 재발급하시겠어요?',
+                onSubmit: () => {
+                  onReissue();
+                  onRequestClose();
+                },
+              });
             }}
             className={styles.actionButton}
           >
@@ -76,8 +85,14 @@ const ApiKeyDetailDialog = ({
           <Button
             variant="destructive"
             onClick={() => {
-              onDelete(apiKey.id);
-              onRequestClose();
+              openConfirmation({
+                title: 'API 키 삭제',
+                body: 'API 키를 삭제하시겠어요?',
+                onSubmit: () => {
+                  onDelete();
+                  onRequestClose();
+                },
+              });
             }}
             className={styles.actionButton}
           >
