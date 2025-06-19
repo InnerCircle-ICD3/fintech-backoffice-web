@@ -75,6 +75,7 @@ export const button = recipe({
       },
       lg: {
         fontSize: vars.fontSize.lg,
+        fontWeight: vars.fontWeight.bold,
         padding: '20px',
         borderRadius: '14px',
       },
