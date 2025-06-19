@@ -8,8 +8,6 @@ import {
   ExampleSwitch,
 } from './components';
 import { ExampleButton } from './components/ExampleButton';
-import { ExampleError } from './components/ExampleError';
-
 import { ExampleDialog } from './components/ExampleDialog';
 
 const Example = () => {
@@ -33,7 +31,6 @@ const Example = () => {
         <Suspense fallback={<div>로딩 중...</div>}>
           <ExampleDialog />
         </Suspense>
-        <ExampleError />
       </Flex>
     </div>
   );

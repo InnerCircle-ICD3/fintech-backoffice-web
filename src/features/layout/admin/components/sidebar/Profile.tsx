@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { logo, logoIcon, logoText, profile } from './sidebar.css';
 
 export const Profile = () => {
-export const Profile = () => {
   return (
     <h1 className={profile}>
       <Link to="/" className={logo}>
