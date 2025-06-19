@@ -16,7 +16,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Text from '@/components/ui/text';
 import { QUERY_KEYS } from '@/constants/queries';
+import { useOverlay } from '@/contexts/overlay';
 import { useSetUser } from '@/stores/auth';
+import { vars } from '@/styles/theme.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
@@ -32,6 +34,8 @@ type LoginFormType = z.infer<typeof LoginFormSchema>;
 const Login = () => {
   const navigate = useNavigate();
   const setUser = useSetUser();
+  const { openOverlay } = useOverlay();
+
   const [showPassword, setShowPassword] = useState(false);
   const [isRememberMe, setIsRememberMe] = useState(true);
 
@@ -65,7 +69,7 @@ const Login = () => {
   return (
     <div className={styles.loginContainer}>
       <Card width="532px" className={styles.loginCard}>
-        <h1 className={styles.loginTitle}>로그인</h1>
+        <h1 className={styles.loginTitle}>열정페이</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className={styles.loginForm}>
             {/* 이름 */}
@@ -126,6 +130,7 @@ const Login = () => {
               )}
             />
 
+            {/*  */}
             <Flex justify="between" align="center" gap="8px" width="100%">
               <Flex gap="8px" align="center">
                 <Checkbox
@@ -136,12 +141,20 @@ const Login = () => {
                 />
                 <Label htmlFor="rememberMe">자동 로그인</Label>
               </Flex>
-              <Text style={{ cursor: 'pointer' }} onClick={() => alert('coming soon')}>
+              <Text
+                onClick={() => alert('coming soon')}
+                style={{
+                  color: vars.color.primary,
+                  fontWeight: vars.fontWeight.medium,
+                  cursor: 'pointer',
+                }}
+              >
                 비밀번호 찾기
               </Text>
             </Flex>
 
-            <Flex direction="column" gap="16px" width="100%" className={styles.buttonContainer}>
+            {/* form footer */}
+            <Flex direction="column" gap="20px" width="100%" className={styles.buttonContainer}>
               <Button
                 type="submit"
                 variant="primary"
@@ -151,9 +164,28 @@ const Login = () => {
               >
                 로그인
               </Button>
-              <Button type="button" variant="secondary" disabled={isPending} size="lg" asChild>
-                <Link to="/auth/register">회원가입</Link>
-              </Button>
+
+              <Flex align="center" justify="center" gap="8px" width="100%">
+                <Text
+                  style={{
+                    color: vars.color.text.caption,
+                    fontWeight: vars.fontWeight.medium,
+                  }}
+                >
+                  계정이 없다면?
+                </Text>
+                <Link
+                  to="/auth/register"
+                  style={{
+                    fontSize: vars.fontSize.sm,
+                    color: vars.color.primary,
+                    textDecoration: 'underline',
+                    fontWeight: vars.fontWeight.medium,
+                  }}
+                >
+                  회원가입하기
+                </Link>
+              </Flex>
             </Flex>
           </form>
         </Form>

@@ -66,7 +66,7 @@ const Register = () => {
   return (
     <div className={styles.registerContainer}>
       <Card width="532px" className={styles.registerCard}>
-        <h1>회원가입</h1>
+        <h1 className={styles.registerTitle}>회원가입</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className={styles.registerForm}>
             {/* 아이디 */}

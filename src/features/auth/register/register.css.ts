@@ -14,13 +14,17 @@ export const registerCard = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '64px 62px',
-  gap: '48px',
+  padding: '55px 62px',
+  gap: '38px',
 });
 
 export const registerTitle = style({
   fontSize: vars.fontSize['5xl'],
   fontWeight: 'bold',
+  background: 'linear-gradient(266deg, #122853 -27.11%, #164ABC 92.79%)',
+  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
   margin: 0,
 });
 
