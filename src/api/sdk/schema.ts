@@ -7,6 +7,12 @@ import { BaseResponseSchema } from '../base/base-schema';
  *
  * @param sdkKey sdk키
  */
+/**
+ * GET sdk키 조회 응답
+ * /sdk-key
+ *
+ * @param sdkKey sdk키
+ */
 export const SdkKeyResponseSchema = z.object({
   sdkKey: z.string(),
 });
