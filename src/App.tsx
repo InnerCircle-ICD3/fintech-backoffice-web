@@ -72,7 +72,7 @@ const App = () => {
         <RouterProvider
           router={createRouter(queryClient)}
           future={{ v7_startTransition: true }}
-          fallbackElement={<div>로딩 중...</div>}
+          fallbackElement={<div>Loading...</div>}
         />
         <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />

@@ -1,3 +1,4 @@
+import '@/styles/font.css';
 import '@/styles/global.css.ts';
 import 'pretendard/dist/web/static/pretendard.css';
 import React from 'react';
