@@ -37,7 +37,7 @@ export const useUpdateMerchant = (onSuccess: () => void) => {
     onSuccess,
     onSettled: () => {
       // 서버와 동기화
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.MERCHANT.INFO });
+      queryClient.refetchQueries({ queryKey: QUERY_KEYS.MERCHANT.INFO });
     },
   });
 };

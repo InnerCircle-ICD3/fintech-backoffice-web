@@ -1,11 +1,3 @@
-import { apiKeysApi } from '@/api/api-keys/api';
-import { QUERY_KEYS } from '@/constants/queries';
-import { MerchantInfoType } from '@/queries';
-
-import { useMutation } from '@tanstack/react-query';
-import { toast } from 'sonner';
-import * as styles from './api-key-create-dialog.css';
-
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -16,32 +8,18 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import type { OverlayProps } from '@/contexts/overlay/overlay-context';
+import * as styles from '@/features/merchant/api-keys/styles/api-key-create-dialog.css';
 import { TriangleAlert } from 'lucide-react';
 
 interface ApiKeyCreateDialogProps extends OverlayProps {
-  merchantInfo: MerchantInfoType;
+  onSubmit: () => void;
 }
 
 export const ApiKeyCreateDialog = ({
   isOpen,
   onRequestClose,
-  merchantInfo,
+  onSubmit,
 }: ApiKeyCreateDialogProps) => {
-  const { mutate: createApiKey } = useMutation({
-    mutationKey: [QUERY_KEYS.API_KEYS.CREATE],
-    mutationFn: () =>
-      apiKeysApi.create(undefined, {
-        merchantId: String(merchantInfo.merchantId),
-      }),
-    onSuccess: () => {
-      toast.success('API 키가 생성되었습니다.');
-      onRequestClose();
-    },
-    meta: {
-      invalidates: [QUERY_KEYS.API_KEYS.LIST],
-    },
-  });
-
   return (
     <Dialog open={isOpen} onOpenChange={onRequestClose}>
       <DialogContent style={{ width: '460px' }}>
@@ -66,7 +44,13 @@ export const ApiKeyCreateDialog = ({
           <Button variant="secondary" onClick={onRequestClose}>
             취소
           </Button>
-          <Button variant="primary" onClick={() => createApiKey()}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              onSubmit();
+              onRequestClose();
+            }}
+          >
             발급하기
           </Button>
         </DialogFooter>

@@ -5,13 +5,12 @@ import { useOverlay } from '@/contexts/overlay';
 import { Logout } from '@/features/layout/admin/components/sidebar/Logout';
 import { Menu } from '@/features/layout/admin/components/sidebar/Menu';
 import { Profile } from '@/features/layout/admin/components/sidebar/Profile';
-import type { MerchantInfoType } from '@/queries';
 import { useClearTokens } from '@/stores/auth';
 import { vars } from '@/styles/theme.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ChevronRight } from 'lucide-react';
 import { Menu as ReactProMenu, Sidebar as ReactProSidebar } from 'react-pro-sidebar';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { expandIcon, footerSection, menuContainer, sidebar, sidebarContainer } from './sidebar.css';
 
 const menuStyles = {
@@ -27,7 +26,6 @@ const menuStyles = {
 };
 
 const Sidebar = () => {
-  const merchantInfo = useLoaderData() as MerchantInfoType;
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();
@@ -69,7 +67,7 @@ const Sidebar = () => {
             )}
           >
             {/* 프로필 */}
-            <Profile merchantInfo={merchantInfo} />
+            <Profile />
             {/* 메뉴 */}
             <Menu.List
               items={MENU_ITEMS}

@@ -63,7 +63,7 @@ const MerchantInfoForm = ({ merchantInfo }: Props) => {
                   <FormItem>
                     <FormLabel>가맹점명</FormLabel>
                     <FormControl>
-                      <Input {...field} readOnly={!isEditing} />
+                      <Input {...field} disabled={!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -79,7 +79,7 @@ const MerchantInfoForm = ({ merchantInfo }: Props) => {
                     <FormControl>
                       <Input
                         {...field}
-                        readOnly={!isEditing}
+                        disabled={!isEditing}
                         maxLength={12}
                         onChange={(e) => {
                           const formatted = formatBusinessNumber(e.target.value);
@@ -99,7 +99,7 @@ const MerchantInfoForm = ({ merchantInfo }: Props) => {
                   <FormItem>
                     <FormLabel>담당자명</FormLabel>
                     <FormControl>
-                      <Input {...field} readOnly={!isEditing} />
+                      <Input {...field} disabled={!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -113,7 +113,7 @@ const MerchantInfoForm = ({ merchantInfo }: Props) => {
                   <FormItem>
                     <FormLabel>담당자 이메일</FormLabel>
                     <FormControl>
-                      <Input {...field} type="email" readOnly={!isEditing} />
+                      <Input {...field} type="email" disabled={!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -129,7 +129,7 @@ const MerchantInfoForm = ({ merchantInfo }: Props) => {
                     <FormControl>
                       <Input
                         {...field}
-                        readOnly={!isEditing}
+                        disabled={!isEditing}
                         maxLength={13}
                         onChange={(e) => {
                           const formatted = formatPhoneNumber(e.target.value);

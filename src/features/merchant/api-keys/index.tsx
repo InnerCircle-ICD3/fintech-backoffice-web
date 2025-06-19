@@ -1,39 +1,52 @@
-import { apiKeysApi } from '@/api/api-keys/api';
-import { sdkApi } from '@/api/sdk/api';
+import { CardHeader } from '@/components/card-header';
 import AdminSection from '@/components/layout/section/admin';
-import { QUERY_KEYS } from '@/constants/queries';
-import { MerchantInfoType } from '@/queries';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { SuspenseQuery } from '@/components/react-query/SuspenseQuery';
+import Card from '@/components/ui/card';
+import { apiKeyQueryOptions } from '@/queries/api-keys';
+import { sdkKeyQueryOptions } from '@/queries/sdk-key';
+import { useUserId } from '@/stores/auth';
 import { Suspense } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import ApiKeySection from './components/ApiKeySection';
-import SdkKeySection from './components/SdkKeySection';
+import { ApiKeyCreateButton } from './components/ApiKeyCreateButton';
+import { ApiKeyList } from './components/ApiKeyList';
+import SdkKeyInfo from './components/SdkKeyInfo';
+import { SdkRegenerateButton } from './components/SdkRegenerateButton';
+import * as styles from './styles/api-key.css';
 
 const ApiKeysPage = () => {
-  const merchantInfo = useOutletContext<MerchantInfoType>();
-
-  const {
-    data: { sdkKey },
-  } = useSuspenseQuery({
-    queryKey: QUERY_KEYS.SDK.KEY,
-    queryFn: () => sdkApi.get(),
-  });
-
-  const { data: apiKeyList } = useSuspenseQuery({
-    queryKey: QUERY_KEYS.API_KEYS.LIST,
-    queryFn: () =>
-      apiKeysApi.get(undefined, {
-        merchantId: String(merchantInfo.merchantId),
-      }),
-  });
+  const userId = useUserId();
 
   return (
     <AdminSection label="API 키">
       <Suspense fallback={<div>Loading...</div>}>
-        <SdkKeySection sdkKey={sdkKey} />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ApiKeySection apiKeyList={apiKeyList} />
+        {/* SDK 키 */}
+        <SuspenseQuery {...sdkKeyQueryOptions()}>
+          {({ data }) => (
+            <Card className={styles.container}>
+              <CardHeader
+                title="결제위젯 연동 키"
+                description="결제 위젯으로 연동할 때 사용하는 SDK 키에요. 회원가입 시 자동으로 발급돼요."
+                action={<SdkRegenerateButton />}
+              />
+              <SdkKeyInfo sdkKey={data.sdkKey} />
+            </Card>
+          )}
+        </SuspenseQuery>
+
+        {/* API 키 목록 */}
+        {userId !== null && (
+          <SuspenseQuery {...apiKeyQueryOptions(userId)}>
+            {({ data }) => (
+              <Card className={styles.container}>
+                <CardHeader
+                  title="API 개별 연동 키"
+                  description="결제 시스템과 연동하기 위한 API 키를 관리해요."
+                  action={<ApiKeyCreateButton userId={userId} />}
+                />
+                <ApiKeyList apiKeyList={data} userId={userId} />
+              </Card>
+            )}
+          </SuspenseQuery>
+        )}
       </Suspense>
     </AdminSection>
   );

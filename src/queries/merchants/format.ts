@@ -1,7 +1,6 @@
 import type { MerchantInfoResponseType } from '@/api/merchants/schema';
 
 export const formatMerchantInfo = (response: MerchantInfoResponseType) => ({
-  merchantId: response.merchantId,
   name: response.name,
   businessNumber: response.businessNumber,
   contact: {

@@ -1,6 +1,6 @@
+import * as styles from '@/features/merchant/api-keys/styles/api-key-table.css';
 import { cx } from '@/utils/cx';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
-import * as styles from './table.css';
 
 const Table = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>(
   ({ className, ...props }, ref) => (

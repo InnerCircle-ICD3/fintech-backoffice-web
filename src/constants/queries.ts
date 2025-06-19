@@ -1,4 +1,11 @@
+import { TransactionParams } from '@/types/transaction-params';
+import { isNotNullish } from '@/utils/type-guards';
+
 export const QUERY_KEYS = {
+  AUTH: {
+    LOGIN: ['auth', 'login'] as const,
+    REGISTER: ['auth', 'register'] as const,
+  },
   MERCHANT: {
     INFO: ['merchant', 'info'] as const,
     DELETE: ['merchant', 'info', 'delete'] as const,
@@ -6,6 +13,7 @@ export const QUERY_KEYS = {
   },
   SDK: {
     KEY: ['sdk', 'key'] as const,
+    REGENERATE: ['sdk', 'key', 'regenerate'] as const,
     ACTIVATE: ['sdk', 'key', 'activate'] as const,
     DEACTIVATE: ['sdk', 'key', 'deactivate'] as const,
   },
@@ -16,7 +24,7 @@ export const QUERY_KEYS = {
     DELETE: ['api', 'keys', 'delete'] as const,
   },
   TRANSACTION: {
-    ALL: ['transaction', 'all'] as const,
+    ALL: (params: TransactionParams) => ['transaction', 'all', params].filter(isNotNullish),
     DETAIL: ['transaction', 'detail'] as const,
   },
 } as const;

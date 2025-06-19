@@ -16,8 +16,9 @@ describe('Auth Store', () => {
     const { result } = renderHook(() => useAuthStore());
 
     act(() => {
-      result.current.setTokens(
+      result.current.setUser(
         {
+          userId: fixtures.login.response.userId,
           accessToken: fixtures.login.response.accessToken,
           refreshToken: fixtures.login.response.refreshToken,
         },
@@ -33,8 +34,9 @@ describe('Auth Store', () => {
     const { result } = renderHook(() => useAuthStore());
 
     act(() => {
-      result.current.setTokens(
+      result.current.setUser(
         {
+          userId: fixtures.login.response.userId,
           accessToken: fixtures.login.response.accessToken,
           refreshToken: fixtures.login.response.refreshToken,
         },
@@ -48,13 +50,14 @@ describe('Auth Store', () => {
 
   test('로그아웃하면 모든 스토리지에서 토큰이 제거된다', () => {
     const { result } = renderHook(() => useAuthStore());
-    const tokens = {
+    const users = {
+      userId: fixtures.login.response.userId,
       accessToken: fixtures.login.response.accessToken,
       refreshToken: fixtures.login.response.refreshToken,
     };
 
     act(() => {
-      result.current.setTokens(tokens, true);
+      result.current.setUser(users, true);
     });
 
     act(() => {

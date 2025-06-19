@@ -1,6 +1,6 @@
 import { backofficeApiClient } from '@/services/api/backoffice/api-client';
+import { z } from 'zod';
 import {
-  ApiKeyDeleteRequestSchema,
   ApiKeyDeleteRequestType,
   ApiKeyReissueRequestType,
   ApiKeySchema,
@@ -30,7 +30,7 @@ const reissueApiKey = async (payload: ApiKeyReissueRequestType) => {
 
 const deleteApiKey = async (payload: ApiKeyDeleteRequestType) => {
   return backofficeApiClient.delete(`/merchants/api-keys/${payload.key}`, {
-    schema: ApiKeyDeleteRequestSchema,
+    schema: z.object({ status: z.number() }),
   });
 };
 

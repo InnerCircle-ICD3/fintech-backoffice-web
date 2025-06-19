@@ -20,13 +20,15 @@ export type SdkKeyResponseType = z.infer<typeof SdkKeyResponseSchema>;
 export const SdkKeyActivateResponseSchema = BaseResponseSchema;
 export type SdkKeyActivateResponseType = z.infer<typeof BaseResponseSchema>;
 
-/** sdk키 재발급 응답 */
-export const SdkKeyRegenerateRequestSchema = BaseResponseSchema;
-export type SdkKeyRegenerateResponseType = z.infer<typeof BaseResponseSchema>;
-
 /**
  * POST sdk키 비활성화 응답
  * /sdk-key/deactivate
  */
 export const SdkKeyDeactivateResponseSchema = BaseResponseSchema;
 export type SdkKeyDeactivateResponseType = z.infer<typeof BaseResponseSchema>;
+
+/** sdk키 재발급 요청
+ * /sdk-key/regenerate
+ */
+export const SdkKeyRegenerateResponseSchema = BaseResponseSchema;
+export type SdkKeyRegenerateResponseType = z.infer<typeof BaseResponseSchema>;

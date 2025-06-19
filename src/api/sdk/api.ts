@@ -1,5 +1,10 @@
 import { merchantApiClient } from '@/services/api/merchant/api-client';
-import { SdkKeyResponseSchema } from './schema';
+import {
+  SdkKeyActivateResponseSchema,
+  SdkKeyDeactivateResponseSchema,
+  SdkKeyRegenerateResponseSchema,
+  SdkKeyResponseSchema,
+} from './schema';
 
 const getSdkKey = async () => {
   return merchantApiClient.get('/sdk-key', {
@@ -9,19 +14,19 @@ const getSdkKey = async () => {
 
 const activateSdkKey = async () => {
   return merchantApiClient.post('/sdk-key/activate', {
-    schema: SdkKeyResponseSchema,
+    schema: SdkKeyActivateResponseSchema,
   });
 };
 
 const deactivateSdkKey = async () => {
   return merchantApiClient.post('/sdk-key/deactivate', {
-    schema: SdkKeyResponseSchema,
+    schema: SdkKeyDeactivateResponseSchema,
   });
 };
 
 const regenerateSdkKey = async () => {
   return merchantApiClient.post('/sdk-key/regenerate', {
-    schema: SdkKeyResponseSchema,
+    schema: SdkKeyRegenerateResponseSchema,
   });
 };
 

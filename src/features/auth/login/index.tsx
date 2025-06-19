@@ -15,11 +15,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Text from '@/components/ui/text';
-import { useSetTokens } from '@/stores/auth';
+import { QUERY_KEYS } from '@/constants/queries';
+import { useSetUser } from '@/stores/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { startTransition, useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
@@ -30,7 +31,7 @@ type LoginFormType = z.infer<typeof LoginFormSchema>;
 
 const Login = () => {
   const navigate = useNavigate();
-  const setToken = useSetTokens();
+  const setUser = useSetUser();
   const [showPassword, setShowPassword] = useState(false);
   const [isRememberMe, setIsRememberMe] = useState(true);
 
@@ -44,22 +45,17 @@ const Login = () => {
   });
 
   const { isPending, mutateAsync } = useMutation({
-    mutationKey: ['login'],
+    mutationKey: QUERY_KEYS.AUTH.LOGIN,
     mutationFn: async (data: LoginRequestType) => await authApi.login(data),
     onSuccess: (data) => {
-      setToken(data, isRememberMe);
-
+      setUser(data, isRememberMe);
       form.reset();
-
-      startTransition(() => {
-        navigate('/');
-      });
+      navigate('/');
     },
   });
 
   const handleSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const { id: loginId, password: loginPw } = data;
-
     await mutateAsync({
       loginId,
       loginPw,
