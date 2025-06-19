@@ -19,7 +19,7 @@ const Table = (props: TableProps) => {
   const columns: CustomColumnDef<FormattedTransaction>[] = [
     {
       id: 'index',
-      header: 'No',
+      header: 'No.',
       cell: ({ row }) => {
         const currentPage = data?.pageable?.pageNumber || 0;
         const pageSize = data?.pageable?.pageSize || 10;

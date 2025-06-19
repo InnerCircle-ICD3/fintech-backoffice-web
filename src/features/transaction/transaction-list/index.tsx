@@ -1,6 +1,8 @@
 import Flex from '@/components/layout/flex';
 import AdminSection from '@/components/layout/section/admin';
 import { SuspenseQuery } from '@/components/react-query/SuspenseQuery';
+import Card from '@/components/ui/card';
+import Spinner from '@/components/ui/spinner';
 import { transactionQueryOptions } from '@/queries/transaction';
 import { useUserId } from '@/stores/auth';
 import { Suspense } from 'react';
@@ -21,7 +23,13 @@ const TransactionList = () => {
         </Flex>
         <SearchFilter.Actions />
       </SearchFilter>
-      <Suspense fallback={<div>로딩 중...</div>}>
+      <Suspense
+        fallback={
+          <Card width="100%" height="100%">
+            <Spinner />
+          </Card>
+        }
+      >
         {userId !== null && (
           <SuspenseQuery {...transactionQueryOptions(userId, params)}>
             {({ data, isFetching }) => <Table data={data} isFetching={isFetching} />}
