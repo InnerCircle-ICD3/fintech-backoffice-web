@@ -3,6 +3,7 @@ import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@ta
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from 'react-router-dom';
 import { toast, Toaster } from 'sonner';
+import AppLoader from './components/ui/app-loader';
 import { OverlayProvider } from './contexts/overlay/OverlayProvider';
 import { createRouter } from './router';
 
@@ -72,7 +73,7 @@ const App = () => {
         <RouterProvider
           router={createRouter(queryClient)}
           future={{ v7_startTransition: true }}
-          fallbackElement={<div>Loading...</div>}
+          fallbackElement={<AppLoader />}
         />
         <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
