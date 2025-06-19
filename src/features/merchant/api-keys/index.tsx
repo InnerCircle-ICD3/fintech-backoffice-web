@@ -2,6 +2,7 @@ import { CardHeader } from '@/components/card-header';
 import AdminSection from '@/components/layout/section/admin';
 import { SuspenseQuery } from '@/components/react-query/SuspenseQuery';
 import Card from '@/components/ui/card';
+import Spinner from '@/components/ui/spinner';
 import { apiKeyQueryOptions } from '@/queries/api-keys';
 import { sdkKeyQueryOptions } from '@/queries/sdk-key';
 import { useUserId } from '@/stores/auth';
@@ -14,10 +15,17 @@ import * as styles from './styles/api-key.css';
 
 const ApiKeysPage = () => {
   const userId = useUserId();
+  const userId = useUserId();
 
   return (
     <AdminSection label="API 키">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <Card width="100%" height="250px">
+            <Spinner />
+          </Card>
+        }
+      >
         {/* SDK 키 */}
         <SuspenseQuery {...sdkKeyQueryOptions()}>
           {({ data }) => (
@@ -31,9 +39,17 @@ const ApiKeysPage = () => {
             </Card>
           )}
         </SuspenseQuery>
+      </Suspense>
 
-        {/* API 키 목록 */}
-        {userId !== null && (
+      {/* API 키 목록 */}
+      <Suspense
+        fallback={
+          <Card width="100%" height="300px">
+            <Spinner />
+          </Card>
+        }
+      >
+        {userId !== null ? (
           <SuspenseQuery {...apiKeyQueryOptions(userId)}>
             {({ data }) => (
               <Card className={styles.container}>
@@ -46,7 +62,7 @@ const ApiKeysPage = () => {
               </Card>
             )}
           </SuspenseQuery>
-        )}
+        ) : null}
       </Suspense>
     </AdminSection>
   );

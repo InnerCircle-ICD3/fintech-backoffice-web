@@ -55,7 +55,7 @@ const commonVars = createGlobalTheme(':root', {
     '2xl': '22px',
     '3xl': '24px',
     '4xl': '28px',
-    '5xl': '40px',
+    '5xl': '36px',
   },
   fontWeight: {
     regular: '400',
