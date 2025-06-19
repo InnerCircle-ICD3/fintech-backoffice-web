@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { isRouteErrorResponse } from 'react-router-dom';
 
-// TODO: 추후 메세지 수정
 const ERROR_MESSAGES = {
   500: '오류가 발생했습니다.',
   default: '네트워크 연결을 확인해주세요.',

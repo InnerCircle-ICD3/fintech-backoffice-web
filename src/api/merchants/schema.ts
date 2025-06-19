@@ -1,9 +1,19 @@
 import { z } from 'zod';
+import { BaseResponseSchema } from '../base/base-schema';
 
-/** GET 가맹점 조회 응답 /merchants/info */
+/**
+ * GET 가맹점 조회 응답
+ * /merchants/info
+ *
+ * @param name 가맹점 이름
+ * @param businessNumber 사업자 번호
+ * @param contactName 담당자 이름
+ * @param contactEmail 담당자 이메일
+ * @param contactPhone 담당자 전화번호
+ * @param status 가맹점 상태
+ */
 export const MerchantInfoResponseSchema = z.object({
   name: z.string(),
-  merchantId: z.number(),
   businessNumber: z.string(),
   contactName: z.string(),
   contactEmail: z.string(),
@@ -11,31 +21,32 @@ export const MerchantInfoResponseSchema = z.object({
   status: z.string(),
 });
 
-/** PUT 가맹점 정보 수정 요청 /merchants/modify */
-export const MerchantModifyRequestSchema = z.object({
-  name: z.string(),
-  businessNumber: z.string(),
-  contactName: z.string(),
-  contactEmail: z.string(),
-  contactPhone: z.string(),
-});
-
-/** PUT 가맹점 정보 수정 응답 /merchants/modify */
-export const MerchantModifyResponseSchema = z.object({
-  name: z.string(),
-  businessNumber: z.string(),
-  contactName: z.string(),
-  contactEmail: z.string(),
-  contactPhone: z.string(),
-});
-
-/** DELETE 가맹점 정보 삭제 /merchants/delete */
-export const MerchantDeleteResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-});
-
 export type MerchantInfoResponseType = z.infer<typeof MerchantInfoResponseSchema>;
-export type MerchantModifyRequestType = z.infer<typeof MerchantModifyRequestSchema>;
-export type MerchantModifyResponseType = z.infer<typeof MerchantModifyResponseSchema>;
-export type MerchantDeleteResponseType = z.infer<typeof MerchantDeleteResponseSchema>;
+
+/**
+ * PUT 가맹점 정보 수정
+ * /merchants/modify
+ *
+ * @param name 가맹점 이름
+ * @param businessNumber 사업자 번호
+ * @param contactName 담당자 이름
+ * @param contactEmail 담당자 이메일
+ * @param contactPhone 담당자 전화번호
+ */
+export const MerchantModifySchema = z.object({
+  name: z.string(),
+  businessNumber: z.string(),
+  contactName: z.string(),
+  contactEmail: z.string(),
+  contactPhone: z.string(),
+});
+
+export type MerchantModifyRequestType = z.infer<typeof MerchantModifySchema>;
+export type MerchantModifyResponseType = z.infer<typeof MerchantModifySchema>;
+
+/**
+ * DELETE 가맹점 정보 삭제 응답
+ * /merchants/delete
+ */
+export const MerchantDeleteResponseSchema = BaseResponseSchema;
+export type MerchantDeleteResponseType = z.infer<typeof BaseResponseSchema>;

@@ -1,7 +1,7 @@
-import { RefreshTokenFailedError } from '@/services/api-error';
+import { RefreshTokenFailedError } from '@/services/error/api-error';
 import { useAuthStore } from '@/stores/auth';
 import type { AxiosError } from 'axios';
-import { merchantApiInstance } from './api-instance';
+import { apiInstance } from './api-instance';
 
 export const requestRefresh = async (failedRequest: AxiosError) => {
   try {
@@ -16,7 +16,7 @@ export const requestRefresh = async (failedRequest: AxiosError) => {
 
     console.log('Attempting token refresh...');
 
-    const { data: newToken } = await merchantApiInstance({
+    const { data: newTokens } = await apiInstance({
       url: '/auth/reissue',
       method: 'POST',
       headers: {
@@ -24,12 +24,12 @@ export const requestRefresh = async (failedRequest: AxiosError) => {
       },
     });
 
-    authStore.setTokens(newToken, rememberMe);
+    authStore.setUser(newTokens, rememberMe);
 
     const requestConfig = failedRequest.response?.config || failedRequest.config;
 
     if (requestConfig?.headers) {
-      requestConfig.headers['Authorization'] = `Bearer ${newToken.accessToken}`;
+      requestConfig.headers['Authorization'] = `Bearer ${newTokens.accessToken}`;
     }
 
     return Promise.resolve();

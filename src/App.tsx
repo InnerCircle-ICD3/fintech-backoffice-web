@@ -1,4 +1,4 @@
-import { handleErrorMessage } from '@/services/api-error';
+import { handleErrorMessage } from '@/services/error/api-error';
 import { matchQuery, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from 'react-router-dom';
