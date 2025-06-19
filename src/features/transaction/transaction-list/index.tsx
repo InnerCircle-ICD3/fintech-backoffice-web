@@ -13,6 +13,7 @@ import { useTransactionParams } from './hooks/useTransactionParams';
 const TransactionList = () => {
   const { params } = useTransactionParams();
   const userId = useUserId();
+  const userId = useUserId();
 
   return (
     <AdminSection label={'거래 내역'}>

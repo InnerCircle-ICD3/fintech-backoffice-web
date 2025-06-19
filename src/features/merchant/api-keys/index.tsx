@@ -15,6 +15,7 @@ import * as styles from './styles/api-key.css';
 
 const ApiKeysPage = () => {
   const userId = useUserId();
+  const userId = useUserId();
 
   return (
     <AdminSection label="API 키">

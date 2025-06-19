@@ -16,7 +16,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Text from '@/components/ui/text';
 import { QUERY_KEYS } from '@/constants/queries';
-import { useOverlay } from '@/contexts/overlay';
 import { useSetUser } from '@/stores/auth';
 import { vars } from '@/styles/theme.css';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,7 +33,6 @@ type LoginFormType = z.infer<typeof LoginFormSchema>;
 const Login = () => {
   const navigate = useNavigate();
   const setUser = useSetUser();
-  const { openOverlay } = useOverlay();
 
   const [showPassword, setShowPassword] = useState(false);
   const [isRememberMe, setIsRememberMe] = useState(true);
