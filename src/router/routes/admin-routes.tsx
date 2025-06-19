@@ -1,6 +1,7 @@
 import AdminLayout from '@/features/layout/admin/AdminLayout';
 import { merchantLoader } from '@/queries';
-import { protectedLoader, ProtectedRoute } from '@/router/components';
+import { ProtectedRoute } from '@/router/components';
+import { protectedLoader } from '@/router/loader/protected-loader';
 import { lazyImport } from '@/utils/lazy-lmport';
 import type { QueryClient } from '@tanstack/react-query';
 import type { RouteObject } from 'react-router-dom';
