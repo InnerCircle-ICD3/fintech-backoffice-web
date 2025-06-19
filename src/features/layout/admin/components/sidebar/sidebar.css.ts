@@ -31,6 +31,7 @@ export const menuContainer = style({
 });
 
 export const profile = style({
+  margin: 0,
   padding: '24px 20px',
   borderBottom: `1px solid ${vars.color.border}`,
   marginBottom: '8px',
@@ -52,18 +53,26 @@ export const profileInfoItem = style({
 });
 
 export const logo = style({
-  fontSize: vars.fontSize.md,
-  fontWeight: vars.fontWeight.bold,
-  color: vars.color.menu,
   letterSpacing: '-0.02em',
   display: 'flex',
   alignItems: 'center',
-  gap: '14px',
+  gap: '12px',
+});
+
+export const logoText = style({
+  fontSize: vars.fontSize.lg,
+  fontWeight: vars.fontWeight.medium,
+  color: vars.color.menu,
+  fontFamily: 'GongGothicMedium, sans-serif',
+  background: 'linear-gradient(266deg, #122853 -27.11%, #164ABC 92.79%)',
+  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
 });
 
 export const logoIcon = style({
-  width: '28px',
-  height: '28px',
+  width: '24px',
+  height: '24px',
   borderRadius: '8px',
   display: 'flex',
   alignItems: 'center',

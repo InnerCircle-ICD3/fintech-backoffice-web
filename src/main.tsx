@@ -1,18 +1,9 @@
+import '@/styles/font.css';
 import '@/styles/global.css.ts';
 import 'pretendard/dist/web/static/pretendard.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-
-const hideLoading = () => {
-  const loadingElement = document.getElementById('root-loading');
-  if (loadingElement) {
-    loadingElement.style.opacity = '0';
-    loadingElement.style.transform = 'translateY(-20px)';
-    setTimeout(() => {
-      loadingElement.style.display = 'none';
-    }, 600);
-  }
-};
+import { hideLoading } from './utils/hide-loading';
 
 const renderApp = async () => {
   const { default: App } = await import('./App');

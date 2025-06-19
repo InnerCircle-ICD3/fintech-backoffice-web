@@ -1,15 +1,15 @@
 import LogoIcon from '@/assets/images/logo/logo.png';
 import { Link } from 'react-router-dom';
-import { logo, logoIcon, profile } from './sidebar.css';
+import { logo, logoIcon, logoText, profile } from './sidebar.css';
 
 export const Profile = () => {
   return (
-    <div className={profile}>
+    <h1 className={profile}>
       <Link to="/" className={logo}>
         <Logo />
-        열정페이
+        <span className={logoText}>열정페이</span>
       </Link>
-    </div>
+    </h1>
   );
 };
 

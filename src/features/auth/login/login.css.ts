@@ -15,14 +15,19 @@ export const loginCard = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '64px 62px',
-  gap: '48px',
+  padding: '55px 62px',
+  gap: '38px',
 });
 
 export const loginTitle = style({
   fontSize: vars.fontSize['5xl'],
-  fontWeight: 'bold',
+  fontFamily: 'GongGothicMedium, sans-serif',
+  fontWeight: 'normal',
   margin: 0,
+  background: 'linear-gradient(266deg, #122853 -27.11%, #164ABC 92.79%)',
+  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
 });
 
 export const loginForm = style({
