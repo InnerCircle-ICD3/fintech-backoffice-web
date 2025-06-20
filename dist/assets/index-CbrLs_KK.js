@@ -1,0 +1,1 @@
+import{j as r}from"./index-BC6ZqUps.js";import{A as o}from"./index-G2h_bwmS.js";import{T as t}from"./App-BMBn2WKP.js";import"./schema-AkqpuqDV.js";const m=()=>r.jsx(o,{label:"승인요청 관리",children:r.jsx("div",{children:r.jsx(t,{children:"승인 관리"})})});export{m as default};
